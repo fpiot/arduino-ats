@@ -24,14 +24,15 @@ extern fun c_set_ddrb (v: char): void = "mac#"
 extern fun c_set_portb (v: char): void = "mac#"
 extern fun c_delay_ms (ms: double): void = "mac#_delay_ms"
 
-fun loop (): void = let
-    val () = c_set_portb (PORTB_LEDON)
-    val () = c_delay_ms (BLINK_DELAY_MS)
-    val () = c_set_portb (PORTB_LEDOFF)
-    val () = c_delay_ms (BLINK_DELAY_MS)
-  in loop () end
+fun loop (): void = begin
+  c_set_portb (PORTB_LEDON);
+  c_delay_ms (BLINK_DELAY_MS);
+  c_set_portb (PORTB_LEDOFF);
+  c_delay_ms (BLINK_DELAY_MS);
+  loop ();
+end
 
-implement main0 () = () where {
-  val () = c_set_ddrb (DDRB_OUT)
-  val () = loop ()
-}
+implement main0 () = begin
+  c_set_ddrb (DDRB_OUT);
+  loop ();
+end
