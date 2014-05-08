@@ -16,3 +16,10 @@
 *.exe
 *.out
 *.app
+*.elf
+*.hex
+*.map
+
+# C files
+pats_ccomp_typedefs.h
+*_ats/*.c
