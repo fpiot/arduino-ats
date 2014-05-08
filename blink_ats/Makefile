@@ -15,10 +15,13 @@ LIBS           =
 # You should not have to change anything below here.
 
 CC             = avr-gcc
+ATS            = patsopt
+PATSHOME       = /usr/local/lib/ats2-postiats-0.0.8
+ATSCFLAGS      = -std=c99 -D_XOPEN_SOURCE -Wno-unused-label -Wno-unused-but-set-variable -Wno-implicit-function-declaration -I${PATSHOME} -I${PATSHOME}/ccomp/runtime
 
 # Override is only needed by avr-lib build system.
 
-override CFLAGS        = -g -Wall $(OPTIMIZE) -mmcu=$(MCU_TARGET) -DF_CPU=$(F_CPU) $(DEFS)
+override CFLAGS        = -g -Wall $(OPTIMIZE) -mmcu=$(MCU_TARGET) -DF_CPU=$(F_CPU) $(DEFS) $(ATSCFLAGS)
 override LDFLAGS       = -Wl,-Map,$(PRG).map
 
 OBJCOPY        = avr-objcopy
@@ -31,10 +34,12 @@ $(PRG).elf: $(OBJ)
 
 # dependency:
 main.o: main.c
+main.c: main.dats
+	$(ATS) -o $@ -d main.dats
 
 clean:
 	rm -rf *.o $(PRG).elf *.eps *.png *.pdf *.bak 
-	rm -rf *.lst *.map $(EXTRA_CLEAN_FILES)
+	rm -rf *.lst *.map main.c $(EXTRA_CLEAN_FILES)
 
 lst:  $(PRG).lst
 
