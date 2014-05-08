@@ -64,4 +64,6 @@ avrdude done.  Thank you.
 
 ## How to debug using gdb
 
+[![](/img/avr_dragon.jpg)](http://www.atmel.com/tools/avrdragon.aspx)
+
 T.B.D.
