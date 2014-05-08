@@ -19,6 +19,9 @@
 *.elf
 *.hex
 *.map
+*.bin
+*.lst
+*.srec
 
 # C files
 pats_ccomp_typedefs.h
