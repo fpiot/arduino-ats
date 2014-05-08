@@ -17,7 +17,7 @@ LIBS           =
 CC             = avr-gcc
 ATS            = patsopt
 PATSHOME       = /usr/local/lib/ats2-postiats-0.0.8
-ATSCFLAGS      = -std=c99 -D_XOPEN_SOURCE -Wno-unused-label -Wno-unused-but-set-variable -Wno-implicit-function-declaration -I${PATSHOME} -I${PATSHOME}/ccomp/runtime
+ATSCFLAGS      = -std=c99 -D_XOPEN_SOURCE -Wno-unused-label -Wno-unused-but-set-variable -Wno-implicit-function-declaration -I. -I${PATSHOME} -I${PATSHOME}/ccomp/runtime
 
 # Override is only needed by avr-lib build system.
 
@@ -33,13 +33,17 @@ $(PRG).elf: $(OBJ)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
 
 # dependency:
-main.o: main.c
+main.o: main.c pats_ccomp_typedefs.h
+
 main.c: main.dats
 	$(ATS) -o $@ -d main.dats
 
+pats_ccomp_typedefs.h:
+	sed -e 's/_\[0XFFFF\]/_\[0X00FF\]/g' ${PATSHOME}/ccomp/runtime/$@ > $@
+
 clean:
 	rm -rf *.o $(PRG).elf *.eps *.png *.pdf *.bak 
-	rm -rf *.lst *.map main.c $(EXTRA_CLEAN_FILES)
+	rm -rf *.lst *.map main.c pats_ccomp_typedefs.h $(EXTRA_CLEAN_FILES)
 
 lst:  $(PRG).lst
 
