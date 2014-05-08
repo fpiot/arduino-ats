@@ -14,6 +14,7 @@ Also you could get [compatible boards](http://www.sainsmart.com/sainsmart-mega25
 ## How to build
 
 Get your own [Debian GNU/Linux](https://www.debian.org/) PC.
+Install some packages.
 
 ```
 $ sudo apt-get install binutils-avr gcc-avr avrdude
@@ -31,7 +32,7 @@ $ sudo make install
 $ export PATSHOME=/usr/local/lib/ats2-postiats-0.0.8
 ```
 
-Compile the source code.
+Compile the ATS source code for Arduino.
 
 ```
 $ cd arduino-mega2560-ats/blink_ats
