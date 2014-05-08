@@ -17,7 +17,7 @@ Get your own [Debian GNU/Linux](https://www.debian.org/) PC.
 Install some packages.
 
 ```
-$ sudo apt-get install binutils-avr gcc-avr avr-libc avrdude
+$ sudo apt-get install binutils-avr gcc-avr avr-libc avrdude libgmp-dev
 ```
 
 Install ATS2 http://www.ats-lang.org/.
