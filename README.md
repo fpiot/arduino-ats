@@ -21,6 +21,16 @@ $ sudo apt-get install binutils-avr gcc-avr avrdude
 
 Install ATS2 http://www.ats-lang.org/.
 
+```
+$ wget http://downloads.sourceforge.net/project/ats2-lang/ats2-lang/ats2-postiats-0.0.8/ATS2-Postiats-0.0.8.tgz
+$ tar xf ATS2-Postiats-0.0.8.tgz
+$ cd ATS2-Postiats-0.0.8
+$ ./configure
+$ make
+$ sudo make install
+$ export PATSHOME=/usr/local/lib/ats2-postiats-0.0.8
+```
+
 Compile the source code.
 
 ```
