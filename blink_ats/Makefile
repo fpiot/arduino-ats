@@ -16,7 +16,7 @@ LIBS           =
 
 CC             = avr-gcc
 ATS            = patsopt
-PATSHOME       = /usr/local/lib/ats2-postiats-0.0.8
+#PATSHOME       = /usr/local/lib/ats2-postiats-0.0.8
 ATSCFLAGS      = -std=c99 -D_XOPEN_SOURCE -Wno-unused-label -Wno-unused-but-set-variable -Wno-implicit-function-declaration -I. -I${PATSHOME} -I${PATSHOME}/ccomp/runtime
 
 # Override is only needed by avr-lib build system.
