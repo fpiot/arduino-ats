@@ -1,3 +1,5 @@
+#include "share/atspre_staload.hats"
+
 %{^
 #include <avr/io.h>
 #include <util/delay.h>
@@ -14,6 +16,8 @@ void c_set_portb(char val)
 	PORTB = val;
 }
 %}
+
+staload UN = "prelude/SATS/unsafe.sats"
 
 #define DDRB_OUT       int2char0 0xff
 #define PORTB_LEDON    int2char0 0xff
