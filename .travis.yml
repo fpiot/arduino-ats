@@ -1,0 +1,18 @@
+before_install:
+  - date
+  - cat /proc/cpuinfo
+  - cd ${HOME}
+  - sudo apt-get -qq -y install binutils-avr gcc-avr avr-libc avrdude libgmp-dev
+  - git clone https://github.com/githwxi/ATS-Postiats.git
+  - export ATSHOME=${HOME}/ats-lang-anairiats-0.2.11
+  - export ATSHOMERELOC=ATS-0.2.11
+  - ./ATS-Postiats/travis-ci/setup.sh 0.2.11
+  - export PATSHOME=${HOME}/ATS-Postiats
+  - export PATSHOMERELOC=${PATSHOME}
+  - export PATH=${PATH}:${PATSHOME}/bin
+  - cd ${PATSHOME} && make -f codegen/Makefile_atslib && make -f Makefile_devl src_depend && make -f Makefile_devl all
+script:
+  - cd ${TRAVIS_BUILD_DIR}
+  - make
+after_script:
+  - date
