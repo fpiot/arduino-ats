@@ -15,10 +15,10 @@ staload UN = "prelude/SATS/unsafe.sats"
 macdef DDRB_PTR  = $extval(ptr, "(0x04 + 0x20)") (* Only for Arduino Mega 2560 *)
 macdef PORTB_PTR = $extval(ptr, "(0x05 + 0x20)") (* Only for Arduino Mega 2560 *)
 
-extern fun c_delay_ms (ms: double): void = "mac#_delay_ms"
+extern fun c_delay_ms: (double) -> void = "mac#_delay_ms"
 
 implement main0 () = {
-  fun loop (): void = {
+  fun loop () = {
     val () = $UN.ptr0_set<char> (PORTB_PTR, PORTB_LEDON)
     val () = c_delay_ms (BLINK_DELAY_MS)
     val () = $UN.ptr0_set<char> (PORTB_PTR, PORTB_LEDOFF)
