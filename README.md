@@ -10,14 +10,39 @@
 
 Also you could get [compatible boards](http://www.sainsmart.com/sainsmart-mega2560-r3-development-board-compatible-with-arduino-mega2560-r3.html).
 
-## How to build
 
-Get your own [Debian GNU/Linux](https://www.debian.org/) PC.
+## Setup environment
+
+### [Debian GNU/Linux](https://www.debian.org/)
+
 Install some packages.
 
 ```
 $ sudo apt-get install binutils-avr gcc-avr avr-libc avrdude libgmp-dev
 ```
+
+### Mac OS X
+
+Install gmp package.
+
+```
+$ brew install gmp
+```
+
+Install avr toolchain http://www.obdev.at/products/crosspack/index.html, and set PATH env.
+
+```
+$ export PATH=$PATH:/usr/local/CrossPack-AVR/bin
+$ which avr-gcc
+/usr/local/CrossPack-AVR/bin/avr-gcc
+```
+
+### Windows
+
+T.B.D.
+
+
+## How to build
 
 Install ATS2 http://www.ats-lang.org/.
 
@@ -41,6 +66,7 @@ main.elf: ELF 32-bit LSB executable, Atmel AVR 8-bit, version 1 (SYSV), statical
 main.hex: ASCII text, with CRLF line terminators
 ```
 
+
 ## Write to the flash
 
 Connect Arduino board to your PC using USB cable.
@@ -60,6 +86,7 @@ avrdude: 2850 bytes of flash verified
 avrdude: safemode: Fuses OK (E:00, H:00, L:00)
 avrdude done.  Thank you.
 ```
+
 
 ## How to debug using gdb
 
