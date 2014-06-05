@@ -1,4 +1,4 @@
-SUBDIRS := blink blink_ats
+SUBDIRS := $(wildcard *_ats/)
 
 all clean:
 	@for i in $(SUBDIRS); do \
