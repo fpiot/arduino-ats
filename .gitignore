@@ -25,4 +25,4 @@
 
 # C files
 pats_ccomp_typedefs.h
-*_ats/*.c
+*_ats/main.c
