@@ -48,7 +48,7 @@ pats_ccomp_typedefs.h:
 
 clean:
 	rm -rf *.o $(PRG).elf *.eps *.png *.pdf *.bak 
-	rm -rf *.lst *.map DATS/*.c pats_ccomp_typedefs.h $(EXTRA_CLEAN_FILES)
+	rm -rf *.lst *.map DATS/*.c DATS/*.o pats_ccomp_typedefs.h $(EXTRA_CLEAN_FILES)
 
 lst:  $(PRG).lst
 

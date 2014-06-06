@@ -1,20 +1,9 @@
 #include "share/atspre_staload.hats"
 
-%{^
-#include "hardware_serial.h"
-%}
-
 staload "SATS/arduino.sats"
+staload "SATS/hardware_serial.sats"
 
 #define BLINK_DELAY_MS 500.0
-
-abst@ype hardware_serial = $extype"struct hardware_serial"
-
-macdef hserial   = $extval(cPtr0(hardware_serial), "(&Serial)")
-
-extern fun hardware_serial_begin: (cPtr0(hardware_serial), ulint) -> void   = "mac#"
-extern fun hardware_serial_write: (cPtr0(hardware_serial), char)  -> size_t = "mac#"
-extern fun hardware_serial_flush: (cPtr0(hardware_serial))        -> void   = "mac#"
 
 implement main0 () = {
   val ledPin = int2uchar0 13
