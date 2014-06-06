@@ -1,5 +1,7 @@
 PRG            = main
-OBJ            = main.o hardware_serial.o
+COBJ           = hardware_serial.o wiring_digital.o
+DATSOBJ        = main.o
+SATS           = $(wildcard SATS/*.sats)
 MCU_TARGET     = atmega2560
 OPTIMIZE       = -Os
 MCU            = atmega2560
@@ -30,11 +32,11 @@ OBJDUMP        = avr-objdump
 
 all: $(PRG).elf lst text eeprom
 
-$(PRG).elf: $(OBJ)
+$(PRG).elf: $(COBJ) $(DATSOBJ)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
 
 # dependency:
-main.o: main.c pats_ccomp_typedefs.h
+main.o: main.c pats_ccomp_typedefs.h $(SATS)
 
 main.c: main.dats
 	$(ATS) -o $@ -d main.dats
