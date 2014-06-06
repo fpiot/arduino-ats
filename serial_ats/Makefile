@@ -1,8 +1,8 @@
 PRG            = main
 SATS           = $(wildcard SATS/*.sats)
 DATS           = $(wildcard DATS/*.dats)
-DATSC          = $(patsubst %.dats,%.c,$(DATS))
-DATSOBJ        = $(patsubst %.dats,%.o,$(DATS))
+DATSC          = $(patsubst %.dats,%_dats.c,$(DATS))
+DATSOBJ        = $(patsubst %.dats,%_dats.o,$(DATS))
 COBJ           = hardware_serial.o wiring_digital.o
 MCU_TARGET     = atmega2560
 OPTIMIZE       = -Os
@@ -22,7 +22,7 @@ LIBS           =
 CC             = avr-gcc
 ATS            = patsopt
 #PATSHOME       = /usr/local/lib/ats2-postiats-0.0.8
-ATSCFLAGS      = -std=c99 -D_XOPEN_SOURCE -D_ATSTYPE_VAR_SIZE=0X00FF -Wno-unused-variable -Wno-unused-label -Wno-unused-but-set-variable -Wno-implicit-function-declaration -I. -I${PATSHOME} -I${PATSHOME}/ccomp/runtime
+ATSCFLAGS      = -std=c99 -D_XOPEN_SOURCE -D_ATSTYPE_VAR_SIZE=0X000F -Wno-unused-variable -Wno-unused-label -Wno-unused-but-set-variable -Wno-implicit-function-declaration -I. -I${PATSHOME} -I${PATSHOME}/ccomp/runtime
 
 # Override is only needed by avr-lib build system.
 
@@ -38,9 +38,8 @@ $(PRG).elf: $(COBJ) $(DATSOBJ)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
 
 # dependency:
-$(DATSOBJ): %.o: %.c pats_ccomp_typedefs.h $(SATS)
-
-$(DATSC): %.c: %.dats
+$(DATSOBJ): %_dats.o: %_dats.c pats_ccomp_typedefs.h $(SATS)
+$(DATSC): %_dats.c: %.dats
 	$(ATS) -o $@ -d $<
 
 pats_ccomp_typedefs.h:
