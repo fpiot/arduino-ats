@@ -1,7 +1,9 @@
 PRG            = main
-COBJ           = hardware_serial.o wiring_digital.o
-DATSOBJ        = main.o
 SATS           = $(wildcard SATS/*.sats)
+DATS           = $(wildcard DATS/*.dats)
+DATSC          = $(patsubst %.dats,%.c,$(DATS))
+DATSOBJ        = $(patsubst %.dats,%.o,$(DATS))
+COBJ           = hardware_serial.o wiring_digital.o
 MCU_TARGET     = atmega2560
 OPTIMIZE       = -Os
 MCU            = atmega2560
@@ -36,17 +38,17 @@ $(PRG).elf: $(COBJ) $(DATSOBJ)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
 
 # dependency:
-main.o: main.c pats_ccomp_typedefs.h $(SATS)
+$(DATSOBJ): %.o: %.c pats_ccomp_typedefs.h $(SATS)
 
-main.c: main.dats
-	$(ATS) -o $@ -d main.dats
+$(DATSC): %.c: %.dats
+	$(ATS) -o $@ -d $<
 
 pats_ccomp_typedefs.h:
 	sed -e 's/_\[0XFFFF\]/_\[0X00FF\]/g' ${PATSHOME}/ccomp/runtime/$@ > $@
 
 clean:
 	rm -rf *.o $(PRG).elf *.eps *.png *.pdf *.bak 
-	rm -rf *.lst *.map main.c pats_ccomp_typedefs.h $(EXTRA_CLEAN_FILES)
+	rm -rf *.lst *.map DATS/*.c pats_ccomp_typedefs.h $(EXTRA_CLEAN_FILES)
 
 lst:  $(PRG).lst
 
