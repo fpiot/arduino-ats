@@ -51,6 +51,8 @@
 #endif
 #endif
 
+// Ring buffer //////////////////////////////////////////////////////////////
+
 // Define constants and variables for buffering incoming serial data.  We're
 // using a ring buffer (I think), in which head is the index of the location
 // to which to write the next incoming character and tail is the index of the
@@ -73,7 +75,7 @@ struct ring_buffer rx_buffer = { { 0 }, 0, 0};
 struct ring_buffer tx_buffer = { { 0 }, 0, 0};
 #endif
 
-inline void store_char(unsigned char c, struct ring_buffer *buffer)
+inline void ringbuf_insert_nowait(unsigned char c, struct ring_buffer *buffer)
 {
   int i = (unsigned int)(buffer->head + 1) % SERIAL_BUFFER_SIZE;
 
@@ -85,6 +87,47 @@ inline void store_char(unsigned char c, struct ring_buffer *buffer)
     buffer->buffer[buffer->head] = c;
     buffer->head = i;
   }
+}
+
+inline void ringbuf_insert_wait(unsigned char c, struct ring_buffer *buffer)
+{
+  int i = (buffer->head + 1) % SERIAL_BUFFER_SIZE;
+
+  // If the output buffer is full, there's nothing for it other than to 
+  // wait for the interrupt handler to empty it a bit
+  // ???: return 0 here instead?
+  while (i == buffer->tail)
+    ;
+
+  buffer->buffer[buffer->head] = c;
+  buffer->head = i;
+}
+
+inline int ringbuf_is_empty(struct ring_buffer *buffer)
+{
+  return (buffer->head == buffer->tail);
+}
+
+inline unsigned int ringbuf_get_size(struct ring_buffer *buffer)
+{
+  return (unsigned int)(SERIAL_BUFFER_SIZE + buffer->head - buffer->tail) % SERIAL_BUFFER_SIZE;
+}
+
+inline unsigned char ringbuf_peek(struct ring_buffer *buffer)
+{
+  return buffer->buffer[buffer->tail];;
+}
+
+inline unsigned char ringbuf_remove(struct ring_buffer *buffer)
+{
+  unsigned char c = ringbuf_peek(buffer);
+  buffer->tail = (buffer->tail + 1) % SERIAL_BUFFER_SIZE;
+  return c;
+}
+
+inline void ringbuf_clear(struct ring_buffer *buffer)
+{
+  buffer->head = buffer->tail;
 }
 
 #if !defined(USART0_RX_vect) && defined(USART1_RX_vect)
@@ -108,14 +151,14 @@ inline void store_char(unsigned char c, struct ring_buffer *buffer)
   #if defined(UDR0)
     if (bit_is_clear(UCSR0A, UPE0)) {
       unsigned char c = UDR0;
-      store_char(c, &rx_buffer);
+      ringbuf_insert_nowait(c, &rx_buffer);
     } else {
       unsigned char c = UDR0;
     };
   #elif defined(UDR)
     if (bit_is_clear(UCSRA, PE)) {
       unsigned char c = UDR;
-      store_char(c, &rx_buffer);
+      ringbuf_insert_nowait(c, &rx_buffer);
     } else {
       unsigned char c = UDR;
     };
@@ -142,7 +185,7 @@ ISR(USART0_UDRE_vect)
 ISR(USART_UDRE_vect)
 #endif
 {
-  if (tx_buffer.head == tx_buffer.tail) {
+  if (ringbuf_is_empty(&tx_buffer)) {
 	// Buffer empty, so disable interrupts
 #if defined(UCSR0B)
     cbi(UCSR0B, UDRIE0);
@@ -152,9 +195,7 @@ ISR(USART_UDRE_vect)
   }
   else {
     // There is more data in the output buffer. Send the next byte
-    unsigned char c = tx_buffer.buffer[tx_buffer.tail];
-    tx_buffer.tail = (tx_buffer.tail + 1) % SERIAL_BUFFER_SIZE;
-	
+    unsigned char c = ringbuf_remove(&tx_buffer);
   #if defined(UDR0)
     UDR0 = c;
   #elif defined(UDR)
@@ -216,7 +257,7 @@ try_again:
 void hardware_serial_end(struct hardware_serial* hserial)
 {
   // wait for transmission of outgoing data
-  while (hserial->_tx_buffer->head != hserial->_tx_buffer->tail)
+  while (!ringbuf_is_empty(hserial->_tx_buffer))
     ;
 
   cbi(*(hserial->_ucsrb), hserial->_rxen);
@@ -225,31 +266,29 @@ void hardware_serial_end(struct hardware_serial* hserial)
   cbi(*(hserial->_ucsrb), hserial->_udrie);
   
   // clear any received data
-  hserial->_rx_buffer->head = hserial->_rx_buffer->tail;
+  ringbuf_clear(hserial->_rx_buffer);
 }
 
 int hardware_serial_available(struct hardware_serial* hserial)
 {
-  return (unsigned int)(SERIAL_BUFFER_SIZE + hserial->_rx_buffer->head - hserial->_rx_buffer->tail) % SERIAL_BUFFER_SIZE;
+  return ringbuf_get_size(hserial->_rx_buffer);
 }
 
 int hardware_serial_peek(struct hardware_serial* hserial)
 {
-  if (hserial->_rx_buffer->head == hserial->_rx_buffer->tail) {
+  if (ringbuf_is_empty(hserial->_rx_buffer)) {
     return -1;
   }
-  return hserial->_rx_buffer->buffer[hserial->_rx_buffer->tail];
+  return ringbuf_peek(hserial->_rx_buffer);
 }
 
 int hardware_serial_read(struct hardware_serial* hserial)
 {
   // if the head isn't ahead of the tail, we don't have any characters
-  if (hserial->_rx_buffer->head == hserial->_rx_buffer->tail) {
+  if (ringbuf_is_empty(hserial->_rx_buffer)) {
     return -1;
   } else {
-    unsigned char c = hserial->_rx_buffer->buffer[hserial->_rx_buffer->tail];
-    hserial->_rx_buffer->tail = (unsigned int)(hserial->_rx_buffer->tail + 1) % SERIAL_BUFFER_SIZE;
-    return c;
+    return ringbuf_remove(hserial->_rx_buffer);
   }
 }
 
@@ -262,16 +301,7 @@ void hardware_serial_flush(struct hardware_serial* hserial)
 
 size_t hardware_serial_write(struct hardware_serial* hserial, uint8_t c)
 {
-  int i = (hserial->_tx_buffer->head + 1) % SERIAL_BUFFER_SIZE;
-	
-  // If the output buffer is full, there's nothing for it other than to 
-  // wait for the interrupt handler to empty it a bit
-  // ???: return 0 here instead?
-  while (i == hserial->_tx_buffer->tail)
-    ;
-	
-  hserial->_tx_buffer->buffer[hserial->_tx_buffer->head] = c;
-  hserial->_tx_buffer->head = i;
+  ringbuf_insert_wait(c, hserial->_tx_buffer);
 	
   sbi(*(hserial->_ucsrb), hserial->_udrie);
   // clear the TXC bit -- "can be cleared by writing a one to its bit location"
