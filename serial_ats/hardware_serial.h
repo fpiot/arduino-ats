@@ -85,8 +85,20 @@ inline void c_sbi(volatile uint8_t *addr, uint8_t bit) {
   sbi(*((volatile uint8_t *) addr), bit);
 }
 
+inline void c_cbi(volatile uint8_t *addr, uint8_t bit) {
+  cbi(*((volatile uint8_t *) addr), bit);
+}
+
+inline uint8_t c_rbi(volatile uint8_t *addr, uint8_t bit) {
+  return (_SFR_BYTE(*((volatile uint8_t *) addr)) & _BV(bit));
+}
+
 inline void set_transmitting(bool b) {
   Serial.transmitting = b;
+}
+
+inline bool get_transmitting(void) {
+  return Serial.transmitting;
 }
 
 void ringbuf_insert_nowait(unsigned char c, struct ring_buffer *buffer);
@@ -98,8 +110,5 @@ unsigned char ringbuf_remove(struct ring_buffer *buffer);
 void ringbuf_clear(struct ring_buffer *buffer);
 
 void hardware_serial_begin(struct hardware_serial* hserial, unsigned long baud);
-void hardware_serial_end(struct hardware_serial* hserial);
-int hardware_serial_peek(struct hardware_serial* hserial);
-void hardware_serial_flush(struct hardware_serial* hserial);
 
 #endif

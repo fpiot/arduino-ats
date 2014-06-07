@@ -14,6 +14,7 @@ implement main0 () = {
     val _ = serial_write (int2char0 c)
     val _ = serial_write ('\r')
     val _ = serial_write ('\n')
+    val () = serial_flush ()
   }
 
   fun readprint () =

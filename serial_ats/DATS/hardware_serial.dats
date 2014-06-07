@@ -65,18 +65,36 @@ extern fun ringbuf_remove:        (cPtr0(ring_buffer))        -> uchar = "mac#"
 extern fun ringbuf_clear:         (cPtr0(ring_buffer))        -> void  = "mac#"
 
 extern fun c_sbi:            (ptr, uint8) -> void = "mac#"
+extern fun c_cbi:            (ptr, uint8) -> void = "mac#"
+extern fun c_rbi:            (ptr, uint8) -> uint8 = "mac#"
 extern fun set_transmitting: (bool)       -> void = "mac#"
+extern fun get_transmitting: ()           -> bool = "mac#"
 
 extern fun c_hardware_serial_begin: (cPtr0(hardware_serial), ulint) -> void   = "mac#hardware_serial_begin"
-extern fun c_hardware_serial_flush: (cPtr0(hardware_serial))        -> void   = "mac#hardware_serial_flush"
 
 implement serial_begin (baud) =
   c_hardware_serial_begin (hserial, baud)
-implement serial_flush () =
-  c_hardware_serial_flush (hserial)
+
+implement serial_flush () = {
+  // UDR is kept full while the buffer is not empty, so TXC triggers when EMPTY && SENT
+  fun loop () = let
+    val t = get_transmitting ()
+    val b = c_rbi (ADDR_UCSRA, BIT_TXC0)
+  in
+    if (t andalso (($UN.cast2int b) = 0)) then loop ()
+  end
+  val () = loop ()
+  val () = set_transmitting (false)
+}
 
 implement serial_available () =
   ringbuf_get_size rx_buffer
+
+implement serial_peek () =
+  if (ringbuf_is_empty (rx_buffer)) then
+    ~1
+  else
+    $UN.cast (ringbuf_peek (rx_buffer))
 
 implement serial_read () =
   if (ringbuf_is_empty (rx_buffer)) then
@@ -93,3 +111,15 @@ implement serial_write (c) = let
 in
   $UN.cast 1
 end
+
+implement serial_end () = {
+  // wait for transmission of outgoing data
+  fun loop () = if not(ringbuf_is_empty (tx_buffer)) then loop ()
+  val () = loop ()
+  val () = c_cbi (ADDR_UCSRB, BIT_RXEN)
+  val () = c_cbi (ADDR_UCSRB, BIT_TXEN)
+  val () = c_cbi (ADDR_UCSRB, BIT_RXCIE)
+  val () = c_cbi (ADDR_UCSRB, BIT_UDRIE)
+  // clear any received data
+  val () = ringbuf_clear (rx_buffer)
+}

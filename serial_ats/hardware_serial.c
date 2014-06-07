@@ -253,36 +253,6 @@ try_again:
   cbi(*(hserial->_ucsrb), hserial->_udrie);
 }
 
-void hardware_serial_end(struct hardware_serial* hserial)
-{
-  // wait for transmission of outgoing data
-  while (!ringbuf_is_empty(hserial->_tx_buffer))
-    ;
-
-  cbi(*(hserial->_ucsrb), hserial->_rxen);
-  cbi(*(hserial->_ucsrb), hserial->_txen);
-  cbi(*(hserial->_ucsrb), hserial->_rxcie);  
-  cbi(*(hserial->_ucsrb), hserial->_udrie);
-  
-  // clear any received data
-  ringbuf_clear(hserial->_rx_buffer);
-}
-
-int hardware_serial_peek(struct hardware_serial* hserial)
-{
-  if (ringbuf_is_empty(hserial->_rx_buffer)) {
-    return -1;
-  }
-  return ringbuf_peek(hserial->_rx_buffer);
-}
-
-void hardware_serial_flush(struct hardware_serial* hserial)
-{
-  // UDR is kept full while the buffer is not empty, so TXC triggers when EMPTY && SENT
-  while (hserial->transmitting && ! (*(hserial->_ucsra) & _BV(TXC0)));
-  hserial->transmitting = false;
-}
-
 // Preinstantiate Objects //////////////////////////////////////////////////////
 
 #if defined(UBRRH) && defined(UBRRL)
