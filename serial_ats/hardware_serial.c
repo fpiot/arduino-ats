@@ -28,7 +28,6 @@
 #include <string.h>
 #include <inttypes.h>
 #include "Arduino.h"
-#include "wiring_private.h"
 
 // this next line disables the entire HardwareSerial.cpp, 
 // this is so I can support Attiny series and any other chip without a uart
@@ -297,18 +296,6 @@ void hardware_serial_flush(struct hardware_serial* hserial)
   // UDR is kept full while the buffer is not empty, so TXC triggers when EMPTY && SENT
   while (hserial->transmitting && ! (*(hserial->_ucsra) & _BV(TXC0)));
   hserial->transmitting = false;
-}
-
-size_t hardware_serial_write(struct hardware_serial* hserial, uint8_t c)
-{
-  ringbuf_insert_wait(c, hserial->_tx_buffer);
-	
-  sbi(*(hserial->_ucsrb), hserial->_udrie);
-  // clear the TXC bit -- "can be cleared by writing a one to its bit location"
-  hserial->transmitting = true;
-  sbi(*(hserial->_ucsra), TXC0);
-  
-  return 1;
 }
 
 // Preinstantiate Objects //////////////////////////////////////////////////////

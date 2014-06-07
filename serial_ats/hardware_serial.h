@@ -25,6 +25,7 @@
 
 #include <inttypes.h>
 #include <stdbool.h>
+#include "wiring_private.h"
 
 struct ring_buffer;
 
@@ -80,7 +81,7 @@ extern struct ring_buffer tx_buffer;
 extern struct hardware_serial Serial;
 #endif
 
-inline void c_sbi(void *addr, uint8_t bit) {
+inline void c_sbi(volatile uint8_t *addr, uint8_t bit) {
   sbi(*((volatile uint8_t *) addr), bit);
 }
 
@@ -102,6 +103,5 @@ int hardware_serial_available(struct hardware_serial* hserial);
 int hardware_serial_peek(struct hardware_serial* hserial);
 int hardware_serial_read(struct hardware_serial* hserial);
 void hardware_serial_flush(struct hardware_serial* hserial);
-size_t hardware_serial_write(struct hardware_serial* hserial, uint8_t c);
 
 #endif
