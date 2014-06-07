@@ -5,8 +5,6 @@ staload "SATS/arduino.sats"
 staload "SATS/hardware_serial.sats"
 dynload "DATS/hardware_serial.dats"
 
-staload UN = "prelude/SATS/unsafe.sats"
-
 #define BLINK_DELAY_MS 50.0
 
 implement main0 () = {

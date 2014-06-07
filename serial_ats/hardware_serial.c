@@ -75,7 +75,7 @@ struct ring_buffer rx_buffer = { { 0 }, 0, 0};
 struct ring_buffer tx_buffer = { { 0 }, 0, 0};
 #endif
 
-inline void ringbuf_insert_nowait(unsigned char c, struct ring_buffer *buffer)
+void ringbuf_insert_nowait(unsigned char c, struct ring_buffer *buffer)
 {
   int i = (unsigned int)(buffer->head + 1) % SERIAL_BUFFER_SIZE;
 
@@ -89,7 +89,7 @@ inline void ringbuf_insert_nowait(unsigned char c, struct ring_buffer *buffer)
   }
 }
 
-inline void ringbuf_insert_wait(unsigned char c, struct ring_buffer *buffer)
+void ringbuf_insert_wait(unsigned char c, struct ring_buffer *buffer)
 {
   int i = (buffer->head + 1) % SERIAL_BUFFER_SIZE;
 
@@ -103,29 +103,29 @@ inline void ringbuf_insert_wait(unsigned char c, struct ring_buffer *buffer)
   buffer->head = i;
 }
 
-inline int ringbuf_is_empty(struct ring_buffer *buffer)
+int ringbuf_is_empty(struct ring_buffer *buffer)
 {
   return (buffer->head == buffer->tail);
 }
 
-inline unsigned int ringbuf_get_size(struct ring_buffer *buffer)
+unsigned int ringbuf_get_size(struct ring_buffer *buffer)
 {
   return (unsigned int)(SERIAL_BUFFER_SIZE + buffer->head - buffer->tail) % SERIAL_BUFFER_SIZE;
 }
 
-inline unsigned char ringbuf_peek(struct ring_buffer *buffer)
+unsigned char ringbuf_peek(struct ring_buffer *buffer)
 {
   return buffer->buffer[buffer->tail];;
 }
 
-inline unsigned char ringbuf_remove(struct ring_buffer *buffer)
+unsigned char ringbuf_remove(struct ring_buffer *buffer)
 {
   unsigned char c = ringbuf_peek(buffer);
   buffer->tail = (buffer->tail + 1) % SERIAL_BUFFER_SIZE;
   return c;
 }
 
-inline void ringbuf_clear(struct ring_buffer *buffer)
+void ringbuf_clear(struct ring_buffer *buffer)
 {
   buffer->head = buffer->tail;
 }

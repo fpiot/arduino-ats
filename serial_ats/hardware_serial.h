@@ -80,6 +80,22 @@ extern struct ring_buffer tx_buffer;
 extern struct hardware_serial Serial;
 #endif
 
+inline void c_sbi(void *addr, uint8_t bit) {
+  sbi(*((volatile uint8_t *) addr), bit);
+}
+
+inline void set_transmitting(bool b) {
+  Serial.transmitting = b;
+}
+
+void ringbuf_insert_nowait(unsigned char c, struct ring_buffer *buffer);
+void ringbuf_insert_wait(unsigned char c, struct ring_buffer *buffer);
+int ringbuf_is_empty(struct ring_buffer *buffer);
+unsigned int ringbuf_get_size(struct ring_buffer *buffer);
+unsigned char ringbuf_peek(struct ring_buffer *buffer);
+unsigned char ringbuf_remove(struct ring_buffer *buffer);
+void ringbuf_clear(struct ring_buffer *buffer);
+
 void hardware_serial_begin(struct hardware_serial* hserial, unsigned long baud);
 void hardware_serial_end(struct hardware_serial* hserial);
 int hardware_serial_available(struct hardware_serial* hserial);

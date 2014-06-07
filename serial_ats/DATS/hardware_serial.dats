@@ -1,31 +1,70 @@
+%{^
+#include "hardware_serial.h"
+
+#if defined(UBRRH) && defined(UBRRL)
+#define ADDR_UBRRH (UBRRH)
+#define ADDR_UBRRL (UBRRL)
+#define ADDR_UCSRA (UCSRA)
+#define ADDR_UCSRB (UCSRB)
+#define ADDR_UCSRC (UCSRC)
+#define ADDR_UDR   (UDR)
+#define BIT_RXEN   (RXEN)
+#define BIT_TXEN   (TXEN)
+#define BIT_RXCIE  (RXCIE)
+#define BIT_UDRIE  (UDRIE)
+#define BIT_U2X    (U2X)
+#elif defined(UBRR0H) && defined(UBRR0L)
+#define ADDR_UBRRH (UBRR0H)
+#define ADDR_UBRRL (UBRR0L)
+#define ADDR_UCSRA (UCSR0A)
+#define ADDR_UCSRB (UCSR0B)
+#define ADDR_UCSRC (UCSR0C)
+#define ADDR_UDR   (UDR0)
+#define BIT_RXEN   (RXEN0)
+#define BIT_TXEN   (TXEN0)
+#define BIT_RXCIE  (RXCIE0)
+#define BIT_UDRIE  (UDRIE0)
+#define BIT_U2X    (U2X0)
+#else
+#error no serial port defined  (port 0)
+#endif
+%}
+
 #include "share/atspre_define.hats"
 #include "share/atspre_staload.hats"
 
 staload "SATS/arduino.sats"
 staload "SATS/hardware_serial.sats"
 
-abst@ype ring_buffer = $extype"struct ring_buffer"
-
-typedef hardware_serial_rec = @{
-  rx_buffer= cPtr0(ring_buffer)
-, tx_buffer= cPtr0(ring_buffer)
-, p_ubrrh=   ptr
-, p_ubrrl=   ptr
-, p_ucsra=   ptr
-, p_ucsrb=   ptr
-, p_ucsrc=   ptr
-, p_udr=     ptr
-, b_rxen=    char
-, b_txen=    char
-, b_rxcie=   char
-, b_udrie=   char
-, b_u2x=     char
-, transmitting= bool
-}
-
 abst@ype hardware_serial = $extype"struct hardware_serial"
-
 macdef hserial   = $extval(cPtr0(hardware_serial), "(&Serial)")
+
+abst@ype ring_buffer = $extype"struct ring_buffer"
+macdef rx_buffer = $extval(ring_buffer, "rx_buffer")
+macdef tx_buffer = $extval(ring_buffer, "tx_buffer")
+
+macdef ADDR_UBRRH = $extval(ptr, "ADDR_UBRRH")
+macdef ADDR_UBRRL = $extval(ptr, "ADDR_UBRRL")
+macdef ADDR_UCSRA = $extval(ptr, "ADDR_UCSRA")
+macdef ADDR_UCSRB = $extval(ptr, "ADDR_UCSRB")
+macdef ADDR_UCSRC = $extval(ptr, "ADDR_UCSRC")
+macdef ADDR_UDR   = $extval(ptr, "ADDR_UDR")
+macdef BIT_RXEN   = $extval(uint8, "BIT_RXEN")
+macdef BIT_TXEN   = $extval(uint8, "BIT_TXEN")
+macdef BIT_RXCIE  = $extval(uint8, "BIT_RXCIE")
+macdef BIT_UDRIE  = $extval(uint8, "BIT_UDRIE")
+macdef BIT_U2X    = $extval(uint8, "BIT_U2X")
+
+extern fun ringbuf_insert_nowait: (uchar, cPtr0(ring_buffer)) -> void  = "mac#"
+extern fun ringbuf_insert_wait:   (uchar, cPtr0(ring_buffer)) -> void  = "mac#"
+extern fun ringbuf_is_empty:      (cPtr0(ring_buffer))        -> int   = "mac#"
+extern fun ringbuf_get_size:      (cPtr0(ring_buffer))        -> uint  = "mac#"
+extern fun ringbuf_peek:          (cPtr0(ring_buffer))        -> uchar = "mac#"
+extern fun ringbuf_remove:        (cPtr0(ring_buffer))        -> uchar = "mac#"
+extern fun ringbuf_clear:         (cPtr0(ring_buffer))        -> void  = "mac#"
+
+extern fun c_sbi: (ptr, uint8) -> void = "mac#"
+extern fun set_transmitting: (bool) -> void = "mac#"
 
 extern fun c_hardware_serial_begin: (cPtr0(hardware_serial), ulint) -> void   = "mac#hardware_serial_begin"
 extern fun c_hardware_serial_write: (cPtr0(hardware_serial), char)  -> size_t = "mac#hardware_serial_write"
