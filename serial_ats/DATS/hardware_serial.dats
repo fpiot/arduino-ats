@@ -69,14 +69,14 @@ extern fun set_transmitting: (bool)       -> void = "mac#"
 
 extern fun c_hardware_serial_begin: (cPtr0(hardware_serial), ulint) -> void   = "mac#hardware_serial_begin"
 extern fun c_hardware_serial_flush: (cPtr0(hardware_serial))        -> void   = "mac#hardware_serial_flush"
-extern fun c_hardware_serial_available: (cPtr0(hardware_serial))    -> int    = "mac#hardware_serial_available"
 
 implement serial_begin (baud) =
   c_hardware_serial_begin (hserial, baud)
 implement serial_flush () =
   c_hardware_serial_flush (hserial)
+
 implement serial_available () =
-  c_hardware_serial_available (hserial)
+  ringbuf_get_size rx_buffer
 
 implement serial_read () =
   if (ringbuf_is_empty (rx_buffer)) then

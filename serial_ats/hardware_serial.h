@@ -99,7 +99,6 @@ void ringbuf_clear(struct ring_buffer *buffer);
 
 void hardware_serial_begin(struct hardware_serial* hserial, unsigned long baud);
 void hardware_serial_end(struct hardware_serial* hserial);
-int hardware_serial_available(struct hardware_serial* hserial);
 int hardware_serial_peek(struct hardware_serial* hserial);
 void hardware_serial_flush(struct hardware_serial* hserial);
 

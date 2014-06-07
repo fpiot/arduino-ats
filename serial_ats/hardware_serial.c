@@ -268,11 +268,6 @@ void hardware_serial_end(struct hardware_serial* hserial)
   ringbuf_clear(hserial->_rx_buffer);
 }
 
-int hardware_serial_available(struct hardware_serial* hserial)
-{
-  return ringbuf_get_size(hserial->_rx_buffer);
-}
-
 int hardware_serial_peek(struct hardware_serial* hserial)
 {
   if (ringbuf_is_empty(hserial->_rx_buffer)) {
