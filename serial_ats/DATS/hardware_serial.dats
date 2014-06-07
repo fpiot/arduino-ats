@@ -58,7 +58,7 @@ macdef BIT_TXC0   = $extval(uint8, "TXC0")
 
 extern fun ringbuf_insert_nowait: (uchar, cPtr0(ring_buffer)) -> void  = "mac#"
 extern fun ringbuf_insert_wait:   (uchar, cPtr0(ring_buffer)) -> void  = "mac#"
-extern fun ringbuf_is_empty:      (cPtr0(ring_buffer))        -> int   = "mac#"
+extern fun ringbuf_is_empty:      (cPtr0(ring_buffer))        -> bool  = "mac#"
 extern fun ringbuf_get_size:      (cPtr0(ring_buffer))        -> uint  = "mac#"
 extern fun ringbuf_peek:          (cPtr0(ring_buffer))        -> uchar = "mac#"
 extern fun ringbuf_remove:        (cPtr0(ring_buffer))        -> uchar = "mac#"
@@ -70,7 +70,6 @@ extern fun set_transmitting: (bool)       -> void = "mac#"
 extern fun c_hardware_serial_begin: (cPtr0(hardware_serial), ulint) -> void   = "mac#hardware_serial_begin"
 extern fun c_hardware_serial_flush: (cPtr0(hardware_serial))        -> void   = "mac#hardware_serial_flush"
 extern fun c_hardware_serial_available: (cPtr0(hardware_serial))    -> int    = "mac#hardware_serial_available"
-extern fun c_hardware_serial_read:  (cPtr0(hardware_serial))        -> int    = "mac#hardware_serial_read"
 
 implement serial_begin (baud) =
   c_hardware_serial_begin (hserial, baud)
@@ -78,8 +77,12 @@ implement serial_flush () =
   c_hardware_serial_flush (hserial)
 implement serial_available () =
   c_hardware_serial_available (hserial)
+
 implement serial_read () =
-  c_hardware_serial_read (hserial)
+  if (ringbuf_is_empty (rx_buffer)) then
+    ~1
+  else
+    $UN.cast (ringbuf_remove (rx_buffer))
 
 implement serial_write (c) = let
   val () = ringbuf_insert_wait ($UN.cast c, tx_buffer)

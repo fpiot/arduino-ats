@@ -102,7 +102,7 @@ void ringbuf_insert_wait(unsigned char c, struct ring_buffer *buffer)
   buffer->head = i;
 }
 
-int ringbuf_is_empty(struct ring_buffer *buffer)
+bool ringbuf_is_empty(struct ring_buffer *buffer)
 {
   return (buffer->head == buffer->tail);
 }
@@ -279,16 +279,6 @@ int hardware_serial_peek(struct hardware_serial* hserial)
     return -1;
   }
   return ringbuf_peek(hserial->_rx_buffer);
-}
-
-int hardware_serial_read(struct hardware_serial* hserial)
-{
-  // if the head isn't ahead of the tail, we don't have any characters
-  if (ringbuf_is_empty(hserial->_rx_buffer)) {
-    return -1;
-  } else {
-    return ringbuf_remove(hserial->_rx_buffer);
-  }
 }
 
 void hardware_serial_flush(struct hardware_serial* hserial)
