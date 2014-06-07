@@ -5,20 +5,22 @@ staload "SATS/arduino.sats"
 staload "SATS/hardware_serial.sats"
 dynload "DATS/hardware_serial.dats"
 
+staload UN = "prelude/SATS/unsafe.sats"
+
 #define BLINK_DELAY_MS 50.0
 
 implement main0 () = {
   val ledPin = int2uchar0 13
 
   fun printchar (c) = {
-    val _ = hardware_serial_write (hserial, int2char0 c)
-    val _ = hardware_serial_write (hserial, '\r')
-    val _ = hardware_serial_write (hserial, '\n')
+    val _ = serial_write (int2char0 c)
+    val _ = serial_write ('\r')
+    val _ = serial_write ('\n')
   }
 
   fun readprint () =
-    if (hardware_serial_available (hserial) > 0) then let
-      val c = hardware_serial_read (hserial)
+    if (serial_available () > 0) then let
+      val c = serial_read ()
     in
       if (c <> ~1) then printchar (c)
     end
@@ -38,6 +40,6 @@ implement main0 () = {
 
   val () = pinMode (ledPin, OUTPUT)
   val () = interrupts ()
-  val () = hardware_serial_begin (hserial, 9600UL)
+  val () = serial_begin (9600UL)
   val () = loop ()
 }

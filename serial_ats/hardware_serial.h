@@ -71,6 +71,11 @@ struct hardware_serial {
 #define SERIAL_7O2 0x3C
 #define SERIAL_8O2 0x3E
 
+#if defined(USBCON) || defined(UBRRH) || defined(UBRR0H)
+extern struct ring_buffer rx_buffer;
+extern struct ring_buffer tx_buffer;
+#endif
+
 #if defined(UBRRH) || defined(UBRR0H)
 extern struct hardware_serial Serial;
 #endif
