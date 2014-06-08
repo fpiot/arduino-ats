@@ -208,51 +208,6 @@ ISR(USART_UDRE_vect)
 #endif
 #endif
 
-
-// Public Methods //////////////////////////////////////////////////////////////
-
-void hardware_serial_begin(struct hardware_serial* hserial, unsigned long baud)
-{
-  uint16_t baud_setting;
-  bool use_u2x = true;
-
-#if F_CPU == 16000000UL
-  // hardcoded exception for compatibility with the bootloader shipped
-  // with the Duemilanove and previous boards and the firmware on the 8U2
-  // on the Uno and Mega 2560.
-  if (baud == 57600) {
-    use_u2x = false;
-  }
-#endif
-
-try_again:
-  
-  if (use_u2x) {
-    *(hserial->_ucsra) = 1 << hserial->_u2x;
-    baud_setting = (F_CPU / 4 / baud - 1) / 2;
-  } else {
-    *(hserial->_ucsra) = 0;
-    baud_setting = (F_CPU / 8 / baud - 1) / 2;
-  }
-  
-  if ((baud_setting > 4095) && use_u2x)
-  {
-    use_u2x = false;
-    goto try_again;
-  }
-
-  // assign the baud_setting, a.k.a. ubbr (USART Baud Rate Register)
-  *(hserial->_ubrrh) = baud_setting >> 8;
-  *(hserial->_ubrrl) = baud_setting;
-
-  hserial->transmitting = false;
-
-  sbi(*(hserial->_ucsrb), hserial->_rxen);
-  sbi(*(hserial->_ucsrb), hserial->_txen);
-  sbi(*(hserial->_ucsrb), hserial->_rxcie);
-  cbi(*(hserial->_ucsrb), hserial->_udrie);
-}
-
 // Preinstantiate Objects //////////////////////////////////////////////////////
 
 #if defined(UBRRH) && defined(UBRRL)

@@ -39,6 +39,8 @@ staload UN = "prelude/SATS/unsafe.sats"
 abst@ype hardware_serial = $extype"struct hardware_serial"
 macdef hserial   = $extval(cPtr0(hardware_serial), "(&Serial)")
 
+macdef F_CPU = $extval(ulint, "F_CPU")
+
 abst@ype ring_buffer = $extype"struct ring_buffer"
 macdef rx_buffer = $extval(cPtr0(ring_buffer), "&rx_buffer")
 macdef tx_buffer = $extval(cPtr0(ring_buffer), "&tx_buffer")
@@ -55,6 +57,7 @@ macdef BIT_RXCIE  = $extval(uint8, "BIT_RXCIE")
 macdef BIT_UDRIE  = $extval(uint8, "BIT_UDRIE")
 macdef BIT_U2X    = $extval(uint8, "BIT_U2X")
 macdef BIT_TXC0   = $extval(uint8, "TXC0")
+macdef VAL_U2X    = $extval(uint8, "(1 << BIT_U2X)")
 
 extern fun ringbuf_insert_nowait: (uchar, cPtr0(ring_buffer)) -> void  = "mac#"
 extern fun ringbuf_insert_wait:   (uchar, cPtr0(ring_buffer)) -> void  = "mac#"
@@ -64,16 +67,45 @@ extern fun ringbuf_peek:          (cPtr0(ring_buffer))        -> uchar = "mac#"
 extern fun ringbuf_remove:        (cPtr0(ring_buffer))        -> uchar = "mac#"
 extern fun ringbuf_clear:         (cPtr0(ring_buffer))        -> void  = "mac#"
 
-extern fun c_sbi:            (ptr, uint8) -> void = "mac#"
-extern fun c_cbi:            (ptr, uint8) -> void = "mac#"
+extern fun c_sbi:            (ptr, uint8) -> void  = "mac#"
+extern fun c_cbi:            (ptr, uint8) -> void  = "mac#"
 extern fun c_rbi:            (ptr, uint8) -> uint8 = "mac#"
-extern fun set_transmitting: (bool)       -> void = "mac#"
-extern fun get_transmitting: ()           -> bool = "mac#"
+extern fun set_transmitting: (bool)       -> void  = "mac#"
+extern fun get_transmitting: ()           -> bool  = "mac#"
 
-extern fun c_hardware_serial_begin: (cPtr0(hardware_serial), ulint) -> void   = "mac#hardware_serial_begin"
+implement serial_begin (baud) = {
+  fun get_baud_setting_u2x (): ulint = let
+    val v = VAL_U2X // xxx 1U << BIT_U2X
+    val () = $UN.ptr0_set<uint8> (ADDR_UCSRA, v)
+    val setting = (F_CPU / 4UL / baud - 1UL) / 2UL
+  in
+    setting
+  end
+  fun get_baud_setting (): ulint = let
+    val () = $UN.ptr0_set<uint8> (ADDR_UCSRA, $UN.cast 0)
+    val setting = (F_CPU / 8UL / baud - 1UL) / 2UL
+  in
+    setting
+  end
+  // hardcoded exception for compatibility with the bootloader shipped
+  // with the Duemilanove and previous boards and the firmware on the 8U2
+  // on the Uno and Mega 2560.
+  val use_u2x = not(F_CPU = 16000000UL andalso baud = 57600UL)
+  val tmp = if use_u2x then get_baud_setting_u2x () else get_baud_setting ()
+  fun test (setting:ulint): bool = setting > 4095UL
+  val baud_setting = if ((test tmp) andalso use_u2x) then get_baud_setting () else tmp
 
-implement serial_begin (baud) =
-  c_hardware_serial_begin (hserial, baud)
+  // assign the baud_setting, a.k.a. ubbr (USART Baud Rate Register)
+  val () = $UN.ptr0_set<uint8> (ADDR_UBRRL, $UN.cast (g0uint_lsr (baud_setting, 8)))
+  val () = $UN.ptr0_set<uint8> (ADDR_UBRRL, $UN.cast baud_setting)
+
+  val () = set_transmitting (false)
+
+  val () = c_sbi (ADDR_UCSRB, BIT_RXEN)
+  val () = c_sbi (ADDR_UCSRB, BIT_TXEN)
+  val () = c_sbi (ADDR_UCSRB, BIT_RXCIE)
+  val () = c_cbi (ADDR_UCSRB, BIT_UDRIE)
+}
 
 implement serial_flush () = {
   // UDR is kept full while the buffer is not empty, so TXC triggers when EMPTY && SENT

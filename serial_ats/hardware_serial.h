@@ -109,6 +109,4 @@ unsigned char ringbuf_peek(struct ring_buffer *buffer);
 unsigned char ringbuf_remove(struct ring_buffer *buffer);
 void ringbuf_clear(struct ring_buffer *buffer);
 
-void hardware_serial_begin(struct hardware_serial* hserial, unsigned long baud);
-
 #endif
