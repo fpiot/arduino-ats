@@ -35,15 +35,32 @@
   #error "Don't know what the Data Received vector is called for the first UART"
 #else
 #if defined(USART_RX_vect)
-  ISR(USART_RX_vect)
+ISR(USART_RX_vect)
 #elif defined(USART0_RX_vect)
-  ISR(USART0_RX_vect)
+ISR(USART0_RX_vect)
 #elif defined(USART_RXC_vect)
-  ISR(USART_RXC_vect) // ATmega8
+ISR(USART_RXC_vect) // ATmega8
 #endif
-  {
-     ats_serial_rx_vect();
-  }
+{
+    ats_serial_rx_vect();
+}
+#endif
+
+#if !defined(UART0_UDRE_vect) && !defined(UART_UDRE_vect) && !defined(USART0_UDRE_vect) && !defined(USART_UDRE_vect)
+  #error "Don't know what the Data Register Empty vector is called for the first UART"
+#else
+#if defined(UART0_UDRE_vect)
+ISR(UART0_UDRE_vect)
+#elif defined(UART_UDRE_vect)
+ISR(UART_UDRE_vect)
+#elif defined(USART0_UDRE_vect)
+ISR(USART0_UDRE_vect)
+#elif defined(USART_UDRE_vect)
+ISR(USART_UDRE_vect)
+#endif
+{
+    ats_serial_tx_vect();
+}
 #endif
 %}
 
@@ -92,12 +109,23 @@ extern fun set_transmitting: (bool)       -> void  = "mac#"
 extern fun get_transmitting: ()           -> bool  = "mac#"
 
 extern fun ats_serial_rx_vect: () -> void = "ext#"
+extern fun ats_serial_tx_vect: () -> void = "ext#"
 
 implement ats_serial_rx_vect () = {
   val b  = c_rbi (ADDR_UCSRA, BIT_UPE)
   val c  = $UN.ptr0_get<uchar> (ADDR_UDR)
   val () = if ($UN.cast2int b) = 0 then ringbuf_insert_nowait (c, rx_buffer)
 }
+
+implement ats_serial_tx_vect () =
+  if ringbuf_is_empty tx_buffer then {
+    // Buffer empty, so disable interrupts
+    val () = c_cbi (ADDR_UCSRB, BIT_UDRIE)
+  } else {
+    // There is more data in the output buffer. Send the next byte
+    val c  = ringbuf_remove tx_buffer
+    val () = $UN.ptr0_set<uchar> (ADDR_UDR, c)
+  }
 
 implement serial_begin (baud) = {
   fun get_baud_setting_u2x (): ulint = let

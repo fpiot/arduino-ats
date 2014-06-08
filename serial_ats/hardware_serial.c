@@ -110,45 +110,6 @@ void ringbuf_clear(struct ring_buffer *buffer)
   buffer->head = buffer->tail;
 }
 
-#if !defined(USART0_UDRE_vect) && defined(USART1_UDRE_vect)
-// do nothing - on the 32u4 the first USART is USART1
-#else
-#if !defined(UART0_UDRE_vect) && !defined(UART_UDRE_vect) && !defined(USART0_UDRE_vect) && !defined(USART_UDRE_vect)
-  #error "Don't know what the Data Register Empty vector is called for the first UART"
-#else
-#if defined(UART0_UDRE_vect)
-ISR(UART0_UDRE_vect)
-#elif defined(UART_UDRE_vect)
-ISR(UART_UDRE_vect)
-#elif defined(USART0_UDRE_vect)
-ISR(USART0_UDRE_vect)
-#elif defined(USART_UDRE_vect)
-ISR(USART_UDRE_vect)
-#endif
-{
-  if (ringbuf_is_empty(&tx_buffer)) {
-	// Buffer empty, so disable interrupts
-#if defined(UCSR0B)
-    cbi(UCSR0B, UDRIE0);
-#else
-    cbi(UCSRB, UDRIE);
-#endif
-  }
-  else {
-    // There is more data in the output buffer. Send the next byte
-    unsigned char c = ringbuf_remove(&tx_buffer);
-  #if defined(UDR0)
-    UDR0 = c;
-  #elif defined(UDR)
-    UDR = c;
-  #else
-    #error UDR not defined
-  #endif
-  }
-}
-#endif
-#endif
-
 // Preinstantiate Objects //////////////////////////////////////////////////////
 
 struct hardware_serial Serial;
