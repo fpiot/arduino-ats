@@ -30,19 +30,6 @@
 struct ring_buffer;
 
 struct hardware_serial {
-    struct ring_buffer *_rx_buffer;
-    struct ring_buffer *_tx_buffer;
-    volatile uint8_t *_ubrrh;
-    volatile uint8_t *_ubrrl;
-    volatile uint8_t *_ucsra;
-    volatile uint8_t *_ucsrb;
-    volatile uint8_t *_ucsrc;
-    volatile uint8_t *_udr;
-    uint8_t _rxen;
-    uint8_t _txen;
-    uint8_t _rxcie;
-    uint8_t _udrie;
-    uint8_t _u2x;
     bool transmitting;
 };
 

@@ -210,12 +210,4 @@ ISR(USART_UDRE_vect)
 
 // Preinstantiate Objects //////////////////////////////////////////////////////
 
-#if defined(UBRRH) && defined(UBRRL)
-struct hardware_serial Serial = {&rx_buffer, &tx_buffer, &UBRRH, &UBRRL, &UCSRA, &UCSRB, &UCSRC, &UDR, RXEN, TXEN, RXCIE, UDRIE, U2X};
-#elif defined(UBRR0H) && defined(UBRR0L)
-struct hardware_serial Serial = {&rx_buffer, &tx_buffer, &UBRR0H, &UBRR0L, &UCSR0A, &UCSR0B, &UCSR0C, &UDR0, RXEN0, TXEN0, RXCIE0, UDRIE0, U2X0};
-#elif defined(USBCON)
-  // do nothing - Serial object and buffers are initialized in CDC code
-#else
-  #error no serial port defined  (port 0)
-#endif
+struct hardware_serial Serial;
