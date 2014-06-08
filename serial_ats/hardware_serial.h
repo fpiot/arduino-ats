@@ -29,10 +29,6 @@
 
 struct ring_buffer;
 
-struct hardware_serial {
-    bool transmitting;
-};
-
 // Define config for Serial.begin(baud, config);
 #define SERIAL_5N1 0x00
 #define SERIAL_6N1 0x02
@@ -64,10 +60,6 @@ extern struct ring_buffer rx_buffer;
 extern struct ring_buffer tx_buffer;
 #endif
 
-#if defined(UBRRH) || defined(UBRR0H)
-extern struct hardware_serial Serial;
-#endif
-
 inline void c_sbi(volatile uint8_t *addr, uint8_t bit) {
   sbi(*((volatile uint8_t *) addr), bit);
 }
@@ -78,14 +70,6 @@ inline void c_cbi(volatile uint8_t *addr, uint8_t bit) {
 
 inline uint8_t c_rbi(volatile uint8_t *addr, uint8_t bit) {
   return (_SFR_BYTE(*((volatile uint8_t *) addr)) & _BV(bit));
-}
-
-inline void set_transmitting(bool b) {
-  Serial.transmitting = b;
-}
-
-inline bool get_transmitting(void) {
-  return Serial.transmitting;
 }
 
 void ringbuf_insert_nowait(unsigned char c, struct ring_buffer *buffer);

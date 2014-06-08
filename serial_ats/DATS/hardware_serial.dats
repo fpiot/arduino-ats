@@ -62,6 +62,8 @@ ISR(USART_UDRE_vect)
     ats_serial_tx_vect();
 }
 #endif
+
+bool ats_serial_transmitting;
 %}
 
 #include "share/atspre_define.hats"
@@ -94,6 +96,8 @@ macdef BIT_TXC0   = $extval(uint8, "TXC0")
 macdef BIT_UPE    = $extval(uint8, "BIT_UPE")
 macdef VAL_U2X    = $extval(uint8, "(1 << BIT_U2X)")
 
+macdef transmitting = $extval(ptr, "&ats_serial_transmitting")
+
 extern fun ringbuf_insert_nowait: (uchar, cPtr0(ring_buffer)) -> void  = "mac#"
 extern fun ringbuf_insert_wait:   (uchar, cPtr0(ring_buffer)) -> void  = "mac#"
 extern fun ringbuf_is_empty:      (cPtr0(ring_buffer))        -> bool  = "mac#"
@@ -105,11 +109,12 @@ extern fun ringbuf_clear:         (cPtr0(ring_buffer))        -> void  = "mac#"
 extern fun c_sbi:            (ptr, uint8) -> void  = "mac#"
 extern fun c_cbi:            (ptr, uint8) -> void  = "mac#"
 extern fun c_rbi:            (ptr, uint8) -> uint8 = "mac#"
-extern fun set_transmitting: (bool)       -> void  = "mac#"
-extern fun get_transmitting: ()           -> bool  = "mac#"
 
 extern fun ats_serial_rx_vect: () -> void = "ext#"
 extern fun ats_serial_tx_vect: () -> void = "ext#"
+
+fun set_transmitting (t:bool): void = $UN.ptr0_set<bool> (transmitting, t)
+fun get_transmitting (): bool       = $UN.ptr0_get<bool> (transmitting)
 
 implement ats_serial_rx_vect () = {
   val b  = c_rbi (ADDR_UCSRA, BIT_UPE)

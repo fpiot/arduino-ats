@@ -109,7 +109,3 @@ void ringbuf_clear(struct ring_buffer *buffer)
 {
   buffer->head = buffer->tail;
 }
-
-// Preinstantiate Objects //////////////////////////////////////////////////////
-
-struct hardware_serial Serial;
