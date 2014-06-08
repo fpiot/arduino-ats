@@ -66,6 +66,7 @@ ISR(USART_UDRE_vect)
 bool ats_serial_transmitting;
 %}
 
+#include "share/atspre_define.hats"
 #include "share/atspre_staload.hats"
 staload "SATS/arduino.sats"
 staload "SATS/hardware_serial.sats"
