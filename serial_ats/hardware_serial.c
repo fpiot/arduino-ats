@@ -29,26 +29,7 @@
 #include <inttypes.h>
 #include "Arduino.h"
 
-// this next line disables the entire HardwareSerial.cpp, 
-// this is so I can support Attiny series and any other chip without a uart
-#if defined(UBRRH) || defined(UBRR0H) || defined(UBRR1H) || defined(UBRR2H) || defined(UBRR3H)
-
 #include "hardware_serial.h"
-
-/*
- * on ATmega8, the uart and its bits are not numbered, so there is no "TXC0"
- * definition.
- */
-#if !defined(TXC0)
-#if defined(TXC)
-#define TXC0 TXC
-#elif defined(TXC1)
-// Some devices have uart1 but no uart0
-#define TXC0 TXC1
-#else
-#error TXC0 not definable in HardwareSerial.h
-#endif
-#endif
 
 // Ring buffer //////////////////////////////////////////////////////////////
 
@@ -129,45 +110,6 @@ void ringbuf_clear(struct ring_buffer *buffer)
   buffer->head = buffer->tail;
 }
 
-#if !defined(USART0_RX_vect) && defined(USART1_RX_vect)
-// do nothing - on the 32u4 the first USART is USART1
-#else
-#if !defined(USART_RX_vect) && !defined(USART0_RX_vect) && \
-    !defined(USART_RXC_vect)
-  #error "Don't know what the Data Received vector is called for the first UART"
-#else
-  void serialEvent() __attribute__((weak));
-  void serialEvent() {}
-  #define serialEvent_implemented
-#if defined(USART_RX_vect)
-  ISR(USART_RX_vect)
-#elif defined(USART0_RX_vect)
-  ISR(USART0_RX_vect)
-#elif defined(USART_RXC_vect)
-  ISR(USART_RXC_vect) // ATmega8
-#endif
-  {
-  #if defined(UDR0)
-    if (bit_is_clear(UCSR0A, UPE0)) {
-      unsigned char c = UDR0;
-      ringbuf_insert_nowait(c, &rx_buffer);
-    } else {
-      unsigned char c = UDR0;
-    };
-  #elif defined(UDR)
-    if (bit_is_clear(UCSRA, PE)) {
-      unsigned char c = UDR;
-      ringbuf_insert_nowait(c, &rx_buffer);
-    } else {
-      unsigned char c = UDR;
-    };
-  #else
-    #error UDR not defined
-  #endif
-  }
-#endif
-#endif
-
 #if !defined(USART0_UDRE_vect) && defined(USART1_UDRE_vect)
 // do nothing - on the 32u4 the first USART is USART1
 #else
@@ -204,7 +146,6 @@ ISR(USART_UDRE_vect)
   #endif
   }
 }
-#endif
 #endif
 #endif
 

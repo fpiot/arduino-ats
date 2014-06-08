@@ -13,6 +13,7 @@
 #define BIT_RXCIE  (RXCIE)
 #define BIT_UDRIE  (UDRIE)
 #define BIT_U2X    (U2X)
+#define BIT_UPE    (PE)
 #elif defined(UBRR0H) && defined(UBRR0L)
 #define ADDR_UBRRH (UBRR0H)
 #define ADDR_UBRRL (UBRR0L)
@@ -25,8 +26,24 @@
 #define BIT_RXCIE  (RXCIE0)
 #define BIT_UDRIE  (UDRIE0)
 #define BIT_U2X    (U2X0)
+#define BIT_UPE    (UPE0)
 #else
 #error no serial port defined  (port 0)
+#endif
+
+#if !defined(USART_RX_vect) && !defined(USART0_RX_vect) && !defined(USART_RXC_vect)
+  #error "Don't know what the Data Received vector is called for the first UART"
+#else
+#if defined(USART_RX_vect)
+  ISR(USART_RX_vect)
+#elif defined(USART0_RX_vect)
+  ISR(USART0_RX_vect)
+#elif defined(USART_RXC_vect)
+  ISR(USART_RXC_vect) // ATmega8
+#endif
+  {
+     ats_serial_rx_vect();
+  }
 #endif
 %}
 
@@ -57,6 +74,7 @@ macdef BIT_RXCIE  = $extval(uint8, "BIT_RXCIE")
 macdef BIT_UDRIE  = $extval(uint8, "BIT_UDRIE")
 macdef BIT_U2X    = $extval(uint8, "BIT_U2X")
 macdef BIT_TXC0   = $extval(uint8, "TXC0")
+macdef BIT_UPE    = $extval(uint8, "BIT_UPE")
 macdef VAL_U2X    = $extval(uint8, "(1 << BIT_U2X)")
 
 extern fun ringbuf_insert_nowait: (uchar, cPtr0(ring_buffer)) -> void  = "mac#"
@@ -72,6 +90,14 @@ extern fun c_cbi:            (ptr, uint8) -> void  = "mac#"
 extern fun c_rbi:            (ptr, uint8) -> uint8 = "mac#"
 extern fun set_transmitting: (bool)       -> void  = "mac#"
 extern fun get_transmitting: ()           -> bool  = "mac#"
+
+extern fun ats_serial_rx_vect: () -> void = "ext#"
+
+implement ats_serial_rx_vect () = {
+  val b  = c_rbi (ADDR_UCSRA, BIT_UPE)
+  val c  = $UN.ptr0_get<uchar> (ADDR_UDR)
+  val () = if ($UN.cast2int b) = 0 then ringbuf_insert_nowait (c, rx_buffer)
+}
 
 implement serial_begin (baud) = {
   fun get_baud_setting_u2x (): ulint = let
