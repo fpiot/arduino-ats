@@ -1,14 +1,16 @@
 #define ATS_DYNLOADFLAG 0 // no dynloading at run-time
+#include "share/atspre_define.hats"
+#include "share/atspre_staload.hats"
 staload "SATS/arduino.sats"
 staload "SATS/lcd.sats"
 staload UN = "prelude/SATS/unsafe.sats"
 
 %{
-inline uint8_t atspre_uint8_bit_or(uint8_t a, uint8_t b) {
-  return (a | b);
-}
+inline uint8_t atspre_uint8_bit_or(uint8_t a, uint8_t b) { return (a | b); }
+inline uint8_t atspre_uint8_bit_and(uint8_t a, uint8_t b) { return (a & b); }
 %}
 extern fun uint8_bit_or: (uint8, uint8) -> uint8 = "mac#atspre_uint8_bit_or"
+extern fun uint8_bit_and: (uint8, uint8) -> uint8 = "mac#atspre_uint8_bit_and"
 
 (* Private struct *)
 vtypedef LCD_struct = @{
@@ -84,8 +86,37 @@ implement lcd_close (lcd) = {
   val () = $UN.castvwtp0(lcd) (* Consume lcd *)
 }
 
-implement lcd_write4bits (lcd, value) = {
+implement lcd_send (lcd, value, mode) = {
   val (pfat | p) = LCD_takeout_struct (lcd)
-  // xxx
+  val () = digitalWrite (p->rs_pin, mode)
+  val () = digitalWrite (p->rw_pin, LOW)
   prval () = LCD_addback_struct(pfat | lcd)
+  val () = lcd_write4bits (lcd, value >> 4)
+  val () = lcd_write4bits (lcd, value)
+}
+
+implement lcd_pulseEnable (lcd) = {
+  val (pfat | p) = LCD_takeout_struct (lcd)
+  val () = digitalWrite (p->enable_pin, LOW)
+  val () = _delay_ms 1.0
+  val () = digitalWrite (p->enable_pin, HIGH)
+  val () = _delay_ms 1.0 // enable pulse must be >450ns
+  val () = digitalWrite (p->enable_pin, LOW)
+  val () = _delay_ms 100.0 // commands need > 37us to settle
+  prval () = LCD_addback_struct(pfat | lcd)
+}
+
+implement lcd_write4bits (lcd, value) = {
+  fun uint8_to_highlow (v: uint8): HIGHLOW = $UN.cast (uint8_bit_and (v, $UN.cast 0x01))
+  val (pfat | p) = LCD_takeout_struct (lcd)
+  val () = pinMode (p->data_pins.0, OUTPUT)
+  val () = digitalWrite (p->data_pins.0, uint8_to_highlow (value >> 0))
+  val () = pinMode (p->data_pins.1, OUTPUT)
+  val () = digitalWrite (p->data_pins.1, uint8_to_highlow (value >> 1))
+  val () = pinMode (p->data_pins.2, OUTPUT)
+  val () = digitalWrite (p->data_pins.2, uint8_to_highlow (value >> 2))
+  val () = pinMode (p->data_pins.3, OUTPUT)
+  val () = digitalWrite (p->data_pins.3, uint8_to_highlow (value >> 3))
+  prval () = LCD_addback_struct(pfat | lcd)
+  val () = lcd_pulseEnable lcd
 }
