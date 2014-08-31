@@ -52,9 +52,9 @@ in
     val () = pinMode (p->rw_pin, OUTPUT)
     val () = pinMode (p->enable_pin, OUTPUT)
     val LCD_4BITMODE = $UN.cast 0x00
-    val LCD_1LINE    = $UN.cast 0x00
+    val LCD_2LINE    = $UN.cast 0x08
     val LCD_5x8DOTS  = $UN.cast 0x00
-    val () = p->displayfunction := uint8_bit_or (LCD_4BITMODE, uint8_bit_or (LCD_1LINE, LCD_5x8DOTS))
+    val () = p->displayfunction := uint8_bit_or (LCD_4BITMODE, uint8_bit_or (LCD_2LINE, LCD_5x8DOTS))
     prval () = LCD_addback_struct(pfat | lcd)
     fun lcd_begin (lcd: !LCD, lines: uint8): void = {
       val (pfat | p) = LCD_takeout_struct (lcd)
@@ -99,7 +99,7 @@ in
       val LCD_ENTRYMODESET = $UN.cast 0x04
       val () = lcd_command (lcd, uint8_bit_or (LCD_ENTRYMODESET, displaymode))
     }
-    val () = lcd_begin (lcd, $UN.cast 1)
+    val () = lcd_begin (lcd, $UN.cast 2)
   in
     lcd
   end
@@ -113,6 +113,16 @@ implement lcd_clear (lcd) = {
   val LCD_CLEARDISPLAY = $UN.cast 0x01
   val () = lcd_command (lcd, LCD_CLEARDISPLAY) // clear display, set cursor position to zero
   val () = _delay_us 2000.0 // this command takes a long time!
+}
+
+implement lcd_setCursor (lcd, col, row) = {
+  val LCD_SETDDRAMADDR = $UN.cast 0x80
+  val row_ofs = if row > 0 then 0x40 else 0x00
+  val () = lcd_command(lcd,  uint8_bit_or (LCD_SETDDRAMADDR, col + $UN.cast row_ofs))
+}
+
+implement lcd_write (lcd, value) = {
+  val () = lcd_send (lcd, value, HIGH)
 }
 
 implement lcd_display (lcd) = {

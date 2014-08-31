@@ -21,6 +21,20 @@ implement main0 () = {
   }
 
   val lcd = lcd_open ($UN.cast 8, $UN.cast 13, $UN.cast 9, $UN.cast 4, $UN.cast 5, $UN.cast 6, $UN.cast 7)
+  val () = lcd_setCursor (lcd, $UN.cast 0, 0)
+  val () = lcd_write (lcd, $UN.cast 'A')
+  val () = lcd_write (lcd, $UN.cast 'B')
+  val () = lcd_write (lcd, $UN.cast 'C')
+  val () = lcd_write (lcd, $UN.cast 'D')
+  val () = lcd_write (lcd, $UN.cast 'E')
+  val () = lcd_write (lcd, $UN.cast 'F')
+  val () = lcd_setCursor (lcd, $UN.cast 0, 1)
+  val () = lcd_write (lcd, $UN.cast 'G')
+  val () = lcd_write (lcd, $UN.cast 'H')
+  val () = lcd_write (lcd, $UN.cast 'I')
+  val () = lcd_write (lcd, $UN.cast 'J')
+  val () = lcd_write (lcd, $UN.cast 'K')
+  val () = lcd_write (lcd, $UN.cast 'L')
   val () = lcd_close lcd
   val () = pinMode (ledPin, OUTPUT)
   val () = loop ()
