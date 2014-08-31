@@ -64,6 +64,7 @@ in
       val () = digitalWrite (p->rs_pin, LOW)
       val () = digitalWrite (p->enable_pin, LOW)
       val () = digitalWrite (p->rw_pin, LOW)
+      val displayfunction = p->displayfunction
       prval () = LCD_addback_struct(pfat | lcd)
       // this is according to the hitachi HD44780 datasheet / figure 24, pg 46
       // we start in 8bit mode, try to set 4 bit mode
@@ -74,7 +75,29 @@ in
       val () = lcd_write4bits (lcd, $UN.cast 0x03) // third go!
       val () = _delay_ms 150.0
       val () = lcd_write4bits (lcd, $UN.cast 0x02) // finally, set to 4-bit interface
-      // xxx
+      // finally, set # lines, font size, etc.
+      val LCD_FUNCTIONSET = $UN.cast 0x20
+      val () = lcd_command (lcd, uint8_bit_or (LCD_FUNCTIONSET, displayfunction))
+      // turn the display on with no cursor or blinking default
+      val LCD_DISPLAYON = $UN.cast 0x04
+      val LCD_CURSOROFF = $UN.cast 0x00
+      val LCD_BLINKOFF  = $UN.cast 0x00
+      val (pfat | p) = LCD_takeout_struct (lcd)
+      val () = p->displaycontrol := uint8_bit_or (LCD_DISPLAYON, uint8_bit_or (LCD_CURSOROFF, LCD_BLINKOFF))
+      prval () = LCD_addback_struct(pfat | lcd)
+      val () = lcd_display lcd
+      // clear it off
+      val () = lcd_clear lcd
+      // Initialize to default text direction (for romance languages)
+      val LCD_ENTRYLEFT           = $UN.cast 0x02
+      val LCD_ENTRYSHIFTDECREMENT = $UN.cast 0x00
+      val (pfat | p) = LCD_takeout_struct (lcd)
+      val () = p->displaymode := uint8_bit_or (LCD_ENTRYLEFT, LCD_ENTRYSHIFTDECREMENT)
+      val displaymode = p->displaymode
+      prval () = LCD_addback_struct(pfat | lcd)
+      // set the entry mode
+      val LCD_ENTRYMODESET = $UN.cast 0x04
+      val () = lcd_command (lcd, uint8_bit_or (LCD_ENTRYMODESET, displaymode))
     }
     val () = lcd_begin (lcd, $UN.cast 1)
   in
@@ -84,6 +107,26 @@ end
 
 implement lcd_close (lcd) = {
   val () = $UN.castvwtp0(lcd) (* Consume lcd *)
+}
+
+implement lcd_clear (lcd) = {
+  val LCD_CLEARDISPLAY = $UN.cast 0x01
+  val () = lcd_command (lcd, LCD_CLEARDISPLAY) // clear display, set cursor position to zero
+  val () = _delay_ms 2000.0 // this command takes a long time!
+}
+
+implement lcd_display (lcd) = {
+  val LCD_DISPLAYON = $UN.cast 0x04
+  val (pfat | p) = LCD_takeout_struct (lcd)
+  val () = p->displaycontrol := LCD_DISPLAYON
+  val displaycontrol = p->displaycontrol
+  prval () = LCD_addback_struct(pfat | lcd)
+  val LCD_DISPLAYCONTROL = $UN.cast 0x08
+  val () = lcd_command (lcd, uint8_bit_or (LCD_DISPLAYCONTROL, displaycontrol))
+}
+
+implement lcd_command (lcd, value) = {
+  val () = lcd_send (lcd, value, LOW)
 }
 
 implement lcd_send (lcd, value, mode) = {
