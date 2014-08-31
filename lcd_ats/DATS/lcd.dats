@@ -53,8 +53,28 @@ in
     val LCD_1LINE    = $UN.cast 0x00
     val LCD_5x8DOTS  = $UN.cast 0x00
     val () = p->displayfunction := uint8_bit_or (LCD_4BITMODE, uint8_bit_or (LCD_1LINE, LCD_5x8DOTS))
-    // xxx
     prval () = LCD_addback_struct(pfat | lcd)
+    fun lcd_begin (lcd: !LCD, lines: uint8): void = {
+      val (pfat | p) = LCD_takeout_struct (lcd)
+      val () = p->numlines := lines
+      val () = p->currline := $UN.cast 0
+      val () = _delay_ms 50000.0
+      val () = digitalWrite (p->rs_pin, LOW)
+      val () = digitalWrite (p->enable_pin, LOW)
+      val () = digitalWrite (p->rw_pin, LOW)
+      prval () = LCD_addback_struct(pfat | lcd)
+      // this is according to the hitachi HD44780 datasheet / figure 24, pg 46
+      // we start in 8bit mode, try to set 4 bit mode
+      val () = lcd_write4bits (lcd, $UN.cast 0x03)
+      val () = _delay_ms 4500.0
+      val () = lcd_write4bits (lcd, $UN.cast 0x03) // second try
+      val () = _delay_ms 4500.0
+      val () = lcd_write4bits (lcd, $UN.cast 0x03) // third go!
+      val () = _delay_ms 150.0
+      val () = lcd_write4bits (lcd, $UN.cast 0x02) // finally, set to 4-bit interface
+      // xxx
+    }
+    val () = lcd_begin (lcd, $UN.cast 1)
   in
     lcd
   end
