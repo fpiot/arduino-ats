@@ -12,9 +12,11 @@ abst@ype INOUT  = $extype"uint8_t"
 macdef   INPUT  = $extval(INOUT, "INPUT")
 macdef   OUTPUT = $extval(INOUT, "OUTPUT")
 
-fun pinMode:      (uchar, INOUT)   -> void    = "mac#"
-fun digitalWrite: (uchar, HIGHLOW) -> void    = "mac#"
-fun digitalRead:  (uchar)          -> HIGHLOW = "mac#"
+macdef LED_BUILTIN = $extval(uint8, "LED_BUILTIN")
+
+fun pinMode:      (uint8, INOUT)   -> void    = "mac#"
+fun digitalWrite: (uint8, HIGHLOW) -> void    = "mac#"
+fun digitalRead:  (uint8)          -> HIGHLOW = "mac#"
 fun _delay_ms:    (double)         -> void    = "mac#"
 fun interrupts:   ()               -> void    = "mac#"
 fun nointerrupts: ()               -> void    = "mac#"
