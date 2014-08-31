@@ -1,9 +1,7 @@
-staload "SATS/arduino.sats"
-
 absvtype LCD = ptr
 
 (* High level functions *)
-fun lcd_open: () -> LCD
+fun lcd_open (rs: uint8, rw: uint8, enable: uint8, d0: uint8, d1: uint8, d2: uint8, d3: uint8): LCD
 fun lcd_close: (LCD) -> void
 
 (* Low level functions *)
