@@ -60,7 +60,7 @@ in
       val (pfat | p) = LCD_takeout_struct (lcd)
       val () = p->numlines := lines
       val () = p->currline := $UN.cast 0
-      val () = _delay_ms 50000.0
+      val () = _delay_us 50000.0
       val () = digitalWrite (p->rs_pin, LOW)
       val () = digitalWrite (p->enable_pin, LOW)
       val () = digitalWrite (p->rw_pin, LOW)
@@ -69,11 +69,11 @@ in
       // this is according to the hitachi HD44780 datasheet / figure 24, pg 46
       // we start in 8bit mode, try to set 4 bit mode
       val () = lcd_write4bits (lcd, $UN.cast 0x03)
-      val () = _delay_ms 4500.0
+      val () = _delay_us 4500.0
       val () = lcd_write4bits (lcd, $UN.cast 0x03) // second try
-      val () = _delay_ms 4500.0
+      val () = _delay_us 4500.0
       val () = lcd_write4bits (lcd, $UN.cast 0x03) // third go!
-      val () = _delay_ms 150.0
+      val () = _delay_us 150.0
       val () = lcd_write4bits (lcd, $UN.cast 0x02) // finally, set to 4-bit interface
       // finally, set # lines, font size, etc.
       val LCD_FUNCTIONSET = $UN.cast 0x20
@@ -112,7 +112,7 @@ implement lcd_close (lcd) = {
 implement lcd_clear (lcd) = {
   val LCD_CLEARDISPLAY = $UN.cast 0x01
   val () = lcd_command (lcd, LCD_CLEARDISPLAY) // clear display, set cursor position to zero
-  val () = _delay_ms 2000.0 // this command takes a long time!
+  val () = _delay_us 2000.0 // this command takes a long time!
 }
 
 implement lcd_display (lcd) = {
@@ -141,11 +141,11 @@ implement lcd_send (lcd, value, mode) = {
 implement lcd_pulseEnable (lcd) = {
   val (pfat | p) = LCD_takeout_struct (lcd)
   val () = digitalWrite (p->enable_pin, LOW)
-  val () = _delay_ms 1.0
+  val () = _delay_us 1.0
   val () = digitalWrite (p->enable_pin, HIGH)
-  val () = _delay_ms 1.0 // enable pulse must be >450ns
+  val () = _delay_us 1.0 // enable pulse must be >450ns
   val () = digitalWrite (p->enable_pin, LOW)
-  val () = _delay_ms 100.0 // commands need > 37us to settle
+  val () = _delay_us 100.0 // commands need > 37us to settle
   prval () = LCD_addback_struct(pfat | lcd)
 }
 
