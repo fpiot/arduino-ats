@@ -121,6 +121,18 @@ implement lcd_setCursor (lcd, col, row) = {
   val () = lcd_command(lcd,  uint8_bit_or (LCD_SETDDRAMADDR, col + $UN.cast row_ofs))
 }
 
+implement lcd_print (lcd, str, start, len) = {
+  fun w (lcd: !LCD, p: ptr): void = {
+    val c = $UN.ptr0_get<uint8> (p)
+    val () = lcd_write (lcd, c)
+  }
+  fun loop (lcd: !LCD, p: ptr, r: int): void = {
+    val () = if r > 0 then (w (lcd, p); loop (lcd, ptr_succ<char> (p), r - 1))
+  }
+  val p0 = string2ptr (str)
+  val () = loop (lcd, p0, len)
+}
+
 implement lcd_write (lcd, value) = {
   val () = lcd_send (lcd, value, HIGH)
 }
