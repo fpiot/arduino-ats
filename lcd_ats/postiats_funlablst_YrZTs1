@@ -1,0 +1,1276 @@
+#if(0)
+ATSextern()
+atstkind_type(atstype_ptrk)
+_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_open(atstkind_t0ype(atstype_uint8), atstkind_t0ype(atstype_uint8), atstkind_t0ype(atstype_uint8), atstkind_t0ype(atstype_uint8), atstkind_t0ype(atstype_uint8), atstkind_t0ype(atstype_uint8), atstkind_t0ype(atstype_uint8)) ;
+#endif // end of [QUALIFIED]
+
+ATSstatic()
+atsvoid_t0ype
+lcd_begin_1(atsrefarg0_type(atstkind_type(atstype_ptrk)), atstkind_t0ype(atstype_uint8)) ;
+
+#if(0)
+ATSextern()
+atsvoid_t0ype
+_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_close(atstkind_type(atstype_ptrk)) ;
+#endif // end of [QUALIFIED]
+
+#if(0)
+ATSextern()
+atsvoid_t0ype
+_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_clear(atsrefarg0_type(atstkind_type(atstype_ptrk))) ;
+#endif // end of [QUALIFIED]
+
+#if(0)
+ATSextern()
+atsvoid_t0ype
+_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_setCursor(atsrefarg0_type(atstkind_type(atstype_ptrk)), atstkind_t0ype(atstype_uint8), atstkind_t0ype(atstype_int)) ;
+#endif // end of [QUALIFIED]
+
+#if(0)
+#if(0)
+ATSextern()
+atstkind_t0ype(atstype_bool)
+ATSLIB_056_prelude__gt_g0int_int__5(atstkind_t0ype(atstyvar_type(tk)), atstkind_t0ype(atstype_int)) ;
+#endif // end of [QUALIFIED]
+#endif // end of [TEMPLATE]
+
+ATSstatic()
+atstkind_t0ype(atstype_bool)
+ATSLIB_056_prelude__gt_g0int_int__5__1(atstkind_t0ype(atstype_int), atstkind_t0ype(atstype_int)) ;
+
+#if(0)
+ATSextern()
+atsvoid_t0ype
+_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_print(atsrefarg0_type(atstkind_type(atstype_ptrk)), atstkind_type(atstype_ptrk), atstkind_t0ype(atstype_size), atstkind_t0ype(atstype_int)) ;
+#endif // end of [QUALIFIED]
+
+ATSstatic()
+atsvoid_t0ype
+w_11(atsrefarg0_type(atstkind_type(atstype_ptrk)), atstkind_type(atstype_ptrk)) ;
+
+#if(0)
+#if(0)
+ATSextern()
+atstyvar_type(a)
+ATSLIB_056_prelude_056_unsafe__ptr0_get__12(atstkind_type(atstype_ptrk)) ;
+#endif // end of [QUALIFIED]
+#endif // end of [TEMPLATE]
+
+ATSstatic()
+atstkind_t0ype(atstype_uint8)
+ATSLIB_056_prelude_056_unsafe__ptr0_get__12__1(atstkind_type(atstype_ptrk)) ;
+
+ATSstatic()
+atsvoid_t0ype
+loop_14(atsrefarg0_type(atstkind_type(atstype_ptrk)), atstkind_type(atstype_ptrk), atstkind_t0ype(atstype_int)) ;
+
+ATSstatic()
+atstkind_t0ype(atstype_bool)
+ATSLIB_056_prelude__gt_g0int_int__5__2(atstkind_t0ype(atstype_int), atstkind_t0ype(atstype_int)) ;
+
+#if(0)
+#if(0)
+ATSextern()
+atstkind_type(atstype_ptrk)
+ATSLIB_056_prelude__ptr0_succ__16(atstkind_type(atstype_ptrk)) ;
+#endif // end of [QUALIFIED]
+#endif // end of [TEMPLATE]
+
+ATSstatic()
+atstkind_type(atstype_ptrk)
+ATSLIB_056_prelude__ptr0_succ__16__1(atstkind_type(atstype_ptrk)) ;
+
+#if(0)
+#if(0)
+ATSextern()
+atstkind_type(atstype_ptrk)
+ATSLIB_056_prelude__ptr1_add_guint__19(atstkind_type(atstype_ptrk), atstkind_t0ype(atstyvar_type(tk))) ;
+#endif // end of [QUALIFIED]
+#endif // end of [TEMPLATE]
+
+ATSstatic()
+atstkind_type(atstype_ptrk)
+ATSLIB_056_prelude__ptr1_add_guint__19__1(atstkind_type(atstype_ptrk), atstkind_t0ype(atstype_size)) ;
+
+#if(0)
+#if(0)
+ATSextern()
+atstkind_type(atstype_ptrk)
+ATSLIB_056_prelude__ptr0_add_guint__21(atstkind_type(atstype_ptrk), atstkind_t0ype(atstyvar_type(tk))) ;
+#endif // end of [QUALIFIED]
+#endif // end of [TEMPLATE]
+
+ATSstatic()
+atstkind_type(atstype_ptrk)
+ATSLIB_056_prelude__ptr0_add_guint__21__1(atstkind_type(atstype_ptrk), atstkind_t0ype(atstype_size)) ;
+
+#if(0)
+ATSextern()
+atsvoid_t0ype
+_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_write(atsrefarg0_type(atstkind_type(atstype_ptrk)), atstkind_t0ype(atstype_uint8)) ;
+#endif // end of [QUALIFIED]
+
+#if(0)
+ATSextern()
+atsvoid_t0ype
+_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_display(atsrefarg0_type(atstkind_type(atstype_ptrk))) ;
+#endif // end of [QUALIFIED]
+
+#if(0)
+ATSextern()
+atsvoid_t0ype
+_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_command(atsrefarg0_type(atstkind_type(atstype_ptrk)), atstkind_t0ype(atstype_uint8)) ;
+#endif // end of [QUALIFIED]
+
+#if(0)
+ATSextern()
+atsvoid_t0ype
+_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_send(atsrefarg0_type(atstkind_type(atstype_ptrk)), atstkind_t0ype(atstype_uint8), uint8_t) ;
+#endif // end of [QUALIFIED]
+
+#if(0)
+ATSextern()
+atsvoid_t0ype
+_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_pulseEnable(atsrefarg0_type(atstkind_type(atstype_ptrk))) ;
+#endif // end of [QUALIFIED]
+
+#if(0)
+ATSextern()
+atsvoid_t0ype
+_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_write4bits(atsrefarg0_type(atstkind_type(atstype_ptrk)), atstkind_t0ype(atstype_uint8)) ;
+#endif // end of [QUALIFIED]
+
+ATSstatic()
+uint8_t
+uint8_to_highlow_32(atstkind_t0ype(atstype_uint8)) ;
+
+/*
+/home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1277(line=44, offs=22) -- 4142(line=105, offs=6)
+*/
+/*
+local: 
+global: lcd_open$0$0(level=0)
+local: 
+global: 
+*/
+ATSextern()
+atstkind_type(atstype_ptrk)
+_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_open(atstkind_t0ype(atstype_uint8) arg0, atstkind_t0ype(atstype_uint8) arg1, atstkind_t0ype(atstype_uint8) arg2, atstkind_t0ype(atstype_uint8) arg3, atstkind_t0ype(atstype_uint8) arg4, atstkind_t0ype(atstype_uint8) arg5, atstkind_t0ype(atstype_uint8) arg6)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec(tmpret1, atstkind_type(atstype_ptrk)) ;
+ATStmpdec(tmp2, postiats_tyrec_0) ;
+ATStmpdec_void(tmp3) ;
+ATStmpdec_void(tmp4) ;
+ATStmpdec_void(tmp5) ;
+ATStmpdec(tmp6, atstkind_t0ype(atstype_uint8)) ;
+ATStmpdec(tmp7, atstkind_t0ype(atstype_uint8)) ;
+ATStmpdec_void(tmp30) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1268(line=44, offs=13) -- 4142(line=105, offs=6)
+*/
+ATSINSflab(__patsflab_lcd_open):
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1312(line=44, offs=57) -- 4142(line=105, offs=6)
+*/
+/*
+letpush(beg)
+*/
+/* (*nothing*) */
+/* (*nothing*) */
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1429(line=47, offs=14) -- 1448(line=47, offs=33)
+*/
+ATSINSstore(ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(ATSPMVcastfn(castvwtp0, atstype_boxed, ATSPMVptrof(statmpref0)))), postiats_tyrec_1), postiats_tyrec_1, atslab__rs_pin), arg0) ;
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1462(line=48, offs=14) -- 1481(line=48, offs=33)
+*/
+ATSINSstore(ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(ATSPMVcastfn(castvwtp0, atstype_boxed, ATSPMVptrof(statmpref0)))), postiats_tyrec_1), postiats_tyrec_1, atslab__rw_pin), arg1) ;
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1495(line=49, offs=14) -- 1518(line=49, offs=37)
+*/
+ATSINSstore(ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(ATSPMVcastfn(castvwtp0, atstype_boxed, ATSPMVptrof(statmpref0)))), postiats_tyrec_1), postiats_tyrec_1, atslab__enable_pin), arg2) ;
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1549(line=50, offs=31) -- 1566(line=50, offs=48)
+*/
+ATSINSmove_fltrec_beg()
+ATSINSstore_fltrec_ofs (tmp2, postiats_tyrec_0, atslab__0, arg3) ;
+ATSINSstore_fltrec_ofs (tmp2, postiats_tyrec_0, atslab__1, arg4) ;
+ATSINSstore_fltrec_ofs (tmp2, postiats_tyrec_0, atslab__2, arg5) ;
+ATSINSstore_fltrec_ofs (tmp2, postiats_tyrec_0, atslab__3, arg6) ;
+ATSINSmove_fltrec_end()
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1532(line=50, offs=14) -- 1566(line=50, offs=48)
+*/
+ATSINSstore(ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(ATSPMVcastfn(castvwtp0, atstype_boxed, ATSPMVptrof(statmpref0)))), postiats_tyrec_1), postiats_tyrec_1, atslab__data_pins), tmp2) ;
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1580(line=51, offs=14) -- 1607(line=51, offs=41)
+*/
+ATSINSmove_void(tmp3, pinMode(ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(ATSPMVcastfn(castvwtp0, atstype_boxed, ATSPMVptrof(statmpref0)))), postiats_tyrec_1), postiats_tyrec_1, atslab__rs_pin), ATSextval(OUTPUT))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1621(line=52, offs=14) -- 1648(line=52, offs=41)
+*/
+ATSINSmove_void(tmp4, pinMode(ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(ATSPMVcastfn(castvwtp0, atstype_boxed, ATSPMVptrof(statmpref0)))), postiats_tyrec_1), postiats_tyrec_1, atslab__rw_pin), ATSextval(OUTPUT))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1662(line=53, offs=14) -- 1693(line=53, offs=45)
+*/
+ATSINSmove_void(tmp5, pinMode(ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(ATSPMVcastfn(castvwtp0, atstype_boxed, ATSPMVptrof(statmpref0)))), postiats_tyrec_1), postiats_tyrec_1, atslab__enable_pin), ATSextval(OUTPUT))) ;
+
+/* (*nothing*) */
+/* (*nothing*) */
+/* (*nothing*) */
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1868(line=57, offs=64) -- 1905(line=57, offs=101)
+*/
+ATSINSmove(tmp7, atspre_uint8_bit_or(ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0x08)), ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0x00)))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1840(line=57, offs=36) -- 1906(line=57, offs=102)
+*/
+ATSINSmove(tmp6, atspre_uint8_bit_or(ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0x00)), tmp7)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1818(line=57, offs=14) -- 1906(line=57, offs=102)
+*/
+ATSINSstore(ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(ATSPMVcastfn(castvwtp0, atstype_boxed, ATSPMVptrof(statmpref0)))), postiats_tyrec_1), postiats_tyrec_1, atslab__displayfunction), tmp6) ;
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4096(line=102, offs=14) -- 4123(line=102, offs=41)
+*/
+ATSINSmove_void(tmp30, lcd_begin_1(ATSPMVrefarg0(ATSPMVcastfn(castvwtp0, atstype_boxed, ATSPMVptrof(statmpref0))), ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(2)))) ;
+
+/*
+letpush(end)
+*/
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4133(line=104, offs=5) -- 4136(line=104, offs=8)
+*/
+ATSINSmove(tmpret1, ATSPMVcastfn(castvwtp0, atstype_boxed, ATSPMVptrof(statmpref0))) ;
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1312(line=44, offs=57) -- 4142(line=105, offs=6)
+*/
+/*
+INSletpop()
+*/
+ATSfunbody_end()
+ATSreturn(tmpret1) ;
+} /* end of [_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_open] */
+
+/*
+/home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1961(line=59, offs=9) -- 4082(line=101, offs=6)
+*/
+/*
+local: 
+global: lcd_begin_1$0(level=1)
+local: 
+global: 
+*/
+ATSstatic()
+atsvoid_t0ype
+lcd_begin_1(atsrefarg0_type(atstkind_type(atstype_ptrk)) arg0, atstkind_t0ype(atstype_uint8) arg1)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec_void(tmpret8) ;
+ATStmpdec_void(tmp9) ;
+ATStmpdec_void(tmp10) ;
+ATStmpdec_void(tmp11) ;
+ATStmpdec_void(tmp12) ;
+ATStmpdec(tmp13, atstkind_t0ype(atstype_uint8)) ;
+ATStmpdec_void(tmp14) ;
+ATStmpdec_void(tmp15) ;
+ATStmpdec_void(tmp16) ;
+ATStmpdec_void(tmp17) ;
+ATStmpdec_void(tmp18) ;
+ATStmpdec_void(tmp19) ;
+ATStmpdec_void(tmp20) ;
+ATStmpdec_void(tmp21) ;
+ATStmpdec(tmp22, atstkind_t0ype(atstype_uint8)) ;
+ATStmpdec(tmp23, atstkind_t0ype(atstype_uint8)) ;
+ATStmpdec(tmp24, atstkind_t0ype(atstype_uint8)) ;
+ATStmpdec_void(tmp25) ;
+ATStmpdec_void(tmp26) ;
+ATStmpdec(tmp27, atstkind_t0ype(atstype_uint8)) ;
+ATStmpdec(tmp28, atstkind_t0ype(atstype_uint8)) ;
+ATStmpdec(tmp29, atstkind_t0ype(atstype_uint8)) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 1961(line=59, offs=9) -- 4082(line=101, offs=6)
+*/
+ATSINSflab(__patsflab_lcd_begin_1):
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2005(line=59, offs=53) -- 4082(line=101, offs=6)
+*/
+/*
+letpush(beg)
+*/
+/* (*nothing*) */
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2070(line=61, offs=16) -- 2090(line=61, offs=36)
+*/
+ATSINSstore(ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(arg0)), postiats_tyrec_1), postiats_tyrec_1, atslab__numlines), arg1) ;
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2106(line=62, offs=16) -- 2131(line=62, offs=41)
+*/
+ATSINSstore(ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(arg0)), postiats_tyrec_1), postiats_tyrec_1, atslab__currline), ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0))) ;
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2147(line=63, offs=16) -- 2164(line=63, offs=33)
+*/
+ATSINSmove_void(tmp9, _delay_us(ATSPMVf0loat(50000.0))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2180(line=64, offs=16) -- 2209(line=64, offs=45)
+*/
+ATSINSmove_void(tmp10, digitalWrite(ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(arg0)), postiats_tyrec_1), postiats_tyrec_1, atslab__rs_pin), ATSextval(LOW))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2225(line=65, offs=16) -- 2258(line=65, offs=49)
+*/
+ATSINSmove_void(tmp11, digitalWrite(ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(arg0)), postiats_tyrec_1), postiats_tyrec_1, atslab__enable_pin), ATSextval(LOW))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2274(line=66, offs=16) -- 2303(line=66, offs=45)
+*/
+ATSINSmove_void(tmp12, digitalWrite(ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(arg0)), postiats_tyrec_1), postiats_tyrec_1, atslab__rw_pin), ATSextval(LOW))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2332(line=67, offs=29) -- 2350(line=67, offs=47)
+*/
+ATSINSmove(tmp13, ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(arg0)), postiats_tyrec_1), postiats_tyrec_1, atslab__displayfunction)) ;
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2547(line=71, offs=16) -- 2582(line=71, offs=51)
+*/
+ATSINSmove_void(tmp14, _057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_write4bits(ATSPMVrefarg0(arg0), ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0x03)))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2598(line=72, offs=16) -- 2614(line=72, offs=32)
+*/
+ATSINSmove_void(tmp15, _delay_us(ATSPMVf0loat(4500.0))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2630(line=73, offs=16) -- 2665(line=73, offs=51)
+*/
+ATSINSmove_void(tmp16, _057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_write4bits(ATSPMVrefarg0(arg0), ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0x03)))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2695(line=74, offs=16) -- 2711(line=74, offs=32)
+*/
+ATSINSmove_void(tmp17, _delay_us(ATSPMVf0loat(4500.0))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2727(line=75, offs=16) -- 2762(line=75, offs=51)
+*/
+ATSINSmove_void(tmp18, _057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_write4bits(ATSPMVrefarg0(arg0), ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0x03)))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2791(line=76, offs=16) -- 2806(line=76, offs=31)
+*/
+ATSINSmove_void(tmp19, _delay_us(ATSPMVf0loat(150.0))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2822(line=77, offs=16) -- 2857(line=77, offs=51)
+*/
+ATSINSmove_void(tmp20, _057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_write4bits(ATSPMVrefarg0(arg0), ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0x02)))) ;
+
+/* (*nothing*) */
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 3015(line=80, offs=34) -- 3062(line=80, offs=81)
+*/
+ATSINSmove(tmp22, atspre_uint8_bit_or(ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0x20)), tmp13)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2997(line=80, offs=16) -- 3063(line=80, offs=82)
+*/
+ATSINSmove_void(tmp21, _057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_command(ATSPMVrefarg0(arg0), tmp22)) ;
+
+/* (*nothing*) */
+/* (*nothing*) */
+/* (*nothing*) */
+/* (*nothing*) */
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 3361(line=86, offs=66) -- 3403(line=86, offs=108)
+*/
+ATSINSmove(tmp24, atspre_uint8_bit_or(ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0x00)), ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0x00)))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 3332(line=86, offs=37) -- 3404(line=86, offs=109)
+*/
+ATSINSmove(tmp23, atspre_uint8_bit_or(ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0x04)), tmp24)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 3311(line=86, offs=16) -- 3404(line=86, offs=109)
+*/
+ATSINSstore(ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(arg0)), postiats_tyrec_1), postiats_tyrec_1, atslab__displaycontrol), tmp23) ;
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 3468(line=88, offs=16) -- 3483(line=88, offs=31)
+*/
+ATSINSmove_void(tmp25, _057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_display(ATSPMVrefarg0(arg0))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 3521(line=90, offs=16) -- 3534(line=90, offs=29)
+*/
+ATSINSmove_void(tmp26, _057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_clear(ATSPMVrefarg0(arg0))) ;
+
+/* (*nothing*) */
+/* (*nothing*) */
+/* (*nothing*) */
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 3786(line=95, offs=34) -- 3839(line=95, offs=87)
+*/
+ATSINSmove(tmp27, atspre_uint8_bit_or(ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0x02)), ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0x00)))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 3768(line=95, offs=16) -- 3839(line=95, offs=87)
+*/
+ATSINSstore(ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(arg0)), postiats_tyrec_1), postiats_tyrec_1, atslab__displaymode), tmp27) ;
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 3864(line=96, offs=25) -- 3878(line=96, offs=39)
+*/
+ATSINSmove(tmp28, ATSSELfltrec(ATSderef(ATSPMVcastfn(LCD_takeout_struct, atstkind_type(atstype_ptrk), ATSPMVrefarg0(arg0)), postiats_tyrec_1), postiats_tyrec_1, atslab__displaymode)) ;
+/* (*nothing*) */
+/*
+letpush(end)
+*/
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4031(line=100, offs=34) -- 4075(line=100, offs=78)
+*/
+ATSINSmove(tmp29, atspre_uint8_bit_or(ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0x04)), tmp28)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4013(line=100, offs=16) -- 4076(line=100, offs=79)
+*/
+ATSINSmove_void(tmpret8, _057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_command(ATSPMVrefarg0(arg0), tmp29)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 2005(line=59, offs=53) -- 4082(line=101, offs=6)
+*/
+/*
+INSletpop()
+*/
+ATSfunbody_end()
+ATSreturn_void(tmpret8) ;
+} /* end of [lcd_begin_1] */
+
+/*
+/home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4168(line=108, offs=21) -- 4227(line=110, offs=2)
+*/
+/*
+local: 
+global: lcd_close$2$0(level=0)
+local: 
+global: 
+*/
+ATSextern()
+atsvoid_t0ype
+_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_close(atstkind_type(atstype_ptrk) arg0)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec_void(tmpret31) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4158(line=108, offs=11) -- 4227(line=110, offs=2)
+*/
+ATSINSflab(__patsflab_lcd_close):
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4176(line=108, offs=29) -- 4227(line=110, offs=2)
+*/
+/*
+letpush(beg)
+*/
+/*
+letpush(end)
+*/
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4189(line=109, offs=12) -- 4206(line=109, offs=29)
+*/
+ATSINSmove_void(tmpret31, ATSPMVcastfn(castvwtp0, atsvoid_t0ype, arg0)) ;
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4176(line=108, offs=29) -- 4227(line=110, offs=2)
+*/
+/*
+INSletpop()
+*/
+ATSfunbody_end()
+ATSreturn_void(tmpret31) ;
+} /* end of [_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_close] */
+
+/*
+/home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4249(line=112, offs=21) -- 4455(line=116, offs=2)
+*/
+/*
+local: 
+global: lcd_clear$3$0(level=0)
+local: 
+global: 
+*/
+ATSextern()
+atsvoid_t0ype
+_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_clear(atsrefarg0_type(atstkind_type(atstype_ptrk)) arg0)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec_void(tmpret32) ;
+ATStmpdec_void(tmp33) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4239(line=112, offs=11) -- 4455(line=116, offs=2)
+*/
+ATSINSflab(__patsflab_lcd_clear):
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4257(line=112, offs=29) -- 4455(line=116, offs=2)
+*/
+/*
+letpush(beg)
+*/
+/* (*nothing*) */
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4309(line=114, offs=12) -- 4344(line=114, offs=47)
+*/
+ATSINSmove_void(tmp33, _057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_command(ATSPMVrefarg0(arg0), ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0x01)))) ;
+
+/*
+letpush(end)
+*/
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4402(line=115, offs=12) -- 4418(line=115, offs=28)
+*/
+ATSINSmove_void(tmpret32, _delay_us(ATSPMVf0loat(2000.0))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4257(line=112, offs=29) -- 4455(line=116, offs=2)
+*/
+/*
+INSletpop()
+*/
+ATSfunbody_end()
+ATSreturn_void(tmpret32) ;
+} /* end of [_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_clear] */
+
+/*
+/home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4481(line=118, offs=25) -- 4674(line=122, offs=2)
+*/
+/*
+local: 
+global: lcd_setCursor$4$0(level=0)
+local: 
+global: 
+*/
+ATSextern()
+atsvoid_t0ype
+_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_setCursor(atsrefarg0_type(atstkind_type(atstype_ptrk)) arg0, atstkind_t0ype(atstype_uint8) arg1, atstkind_t0ype(atstype_int) arg2)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec_void(tmpret34) ;
+ATStmpdec(tmp35, atstkind_t0ype(atstype_int)) ;
+ATStmpdec(tmp36, atstkind_t0ype(atstype_bool)) ;
+ATStmpdec(tmp41, atstkind_t0ype(atstype_uint8)) ;
+ATStmpdec(tmp42, atstkind_t0ype(atstype_uint8)) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4467(line=118, offs=11) -- 4674(line=122, offs=2)
+*/
+ATSINSflab(__patsflab_lcd_setCursor):
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4499(line=118, offs=43) -- 4674(line=122, offs=2)
+*/
+/*
+letpush(beg)
+*/
+/* (*nothing*) */
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4559(line=120, offs=20) -- 4566(line=120, offs=27)
+*/
+ATSINSmove(tmp36, ATSLIB_056_prelude__gt_g0int_int__5__1(arg2, ATSPMVi0nt(0))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4556(line=120, offs=17) -- 4586(line=120, offs=47)
+*/
+ATSif(
+tmp36
+) ATSthen() {
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4572(line=120, offs=33) -- 4576(line=120, offs=37)
+*/
+ATSINSmove(tmp35, ATSPMVi0nt(0x40)) ;
+} ATSelse() {
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4582(line=120, offs=43) -- 4586(line=120, offs=47)
+*/
+ATSINSmove(tmp35, ATSPMVi0nt(0x00)) ;
+} /* ATSendif */
+/*
+letpush(end)
+*/
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4648(line=121, offs=62) -- 4670(line=121, offs=84)
+*/
+ATSINSmove(tmp42, atspre_g0uint_add_uint8(arg1, ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), tmp35))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4616(line=121, offs=30) -- 4671(line=121, offs=85)
+*/
+ATSINSmove(tmp41, atspre_uint8_bit_or(ATSPMVcastfn(cast, atstkind_t0ype(atstype_uint8), ATSPMVi0nt(0x80)), tmp42)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4598(line=121, offs=12) -- 4672(line=121, offs=86)
+*/
+ATSINSmove_void(tmpret34, _057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_command(ATSPMVrefarg0(arg0), tmp41)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4499(line=118, offs=43) -- 4674(line=122, offs=2)
+*/
+/*
+INSletpop()
+*/
+ATSfunbody_end()
+ATSreturn_void(tmpret34) ;
+} /* end of [_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_setCursor] */
+
+#if(0)
+/*
+/home/kiwamu/src/ATS-Postiats/prelude/DATS/integer.dats: 28963(line=798, offs=14) -- 29003(line=798, offs=54)
+*/
+/*
+local: 
+global: gt_g0int_int$5$0(level=0)
+local: 
+global: 
+*/
+ATSextern()
+/*
+imparg = tk(4438)
+tmparg = S2Evar(tk(4438))
+tmpsub = None()
+*/
+atstkind_t0ype(atstype_bool)
+ATSLIB_056_prelude__gt_g0int_int__5(atstkind_t0ype(atstyvar_type(tk)) arg0, atstkind_t0ype(atstype_int) arg1)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec(tmpret37, atstkind_t0ype(atstype_bool)) ;
+ATStmpdec(tmp38, atstkind_t0ype(atstyvar_type(tk))) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/integer.dats({$PATSPRE}/DATS/integer.dats): 28950(line=798, offs=1) -- 29003(line=798, offs=54)
+*/
+ATSINSflab(__patsflab_gt_g0int_int):
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/integer.dats({$PATSPRE}/DATS/integer.dats): 28989(line=798, offs=40) -- 29001(line=798, offs=52)
+*/
+ATSINSmove(tmp38, PMVtmpltcst(g0int2int<S2Eextkind(atstype_int), S2Evar(tk(4438))>)(arg1)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/integer.dats({$PATSPRE}/DATS/integer.dats): 28972(line=798, offs=23) -- 29003(line=798, offs=54)
+*/
+ATSINSmove(tmpret37, PMVtmpltcst(g0int_gt<S2Evar(tk(4438))>)(arg0, tmp38)) ;
+
+ATSfunbody_end()
+ATSreturn(tmpret37) ;
+} /* end of [ATSLIB_056_prelude__gt_g0int_int__5] */
+#endif // end of [TEMPLATE]
+
+/*
+/home/kiwamu/src/ATS-Postiats/prelude/DATS/integer.dats: 28963(line=798, offs=14) -- 29003(line=798, offs=54)
+*/
+/*
+local: 
+global: gt_g0int_int$5$1(level=1)
+local: 
+global: 
+*/
+ATSstatic()
+/*
+imparg = tk(4438)
+tmparg = S2Evar(tk(4438))
+tmpsub = Some(tk(4438) -> S2Eextkind(atstype_int))
+*/
+atstkind_t0ype(atstype_bool)
+ATSLIB_056_prelude__gt_g0int_int__5__1(atstkind_t0ype(atstype_int) arg0, atstkind_t0ype(atstype_int) arg1)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec(tmpret37__1, atstkind_t0ype(atstype_bool)) ;
+ATStmpdec(tmp38__1, atstkind_t0ype(atstype_int)) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/integer.dats({$PATSPRE}/DATS/integer.dats): 28950(line=798, offs=1) -- 29003(line=798, offs=54)
+*/
+ATSINSflab(__patsflab_gt_g0int_int):
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/integer.dats({$PATSPRE}/DATS/integer.dats): 28989(line=798, offs=40) -- 29001(line=798, offs=52)
+*/
+ATSINSmove(tmp38__1, atspre_g0int2int_int_int(arg1)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/integer.dats({$PATSPRE}/DATS/integer.dats): 28972(line=798, offs=23) -- 29003(line=798, offs=54)
+*/
+ATSINSmove(tmpret37__1, atspre_g0int_gt_int(arg0, tmp38__1)) ;
+
+ATSfunbody_end()
+ATSreturn(tmpret37__1) ;
+} /* end of [ATSLIB_056_prelude__gt_g0int_int__5__1] */
+
+/*
+/home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4696(line=124, offs=21) -- 5056(line=135, offs=2)
+*/
+/*
+local: 
+global: lcd_print$10$0(level=0)
+local: 
+global: 
+*/
+ATSextern()
+atsvoid_t0ype
+_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_print(atsrefarg0_type(atstkind_type(atstype_ptrk)) arg0, atstkind_type(atstype_ptrk) arg1, atstkind_t0ype(atstype_size) arg2, atstkind_t0ype(atstype_int) arg3)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec_void(tmpret43) ;
+ATStmpdec(tmp57, atstkind_type(atstype_ptrk)) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4686(line=124, offs=11) -- 5056(line=135, offs=2)
+*/
+ATSINSflab(__patsflab_lcd_print):
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4721(line=124, offs=46) -- 5056(line=135, offs=2)
+*/
+/*
+letpush(beg)
+*/
+/* (*nothing*) */
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 5004(line=133, offs=12) -- 5023(line=133, offs=31)
+*/
+ATSINSmove(tmp57, ATSLIB_056_prelude__ptr1_add_guint__19__1(ATSPMVcastfn(string2ptr, atstkind_type(atstype_ptrk), arg1), arg2)) ;
+
+/*
+letpush(end)
+*/
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 5035(line=134, offs=12) -- 5054(line=134, offs=31)
+*/
+ATSINSmove_void(tmpret43, loop_14(ATSPMVrefarg0(arg0), tmp57, arg3)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4721(line=124, offs=46) -- 5056(line=135, offs=2)
+*/
+/*
+INSletpop()
+*/
+ATSfunbody_end()
+ATSreturn_void(tmpret43) ;
+} /* end of [_057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_print] */
+
+/*
+/home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4729(line=125, offs=7) -- 4832(line=128, offs=4)
+*/
+/*
+local: 
+global: w_11$0(level=1)
+local: 
+global: 
+*/
+ATSstatic()
+atsvoid_t0ype
+w_11(atsrefarg0_type(atstkind_type(atstype_ptrk)) arg0, atstkind_type(atstype_ptrk) arg1)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec_void(tmpret44) ;
+ATStmpdec(tmp45, atstkind_t0ype(atstype_uint8)) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4729(line=125, offs=7) -- 4832(line=128, offs=4)
+*/
+ATSINSflab(__patsflab_w_11):
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4759(line=125, offs=37) -- 4832(line=128, offs=4)
+*/
+/*
+letpush(beg)
+*/
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4773(line=126, offs=13) -- 4795(line=126, offs=35)
+*/
+ATSINSmove(tmp45, ATSLIB_056_prelude_056_unsafe__ptr0_get__12__1(arg1)) ;
+
+/*
+letpush(end)
+*/
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4810(line=127, offs=14) -- 4828(line=127, offs=32)
+*/
+ATSINSmove_void(tmpret44, _057_home_057_kiwamu_057_src_057_arduino_055_mega2560_055_ats_057_lcd_ats_057_SATS_057_lcd_056_sats__lcd_write(ATSPMVrefarg0(arg0), tmp45)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4759(line=125, offs=37) -- 4832(line=128, offs=4)
+*/
+/*
+INSletpop()
+*/
+ATSfunbody_end()
+ATSreturn_void(tmpret44) ;
+} /* end of [w_11] */
+
+#if(0)
+/*
+/home/kiwamu/src/ATS-Postiats/prelude/DATS/unsafe.dats: 1751(line=58, offs=3) -- 1964(line=66, offs=2)
+*/
+/*
+local: 
+global: ptr0_get$12$0(level=0)
+local: 
+global: 
+*/
+ATSextern()
+/*
+imparg = a(5067)
+tmparg = S2Evar(a(5067))
+tmpsub = None()
+*/
+atstyvar_type(a)
+ATSLIB_056_prelude_056_unsafe__ptr0_get__12(atstkind_type(atstype_ptrk) arg0)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec(tmpret46, atstyvar_type(a)) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/unsafe.dats: 1740(line=57, offs=1) -- 1964(line=66, offs=2)
+*/
+ATSINSflab(__patsflab_ptr0_get):
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/unsafe.dats: 1757(line=58, offs=9) -- 1964(line=66, offs=2)
+*/
+/*
+letpush(beg)
+*/
+/* (*nothing*) */
+/*
+letpush(end)
+*/
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/unsafe.dats: 1938(line=64, offs=11) -- 1940(line=64, offs=13)
+*/
+ATSINSmove(tmpret46, ATSderef(ATSPMVcastfn(g1ofg0_ptr, atstkind_type(atstype_ptrk), arg0), atstyvar_type(a))) ;
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/unsafe.dats: 1757(line=58, offs=9) -- 1964(line=66, offs=2)
+*/
+/*
+INSletpop()
+*/
+ATSfunbody_end()
+ATSreturn(tmpret46) ;
+} /* end of [ATSLIB_056_prelude_056_unsafe__ptr0_get__12] */
+#endif // end of [TEMPLATE]
+
+/*
+/home/kiwamu/src/ATS-Postiats/prelude/DATS/unsafe.dats: 1751(line=58, offs=3) -- 1964(line=66, offs=2)
+*/
+/*
+local: 
+global: ptr0_get$12$1(level=2)
+local: 
+global: 
+*/
+ATSstatic()
+/*
+imparg = a(5067)
+tmparg = S2Evar(a(5067))
+tmpsub = Some(a(5067) -> S2Eapp(S2Ecst(g0uint_t0ype); S2Ecst(uint8_kind)))
+*/
+atstkind_t0ype(atstype_uint8)
+ATSLIB_056_prelude_056_unsafe__ptr0_get__12__1(atstkind_type(atstype_ptrk) arg0)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec(tmpret46__1, atstkind_t0ype(atstype_uint8)) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/unsafe.dats: 1740(line=57, offs=1) -- 1964(line=66, offs=2)
+*/
+ATSINSflab(__patsflab_ptr0_get):
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/unsafe.dats: 1757(line=58, offs=9) -- 1964(line=66, offs=2)
+*/
+/*
+letpush(beg)
+*/
+/* (*nothing*) */
+/*
+letpush(end)
+*/
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/unsafe.dats: 1938(line=64, offs=11) -- 1940(line=64, offs=13)
+*/
+ATSINSmove(tmpret46__1, ATSderef(ATSPMVcastfn(g1ofg0_ptr, atstkind_type(atstype_ptrk), arg0), atstkind_t0ype(atstype_uint8))) ;
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/unsafe.dats: 1757(line=58, offs=9) -- 1964(line=66, offs=2)
+*/
+/*
+INSletpop()
+*/
+ATSfunbody_end()
+ATSreturn(tmpret46__1) ;
+} /* end of [ATSLIB_056_prelude_056_unsafe__ptr0_get__12__1] */
+
+/*
+/home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4839(line=129, offs=7) -- 4964(line=131, offs=4)
+*/
+/*
+local: w_11$0(level=1), loop_14$0(level=1)
+global: w_11$0(level=1), loop_14$0(level=1)
+local: 
+global: 
+*/
+ATSstatic()
+atsvoid_t0ype
+loop_14(atsrefarg0_type(atstkind_type(atstype_ptrk)) arg0, atstkind_type(atstype_ptrk) arg1, atstkind_t0ype(atstype_int) arg2)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec(apy0, atsrefarg0_type(atstkind_type(atstype_ptrk))) ;
+ATStmpdec(apy1, atstkind_type(atstype_ptrk)) ;
+ATStmpdec(apy2, atstkind_t0ype(atstype_int)) ;
+ATStmpdec_void(tmpret48) ;
+ATStmpdec(tmp49, atstkind_t0ype(atstype_bool)) ;
+ATStmpdec_void(tmp52) ;
+ATStmpdec(tmp53, atstkind_type(atstype_ptrk)) ;
+ATStmpdec(tmp56, atstkind_t0ype(atstype_int)) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4839(line=129, offs=7) -- 4964(line=131, offs=4)
+*/
+ATSINSflab(__patsflab_loop_14):
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4880(line=129, offs=48) -- 4964(line=131, offs=4)
+*/
+/*
+letpush(beg)
+*/
+/*
+letpush(end)
+*/
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4898(line=130, offs=17) -- 4903(line=130, offs=22)
+*/
+ATSINSmove(tmp49, ATSLIB_056_prelude__gt_g0int_int__5__2(arg2, ATSPMVi0nt(0))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4895(line=130, offs=14) -- 4960(line=130, offs=79)
+*/
+ATSif(
+tmp49
+) ATSthen() {
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4910(line=130, offs=29) -- 4920(line=130, offs=39)
+*/
+ATSINSmove_void(tmp52, w_11(ATSPMVrefarg0(arg0), arg1)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4933(line=130, offs=52) -- 4950(line=130, offs=69)
+*/
+ATSINSmove(tmp53, ATSLIB_056_prelude__ptr0_succ__16__1(arg1)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4953(line=130, offs=72) -- 4958(line=130, offs=77)
+*/
+ATSINSmove(tmp56, atspre_g0int_sub_int(arg2, ATSPMVi0nt(1))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4922(line=130, offs=41) -- 4959(line=130, offs=78)
+*/
+ATStailcal_beg()
+ATSINSmove_tlcal(apy0, ATSPMVrefarg0(arg0)) ;
+ATSINSmove_tlcal(apy1, tmp53) ;
+ATSINSmove_tlcal(apy2, tmp56) ;
+ATSINSargmove_tlcal(arg0, apy0) ;
+ATSINSargmove_tlcal(arg1, apy1) ;
+ATSINSargmove_tlcal(arg2, apy2) ;
+ATSINSfgoto(__patsflab_loop_14) ;
+ATStailcal_end()
+
+} ATSelse() {
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4960(line=130, offs=79) -- 4960(line=130, offs=79)
+*/
+ATSINSmove_void(tmpret48, ATSempty()) ;
+} /* ATSendif */
+/*
+emit_instr: loc0 = /home/kiwamu/src/arduino-mega2560-ats/lcd_ats/DATS/lcd.dats: 4880(line=129, offs=48) -- 4964(line=131, offs=4)
+*/
+/*
+INSletpop()
+*/
+ATSfunbody_end()
+ATSreturn_void(tmpret48) ;
+} /* end of [loop_14] */
+
+/*
+/home/kiwamu/src/ATS-Postiats/prelude/DATS/integer.dats: 28963(line=798, offs=14) -- 29003(line=798, offs=54)
+*/
+/*
+local: 
+global: gt_g0int_int$5$2(level=2)
+local: 
+global: 
+*/
+ATSstatic()
+/*
+imparg = tk(4438)
+tmparg = S2Evar(tk(4438))
+tmpsub = Some(tk(4438) -> S2Eextkind(atstype_int))
+*/
+atstkind_t0ype(atstype_bool)
+ATSLIB_056_prelude__gt_g0int_int__5__2(atstkind_t0ype(atstype_int) arg0, atstkind_t0ype(atstype_int) arg1)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec(tmpret37__2, atstkind_t0ype(atstype_bool)) ;
+ATStmpdec(tmp38__2, atstkind_t0ype(atstype_int)) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/integer.dats({$PATSPRE}/DATS/integer.dats): 28950(line=798, offs=1) -- 29003(line=798, offs=54)
+*/
+ATSINSflab(__patsflab_gt_g0int_int):
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/integer.dats({$PATSPRE}/DATS/integer.dats): 28989(line=798, offs=40) -- 29001(line=798, offs=52)
+*/
+ATSINSmove(tmp38__2, atspre_g0int2int_int_int(arg1)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/integer.dats({$PATSPRE}/DATS/integer.dats): 28972(line=798, offs=23) -- 29003(line=798, offs=54)
+*/
+ATSINSmove(tmpret37__2, atspre_g0int_gt_int(arg0, tmp38__2)) ;
+
+ATSfunbody_end()
+ATSreturn(tmpret37__2) ;
+} /* end of [ATSLIB_056_prelude__gt_g0int_int__5__2] */
+
+#if(0)
+/*
+/home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats: 1808(line=61, offs=11) -- 1840(line=61, offs=43)
+*/
+/*
+local: 
+global: ptr0_succ$16$0(level=0)
+local: 
+global: 
+*/
+ATSextern()
+/*
+imparg = a(3944)
+tmparg = S2Evar(a(3944))
+tmpsub = None()
+*/
+atstkind_type(atstype_ptrk)
+ATSLIB_056_prelude__ptr0_succ__16(atstkind_type(atstype_ptrk) arg0)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec(tmpret54, atstkind_type(atstype_ptrk)) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats({$PATSPRE}/DATS/pointer.dats): 1798(line=61, offs=1) -- 1840(line=61, offs=43)
+*/
+ATSINSflab(__patsflab_ptr0_succ):
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats({$PATSPRE}/DATS/pointer.dats): 1814(line=61, offs=17) -- 1840(line=61, offs=43)
+*/
+ATSINSmove(tmpret54, atspre_add_ptr0_bsz(arg0, ATSPMVsizeof(atstyvar_type(a)))) ;
+
+ATSfunbody_end()
+ATSreturn(tmpret54) ;
+} /* end of [ATSLIB_056_prelude__ptr0_succ__16] */
+#endif // end of [TEMPLATE]
+
+/*
+/home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats: 1808(line=61, offs=11) -- 1840(line=61, offs=43)
+*/
+/*
+local: 
+global: ptr0_succ$16$1(level=2)
+local: 
+global: 
+*/
+ATSstatic()
+/*
+imparg = a(3944)
+tmparg = S2Evar(a(3944))
+tmpsub = Some(a(3944) -> S2Ecst(char_t0ype))
+*/
+atstkind_type(atstype_ptrk)
+ATSLIB_056_prelude__ptr0_succ__16__1(atstkind_type(atstype_ptrk) arg0)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec(tmpret54__1, atstkind_type(atstype_ptrk)) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats({$PATSPRE}/DATS/pointer.dats): 1798(line=61, offs=1) -- 1840(line=61, offs=43)
+*/
+ATSINSflab(__patsflab_ptr0_succ):
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats({$PATSPRE}/DATS/pointer.dats): 1814(line=61, offs=17) -- 1840(line=61, offs=43)
+*/
+ATSINSmove(tmpret54__1, atspre_add_ptr0_bsz(arg0, ATSPMVsizeof(atstkind_t0ype(atstype_char)))) ;
+
+ATSfunbody_end()
+ATSreturn(tmpret54__1) ;
+} /* end of [ATSLIB_056_prelude__ptr0_succ__16__1] */
+
+#if(0)
+/*
+/home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats: 2736(line=100, offs=23) -- 2804(line=101, offs=60)
+*/
+/*
+local: 
+global: ptr1_add_guint$19$0(level=0)
+local: 
+global: 
+*/
+ATSextern()
+/*
+imparg = a(3974), tk(3975)
+tmparg = S2Evar(a(3974)); S2Evar(tk(3975))
+tmpsub = None()
+*/
+atstkind_type(atstype_ptrk)
+ATSLIB_056_prelude__ptr1_add_guint__19(atstkind_type(atstype_ptrk) arg0, atstkind_t0ype(atstyvar_type(tk)) arg1)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec(tmpret58, atstkind_type(atstype_ptrk)) ;
+ATStmpdec(tmp59, atstkind_type(atstype_ptrk)) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats({$PATSPRE}/DATS/pointer.dats): 2714(line=100, offs=1) -- 2805(line=101, offs=61)
+*/
+ATSINSflab(__patsflab_ptr1_add_guint):
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats({$PATSPRE}/DATS/pointer.dats): 2776(line=101, offs=32) -- 2804(line=101, offs=60)
+*/
+ATSINSmove(tmp59, PMVtmpltcst(ptr0_add_guint<S2Evar(a(3974))><S2Evar(tk(3975))>)(arg0, arg1)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats({$PATSPRE}/DATS/pointer.dats): 2747(line=101, offs=3) -- 2804(line=101, offs=60)
+*/
+ATSINSmove(tmpret58, ATSPMVcastfn(cast, atstkind_type(atstype_ptrk), tmp59)) ;
+ATSfunbody_end()
+ATSreturn(tmpret58) ;
+} /* end of [ATSLIB_056_prelude__ptr1_add_guint__19] */
+#endif // end of [TEMPLATE]
+
+/*
+/home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats: 2736(line=100, offs=23) -- 2804(line=101, offs=60)
+*/
+/*
+local: 
+global: ptr1_add_guint$19$1(level=1)
+local: 
+global: 
+*/
+ATSstatic()
+/*
+imparg = a(3974), tk(3975)
+tmparg = S2Evar(a(3974)); S2Evar(tk(3975))
+tmpsub = Some(a(3974) -> S2EVar(4147); tk(3975) -> S2Eextkind(atstype_size))
+*/
+atstkind_type(atstype_ptrk)
+ATSLIB_056_prelude__ptr1_add_guint__19__1(atstkind_type(atstype_ptrk) arg0, atstkind_t0ype(atstype_size) arg1)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec(tmpret58__1, atstkind_type(atstype_ptrk)) ;
+ATStmpdec(tmp59__1, atstkind_type(atstype_ptrk)) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats({$PATSPRE}/DATS/pointer.dats): 2714(line=100, offs=1) -- 2805(line=101, offs=61)
+*/
+ATSINSflab(__patsflab_ptr1_add_guint):
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats({$PATSPRE}/DATS/pointer.dats): 2776(line=101, offs=32) -- 2804(line=101, offs=60)
+*/
+ATSINSmove(tmp59__1, ATSLIB_056_prelude__ptr0_add_guint__21__1(arg0, arg1)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats({$PATSPRE}/DATS/pointer.dats): 2747(line=101, offs=3) -- 2804(line=101, offs=60)
+*/
+ATSINSmove(tmpret58__1, ATSPMVcastfn(cast, atstkind_type(atstype_ptrk), tmp59__1)) ;
+ATSfunbody_end()
+ATSreturn(tmpret58__1) ;
+} /* end of [ATSLIB_056_prelude__ptr1_add_guint__19__1] */
+
+#if(0)
+/*
+/home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats: 2126(line=75, offs=16) -- 2180(line=76, offs=46)
+*/
+/*
+local: 
+global: ptr0_add_guint$21$0(level=0)
+local: 
+global: 
+*/
+ATSextern()
+/*
+imparg = a(3950), tk(3951)
+tmparg = S2Evar(a(3950)); S2Evar(tk(3951))
+tmpsub = None()
+*/
+atstkind_type(atstype_ptrk)
+ATSLIB_056_prelude__ptr0_add_guint__21(atstkind_type(atstype_ptrk) arg0, atstkind_t0ype(atstyvar_type(tk)) arg1)
+{
+/* tmpvardeclst(beg) */
+ATStmpdec(tmpret62, atstkind_type(atstype_ptrk)) ;
+ATStmpdec(tmp63, atstkind_t0ype(atstype_size)) ;
+ATStmpdec(tmp64, atstkind_t0ype(atstype_size)) ;
+/* tmpvardeclst(end) */
+ATSfunbody_beg()
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats({$PATSPRE}/DATS/pointer.dats): 2111(line=75, offs=1) -- 2180(line=76, offs=46)
+*/
+ATSINSflab(__patsflab_ptr0_add_guint):
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats({$PATSPRE}/DATS/pointer.dats): 2153(line=76, offs=19) -- 2166(line=76, offs=32)
+*/
+ATSINSmove(tmp64, PMVtmpltcst(g0uint2uint<S2Evar(tk(3951)), S2Eextkind(atstype_size)>)(arg1)) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats({$PATSPRE}/DATS/pointer.dats): 2153(line=76, offs=19) -- 2179(line=76, offs=45)
+*/
+ATSINSmove(tmp63, PMVtmpltcst(g0uint_mul<S2Eextkind(atstype_size)>)(tmp64, ATSPMVsizeof(atstyvar_type(a)))) ;
+
+/*
+emit_instr: loc0 = /home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats({$PATSPRE}/DATS/pointer.dats): 2137(line=76, offs=3) -- 2180(line=76, offs=46)
+*/
+ATSINSmove(tmpret62, atspre_add_ptr0_bsz(arg0, tmp63)) ;
+
+ATSfunbody_end()
+ATSreturn(tmpret62) ;
+} /* end of [ATSLIB_056_prelude__ptr0_add_guint__21] */
+#endif // end of [TEMPLATE]
+
+/*
+/home/kiwamu/src/ATS-Postiats/prelude/DATS/pointer.dats: 2126(line=75, offs=16) -- 2180(line=76, offs=46)
+*/
+/*
+local: 
+global: ptr0_add_guint$21$1(level=2)
+local: 
+global: 

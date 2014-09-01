@@ -130,6 +130,7 @@ implement lcd_print (lcd, str, start, len) = {
     val () = if r > 0 then (w (lcd, p); loop (lcd, ptr_succ<char> (p), r - 1))
   }
   val p0 = string2ptr (str)
+  val p0 = ptr_add<char> (p0, start)
   val () = loop (lcd, p0, len)
 }
 
