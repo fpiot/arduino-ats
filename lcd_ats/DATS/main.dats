@@ -5,11 +5,10 @@ staload "SATS/arduino.sats"
 staload "SATS/lcd.sats"
 staload UN = "prelude/SATS/unsafe.sats"
 
-//#define MY_DELAY_MS 400.0
-#define MY_DELAY_MS 100.0
+#define MY_DELAY_MS 400.0
 #define LCD_WIDTH 16
 
-val g_string = "                 ATS is a statically typed programming language that unifies implementation with formal specification.                 "
+val g_string = "                 ATS is a statically typed programming language that unifies implementation with formal specification. It is equipped with a highly expressive type system rooted in the framework Applied Type System, which gives the language its name. In particular, both dependent types and linear types are available in ATS.                 "
 
 implement main0 () = {
   fun loop {n:int}{i:nat | i < n}
