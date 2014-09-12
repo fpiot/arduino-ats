@@ -2,7 +2,7 @@
 
 ## Hardware: [Arduino Mega 2560](http://arduino.cc/en/Main/ArduinoBoardMega2560)
 
-[![](img/ArduinoMega2560_R3.jpg)](http://arduino.cc/en/Main/ArduinoBoardMega2560)
+[![](_img/ArduinoMega2560_R3.jpg)](http://arduino.cc/en/Main/ArduinoBoardMega2560)
 
 * CPU: ATmega2560 ([Atmel AVR](http://www.atmel.com/products/microcontrollers/avr/) 8-bit)
 * Flash ROM: 256 KiB
@@ -90,6 +90,6 @@ avrdude done.  Thank you.
 
 ## How to debug using gdb
 
-[![](/img/avr_dragon.jpg)](http://www.atmel.com/tools/avrdragon.aspx)
+[![](_img/avr_dragon.jpg)](http://www.atmel.com/tools/avrdragon.aspx)
 
 T.B.D.
