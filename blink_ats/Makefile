@@ -1,5 +1,9 @@
 PRG            = main
-OBJ            = main.o
+SATS           = $(wildcard SATS/*.sats)
+DATS           = $(wildcard DATS/*.dats)
+DATSC          = $(patsubst %.dats,%_dats.c,$(DATS))
+DATSOBJ        = $(patsubst %.dats,%_dats.o,$(DATS))
+COBJ           =
 MCU_TARGET     = atmega2560
 OPTIMIZE       = -Os
 MCU            = atmega2560
@@ -18,7 +22,7 @@ LIBS           =
 CC             = avr-gcc
 ATS            = patsopt
 #PATSHOME       = /usr/local/lib/ats2-postiats-0.0.8
-ATSCFLAGS      = -std=c99 -D_XOPEN_SOURCE -D_ATSTYPE_VAR_SIZE=0X00FF -Wno-unused-label -Wno-unused-but-set-variable -Wno-implicit-function-declaration -I. -I${PATSHOME} -I${PATSHOME}/ccomp/runtime
+ATSCFLAGS      = -std=c99 -D_XOPEN_SOURCE -D_ATS_EXCEPTION_NONE -D_ATSTYPE_VAR_SIZE=0X000F -Wno-unused-variable -Wno-unused-label -Wno-unused-but-set-variable -Wno-implicit-function-declaration -I. -I${PATSHOME} -I${PATSHOME}/ccomp/runtime
 
 # Override is only needed by avr-lib build system.
 
@@ -30,21 +34,20 @@ OBJDUMP        = avr-objdump
 
 all: $(PRG).elf lst text eeprom
 
-$(PRG).elf: $(OBJ)
+$(PRG).elf: $(COBJ) $(DATSOBJ)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
 
 # dependency:
-main.o: main.c pats_ccomp_typedefs.h
-
-main.c: main.dats
-	$(ATS) -o $@ -d main.dats
+$(DATSOBJ): %_dats.o: %_dats.c pats_ccomp_typedefs.h $(SATS)
+$(DATSC): %_dats.c: %.dats
+	$(ATS) -o $@ -d $<
 
 pats_ccomp_typedefs.h:
 	sed -e 's/_\[0XFFFF\]/_\[0X00FF\]/g' ${PATSHOME}/ccomp/runtime/$@ > $@
 
 clean:
 	rm -rf *.o $(PRG).elf *.eps *.png *.pdf *.bak 
-	rm -rf *.lst *.map main.c pats_ccomp_typedefs.h $(EXTRA_CLEAN_FILES)
+	rm -rf *.lst *.map DATS/*.c DATS/*.o pats_ccomp_typedefs.h $(EXTRA_CLEAN_FILES)
 
 lst:  $(PRG).lst
 
