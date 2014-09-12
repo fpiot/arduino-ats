@@ -1,3 +1,8 @@
+(*
+ * For LinkSprite 16X2 LCD Keypad Shield for Arduino
+ * http://store.linksprite.com/linksprite-16x2-lcd-keypad-shield-for-arduino-version-b/
+ * http://www.linksprite.com/wiki/index.php5?title=16_X_2_LCD_Keypad_Shield_for_Arduino
+ *)
 #define ATS_DYNLOADFLAG 0 // no dynloading at run-time
 #include "share/atspre_define.hats"
 #include "share/atspre_staload.hats"
