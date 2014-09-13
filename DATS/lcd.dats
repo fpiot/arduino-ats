@@ -15,18 +15,6 @@ staload UN = "prelude/SATS/unsafe.sats"
 extern fun uint8_bit_or: (uint8, uint8) -> uint8 = "mac#atspre_uint8_bit_or"
 extern fun uint8_bit_and: (uint8, uint8) -> uint8 = "mac#atspre_uint8_bit_and"
 
-(* Private struct *)
-vtypedef LCD_struct = @{
-  rs_pin          = uint8 // LOW: command.  HIGH: character.
-, rw_pin          = uint8 // LOW: write to LCD.  HIGH: read from LCD.
-, enable_pin      = uint8 // activated by a HIGH pulse.
-, data_pins       = @(uint8, uint8, uint8, uint8)
-, displayfunction = uint8
-, displaycontrol  = uint8
-, displaymode     = uint8
-, numlines        = uint8
-, currline        = uint8
-}
 absvtype LCD_minus_struct (l:addr)
 extern castfn
 LCD_takeout_struct (* xxx Should lock *)
@@ -48,67 +36,63 @@ extern fun{} lcd_send: {l:addr} (!LCD_struct @ l | ptr l, uint8, HIGHLOW) -> voi
 extern fun{} lcd_pulseEnable: {l:addr} (!LCD_struct @ l | ptr l) -> void
 extern fun{} lcd_write4bits: {l:addr} (!LCD_struct @ l | ptr l, uint8) -> void
 
-local
-  var _global_lcd_struct: LCD_struct
-in
-  implement{} lcd_open (rs, rw, enable, d0, d1, d2, d3) = let
-    val lcd = $UN.castvwtp0 (addr@_global_lcd_struct)
+implement{} lcd_open (rs, rw, enable, d0, d1, d2, d3) = let
+  val lcd = lcd_get ()
+  val (pfat | p) = LCD_takeout_struct (lcd)
+  val () = p->rs_pin     := $UN.cast rs
+  val () = p->rw_pin     := $UN.cast rw
+  val () = p->enable_pin := $UN.cast enable
+  val () = p->data_pins  := @($UN.cast d0, $UN.cast d1, $UN.cast d2, $UN.cast d3)
+  val () = pinMode (p->rs_pin, OUTPUT)
+  val () = pinMode (p->rw_pin, OUTPUT)
+  val () = pinMode (p->enable_pin, OUTPUT)
+  val LCD_4BITMODE = $UN.cast 0x00
+  val LCD_2LINE    = $UN.cast 0x08
+  val LCD_5x8DOTS  = $UN.cast 0x00
+  val () = p->displayfunction := uint8_bit_or (LCD_4BITMODE, uint8_bit_or (LCD_2LINE, LCD_5x8DOTS))
+  prval () = LCD_addback_struct(pfat | lcd)
+  fun lcd_begin (lcd: !LCD, lines: uint8): void = {
     val (pfat | p) = LCD_takeout_struct (lcd)
-    val () = p->rs_pin     := $UN.cast rs
-    val () = p->rw_pin     := $UN.cast rw
-    val () = p->enable_pin := $UN.cast enable
-    val () = p->data_pins  := @($UN.cast d0, $UN.cast d1, $UN.cast d2, $UN.cast d3)
-    val () = pinMode (p->rs_pin, OUTPUT)
-    val () = pinMode (p->rw_pin, OUTPUT)
-    val () = pinMode (p->enable_pin, OUTPUT)
-    val LCD_4BITMODE = $UN.cast 0x00
-    val LCD_2LINE    = $UN.cast 0x08
-    val LCD_5x8DOTS  = $UN.cast 0x00
-    val () = p->displayfunction := uint8_bit_or (LCD_4BITMODE, uint8_bit_or (LCD_2LINE, LCD_5x8DOTS))
+    val () = p->numlines := lines
+    val () = p->currline := $UN.cast 0
+    val () = _delay_us 50000.0
+    val () = digitalWrite (p->rs_pin, LOW)
+    val () = digitalWrite (p->enable_pin, LOW)
+    val () = digitalWrite (p->rw_pin, LOW)
+    val displayfunction = p->displayfunction
+    // this is according to the hitachi HD44780 datasheet / figure 24, pg 46
+    // we start in 8bit mode, try to set 4 bit mode
+    val () = lcd_write4bits (pfat | p, $UN.cast 0x03)
+    val () = _delay_us 4500.0
+    val () = lcd_write4bits (pfat | p, $UN.cast 0x03) // second try
+    val () = _delay_us 4500.0
+    val () = lcd_write4bits (pfat | p, $UN.cast 0x03) // third go!
+    val () = _delay_us 150.0
+    val () = lcd_write4bits (pfat | p, $UN.cast 0x02) // finally, set to 4-bit interface
+    // finally, set # lines, font size, etc.
+    val LCD_FUNCTIONSET = $UN.cast 0x20
+    val () = lcd_command (pfat | p, uint8_bit_or (LCD_FUNCTIONSET, displayfunction))
+    // turn the display on with no cursor or blinking default
+    val LCD_DISPLAYON = $UN.cast 0x04
+    val LCD_CURSOROFF = $UN.cast 0x00
+    val LCD_BLINKOFF  = $UN.cast 0x00
+    val () = p->displaycontrol := uint8_bit_or (LCD_DISPLAYON, uint8_bit_or (LCD_CURSOROFF, LCD_BLINKOFF))
+    val () = lcd_display (pfat | p)
+    // Initialize to default text direction (for romance languages)
+    val LCD_ENTRYLEFT           = $UN.cast 0x02
+    val LCD_ENTRYSHIFTDECREMENT = $UN.cast 0x00
+    val () = p->displaymode := uint8_bit_or (LCD_ENTRYLEFT, LCD_ENTRYSHIFTDECREMENT)
+    val displaymode = p->displaymode
+    // set the entry mode
+    val LCD_ENTRYMODESET = $UN.cast 0x04
+    val () = lcd_command (pfat | p, uint8_bit_or (LCD_ENTRYMODESET, displaymode))
     prval () = LCD_addback_struct(pfat | lcd)
-    fun lcd_begin (lcd: !LCD, lines: uint8): void = {
-      val (pfat | p) = LCD_takeout_struct (lcd)
-      val () = p->numlines := lines
-      val () = p->currline := $UN.cast 0
-      val () = _delay_us 50000.0
-      val () = digitalWrite (p->rs_pin, LOW)
-      val () = digitalWrite (p->enable_pin, LOW)
-      val () = digitalWrite (p->rw_pin, LOW)
-      val displayfunction = p->displayfunction
-      // this is according to the hitachi HD44780 datasheet / figure 24, pg 46
-      // we start in 8bit mode, try to set 4 bit mode
-      val () = lcd_write4bits (pfat | p, $UN.cast 0x03)
-      val () = _delay_us 4500.0
-      val () = lcd_write4bits (pfat | p, $UN.cast 0x03) // second try
-      val () = _delay_us 4500.0
-      val () = lcd_write4bits (pfat | p, $UN.cast 0x03) // third go!
-      val () = _delay_us 150.0
-      val () = lcd_write4bits (pfat | p, $UN.cast 0x02) // finally, set to 4-bit interface
-      // finally, set # lines, font size, etc.
-      val LCD_FUNCTIONSET = $UN.cast 0x20
-      val () = lcd_command (pfat | p, uint8_bit_or (LCD_FUNCTIONSET, displayfunction))
-      // turn the display on with no cursor or blinking default
-      val LCD_DISPLAYON = $UN.cast 0x04
-      val LCD_CURSOROFF = $UN.cast 0x00
-      val LCD_BLINKOFF  = $UN.cast 0x00
-      val () = p->displaycontrol := uint8_bit_or (LCD_DISPLAYON, uint8_bit_or (LCD_CURSOROFF, LCD_BLINKOFF))
-      val () = lcd_display (pfat | p)
-      // Initialize to default text direction (for romance languages)
-      val LCD_ENTRYLEFT           = $UN.cast 0x02
-      val LCD_ENTRYSHIFTDECREMENT = $UN.cast 0x00
-      val () = p->displaymode := uint8_bit_or (LCD_ENTRYLEFT, LCD_ENTRYSHIFTDECREMENT)
-      val displaymode = p->displaymode
-      // set the entry mode
-      val LCD_ENTRYMODESET = $UN.cast 0x04
-      val () = lcd_command (pfat | p, uint8_bit_or (LCD_ENTRYMODESET, displaymode))
-      prval () = LCD_addback_struct(pfat | lcd)
-      // clear it off
-      val () = lcd_clear lcd
-    }
-    val () = lcd_begin (lcd, $UN.cast 2)
-  in
-    lcd
-  end
+    // clear it off
+    val () = lcd_clear lcd
+  }
+  val () = lcd_begin (lcd, $UN.cast 2)
+in
+  lcd
 end
 
 implement{} lcd_close (lcd) = {
