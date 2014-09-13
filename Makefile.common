@@ -14,7 +14,7 @@ LIBS           ?=
 
 CC             = avr-gcc
 ATS            = patsopt
-ATSCFLAGS      = -std=c99 -D_XOPEN_SOURCE -D_ATS_CCOMP_EXCEPTION_NONE -D_ATSTYPE_VAR_SIZE=0X000F -Wno-unused-variable -Wno-unused-label -Wno-unused-but-set-variable -Wno-implicit-function-declaration -I. -I${PATSHOME} -I${PATSHOME}/ccomp/runtime -I../_arduino -I../_dummy
+ATSCFLAGS      = -std=c99 -D_XOPEN_SOURCE -D_ATS_CCOMP_EXCEPTION_NONE -D_ATSTYPE_VAR_SIZE=0X000F -Wno-unused-variable -Wno-unused-label -Wno-unused-but-set-variable -I. -I${PATSHOME} -I${PATSHOME}/ccomp/runtime -I../_arduino -I../_dummy
 
 # Override is only needed by avr-lib build system.
 
