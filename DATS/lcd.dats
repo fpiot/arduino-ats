@@ -12,10 +12,6 @@ staload "{$LIBARDUINO}/SATS/arduino.sats"
 staload "{$LIBARDUINO}/SATS/lcd.sats"
 staload UN = "prelude/SATS/unsafe.sats"
 
-%{
-inline uint8_t atspre_uint8_bit_or(uint8_t a, uint8_t b) { return (a | b); }
-inline uint8_t atspre_uint8_bit_and(uint8_t a, uint8_t b) { return (a & b); }
-%}
 extern fun uint8_bit_or: (uint8, uint8) -> uint8 = "mac#atspre_uint8_bit_or"
 extern fun uint8_bit_and: (uint8, uint8) -> uint8 = "mac#atspre_uint8_bit_and"
 

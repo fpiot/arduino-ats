@@ -1,3 +1,7 @@
+%{#
+#include "../../CATS/lcd.cats"
+%}
+
 absvtype LCD = ptr
 
 fun{} lcd_open (rs: int, rw: int, enable: int, d0: int, d1: int, d2: int, d3: int): LCD
