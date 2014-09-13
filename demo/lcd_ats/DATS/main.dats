@@ -4,6 +4,7 @@
 #define LIBARDUINO_targetloc "../.."
 staload "{$LIBARDUINO}/SATS/arduino.sats"
 staload "{$LIBARDUINO}/SATS/lcd.sats"
+staload _ = "{$LIBARDUINO}/DATS/lcd.dats"
 staload UN = "prelude/SATS/unsafe.sats"
 
 #define MY_DELAY_MS 400.0

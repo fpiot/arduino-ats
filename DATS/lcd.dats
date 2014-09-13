@@ -6,8 +6,10 @@
 //#define ATS_DYNLOADFLAG 0 // no dynloading at run-time
 #include "share/atspre_define.hats"
 #include "share/atspre_staload.hats"
-staload "SATS/arduino.sats"
-staload "SATS/lcd.sats"
+
+#define LIBARDUINO_targetloc "../.."
+staload "{$LIBARDUINO}/SATS/arduino.sats"
+staload "{$LIBARDUINO}/SATS/lcd.sats"
 staload UN = "prelude/SATS/unsafe.sats"
 
 %{
@@ -56,10 +58,10 @@ in
   implement{} lcd_open (rs, rw, enable, d0, d1, d2, d3) = let
     val lcd = $UN.castvwtp0 (addr@_global_lcd_struct)
     val (pfat | p) = LCD_takeout_struct (lcd)
-    val () = p->rs_pin     := rs
-    val () = p->rw_pin     := rw
-    val () = p->enable_pin := enable
-    val () = p->data_pins  := @(d0, d1, d2, d3)
+    val () = p->rs_pin     := $UN.cast rs
+    val () = p->rw_pin     := $UN.cast rw
+    val () = p->enable_pin := $UN.cast enable
+    val () = p->data_pins  := @($UN.cast d0, $UN.cast d1, $UN.cast d2, $UN.cast d3)
     val () = pinMode (p->rs_pin, OUTPUT)
     val () = pinMode (p->rw_pin, OUTPUT)
     val () = pinMode (p->enable_pin, OUTPUT)
