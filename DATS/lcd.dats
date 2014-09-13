@@ -3,7 +3,7 @@
  * http://store.linksprite.com/linksprite-16x2-lcd-keypad-shield-for-arduino-version-b/
  * http://www.linksprite.com/wiki/index.php5?title=16_X_2_LCD_Keypad_Shield_for_Arduino
  *)
-#define ATS_DYNLOADFLAG 0 // no dynloading at run-time
+//#define ATS_DYNLOADFLAG 0 // no dynloading at run-time
 #include "share/atspre_define.hats"
 #include "share/atspre_staload.hats"
 staload "SATS/arduino.sats"
@@ -44,16 +44,16 @@ LCD_addback_struct (* xxx Should unlock *)
 ) : void
 
 (* Low level functions *)
-extern fun lcd_display: {l:addr} (!LCD_struct @ l | ptr l) -> void
-extern fun lcd_command: {l:addr} (!LCD_struct @ l | ptr l, uint8) -> void
-extern fun lcd_send: {l:addr} (!LCD_struct @ l | ptr l, uint8, HIGHLOW) -> void
-extern fun lcd_pulseEnable: {l:addr} (!LCD_struct @ l | ptr l) -> void
-extern fun lcd_write4bits: {l:addr} (!LCD_struct @ l | ptr l, uint8) -> void
+extern fun{} lcd_display: {l:addr} (!LCD_struct @ l | ptr l) -> void
+extern fun{} lcd_command: {l:addr} (!LCD_struct @ l | ptr l, uint8) -> void
+extern fun{} lcd_send: {l:addr} (!LCD_struct @ l | ptr l, uint8, HIGHLOW) -> void
+extern fun{} lcd_pulseEnable: {l:addr} (!LCD_struct @ l | ptr l) -> void
+extern fun{} lcd_write4bits: {l:addr} (!LCD_struct @ l | ptr l, uint8) -> void
 
 local
   var _global_lcd_struct: LCD_struct
 in
-  implement lcd_open (rs, rw, enable, d0, d1, d2, d3) = let
+  implement{} lcd_open (rs, rw, enable, d0, d1, d2, d3) = let
     val lcd = $UN.castvwtp0 (addr@_global_lcd_struct)
     val (pfat | p) = LCD_takeout_struct (lcd)
     val () = p->rs_pin     := rs
@@ -113,11 +113,11 @@ in
   end
 end
 
-implement lcd_close (lcd) = {
+implement{} lcd_close (lcd) = {
   val () = $UN.castvwtp0(lcd) (* Consume lcd *)
 }
 
-implement lcd_clear (lcd) = {
+implement{} lcd_clear (lcd) = {
   val LCD_CLEARDISPLAY = $UN.cast 0x01
   val (pfat | p) = LCD_takeout_struct (lcd)
   val () = lcd_command (pfat | p, LCD_CLEARDISPLAY) // clear display, set cursor position to zero
@@ -125,7 +125,7 @@ implement lcd_clear (lcd) = {
   val () = _delay_us 2000.0 // this command takes a long time!
 }
 
-implement lcd_setCursor (lcd, col, row) = {
+implement{} lcd_setCursor (lcd, col, row) = {
   val LCD_SETDDRAMADDR = $UN.cast 0x80
   val row_ofs = if row > 0 then 0x40 else 0x00
   val (pfat | p) = LCD_takeout_struct (lcd)
@@ -133,7 +133,7 @@ implement lcd_setCursor (lcd, col, row) = {
   prval () = LCD_addback_struct(pfat | lcd)
 }
 
-implement lcd_print (lcd, str, start, len) = {
+implement{} lcd_print (lcd, str, start, len) = {
   fun w (lcd: !LCD, p: ptr): void = {
     val c = $UN.ptr0_get<uint8> (p)
     val () = lcd_write (lcd, c)
@@ -146,13 +146,13 @@ implement lcd_print (lcd, str, start, len) = {
   val () = loop (lcd, p0, len)
 }
 
-implement lcd_write (lcd, value) = {
+implement{} lcd_write (lcd, value) = {
   val (pfat | p) = LCD_takeout_struct (lcd)
   val () = lcd_send (pfat | p, value, HIGH)
   prval () = LCD_addback_struct(pfat | lcd)
 }
 
-implement lcd_display (pfat | p) = {
+implement{} lcd_display (pfat | p) = {
   val LCD_DISPLAYON = $UN.cast 0x04
   val () = p->displaycontrol := LCD_DISPLAYON
   val displaycontrol = p->displaycontrol
@@ -160,18 +160,18 @@ implement lcd_display (pfat | p) = {
   val () = lcd_command (pfat | p, uint8_bit_or (LCD_DISPLAYCONTROL, displaycontrol))
 }
 
-implement lcd_command (pfat | p, value) = {
+implement{} lcd_command (pfat | p, value) = {
   val () = lcd_send (pfat | p, value, LOW)
 }
 
-implement lcd_send (pfat | p, value, mode) = {
+implement{} lcd_send (pfat | p, value, mode) = {
   val () = digitalWrite (p->rs_pin, mode)
   val () = digitalWrite (p->rw_pin, LOW)
   val () = lcd_write4bits (pfat | p, value >> 4)
   val () = lcd_write4bits (pfat | p, value)
 }
 
-implement lcd_pulseEnable (pfat | p) = {
+implement{} lcd_pulseEnable (pfat | p) = {
   val () = digitalWrite (p->enable_pin, LOW)
   val () = _delay_us 1.0
   val () = digitalWrite (p->enable_pin, HIGH)
@@ -180,7 +180,7 @@ implement lcd_pulseEnable (pfat | p) = {
   val () = _delay_us 100.0 // commands need > 37us to settle
 }
 
-implement lcd_write4bits (pfat | p, value) = {
+implement{} lcd_write4bits (pfat | p, value) = {
   fun uint8_to_highlow (v: uint8): HIGHLOW = $UN.cast (uint8_bit_and (v, $UN.cast 0x01))
   val () = pinMode (p->data_pins.0, OUTPUT)
   val () = digitalWrite (p->data_pins.0, uint8_to_highlow (value >> 0))

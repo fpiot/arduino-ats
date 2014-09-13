@@ -1,3 +1,4 @@
+TOP            = ../../
 MCU            = atmega2560
 F_CPU          = 16000000UL
 USB            = ttyACM0
@@ -5,4 +6,4 @@ USB            = ttyACM0
 BAUD_RATE      = 115200
 LOADERFLAGS    = -c stk500v2 -p $(MCU) -b $(BAUD_RATE) -P /dev/$(USB)
 
-include ../Makefile.common
+include ${TOP}/Makefile.common
