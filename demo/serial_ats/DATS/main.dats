@@ -8,10 +8,7 @@ staload "{$TOP}/SATS/hardware_serial.sats"
 
 implement main0 () = {
   fun printchar (c) = {
-    val _ = serial_write (int2char0 c)
-    val _ = serial_write ('\r')
-    val _ = serial_write ('\n')
-    val () = serial_flush ()
+    val () = println! ("Inputed: ", int2char0 c)
   }
 
   fun readprint () =

@@ -130,6 +130,16 @@ atspre_compare_string_string
 
 /* ****** ****** */
 
+/* implemented at hardware_serial.dats */
+atsvoid_t0ype
+atspre_print_char(atstype_char);
+atsvoid_t0ype
+atspre_print_string(atstkind_type(atstype_ptrk));
+atsvoid_t0ype
+atspre_print_newline(void);
+
+/* ****** ****** */
+
 #endif // ifndef ATSLIB_PRELUDE_STRING_CATS
 
 /* ****** ****** */

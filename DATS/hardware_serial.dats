@@ -38,6 +38,8 @@ bool ats_serial_transmitting;
 #include "config.hats"
 #include "{$TOP}/avr_prelude/kernel_staload.hats"
 
+staload "{$TOP}/avr_prelude/SATS/string0.sats"
+staload _ = "{$TOP}/avr_prelude/DATS/string0.dats"
 staload "{$TOP}/SATS/arduino.sats"
 staload "{$TOP}/SATS/hardware_serial.sats"
 staload UN = "prelude/SATS/unsafe.sats"
@@ -183,6 +185,23 @@ implement serial_end () = {
   val () = c_cbi (ADDR_UCSRB, BIT_UDRIE)
   // clear any received data
   val () = ringbuf_clear (rx_buffer)
+}
+
+implement print_char (c) = {
+    val _ = serial_write c
+}
+
+implement print_string (s) = {
+  implement{env}
+  string0_foreach$fwork
+    (c, env) = {val _ = serial_write (c)}
+  val _ = string0_foreach s
+}
+
+implement print_newline () = {
+    val _ = serial_write ('\r')
+    val _ = serial_write ('\n')
+    val () = serial_flush ()
 }
 
 %{$
