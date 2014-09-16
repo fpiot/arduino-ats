@@ -10,6 +10,22 @@ LOADER         = avrdude
 DEFS           ?=
 LIBS           ?=
 
+# Machine params
+
+ifeq ($(MACHINE),mega2560)
+# Arduino Mega 2560
+MCU            = atmega2560
+F_CPU          = 16000000UL
+BAUD_RATE      = 115200
+LOADERFLAGS    = -c stk500v2 -p $(MCU) -b $(BAUD_RATE) -P /dev/$(USB)
+else
+# Arduino Uno
+MCU            = atmega328p
+F_CPU          = 16000000UL
+BAUD_RATE      = 115200
+LOADERFLAGS    = -c optiboot -p $(MCU) -b $(BAUD_RATE) -P /dev/$(USB)
+endif
+
 # You should not have to change anything below here.
 
 CC             = avr-gcc
