@@ -24,12 +24,12 @@ vtypedef LCD_struct = @{
   rs_pin          = uint8 // LOW: command.  HIGH: character.
 , rw_pin          = uint8 // LOW: write to LCD.  HIGH: read from LCD.
 , enable_pin      = uint8 // activated by a HIGH pulse.
+, data_pins       = @(uint8, uint8, uint8, uint8)
 , displayfunction = uint8
 , displaycontrol  = uint8
 , displaymode     = uint8
 , numlines        = uint8
 , currline        = uint8
-, data_pins       = @[uint8][4]
 }
 absvtype LCD_minus_struct (l:addr)
 extern castfn
@@ -51,6 +51,7 @@ extern fun lcd_command: {l:addr} (!LCD_struct @ l | ptr l, uint8) -> void
 extern fun lcd_send: {l:addr} (!LCD_struct @ l | ptr l, uint8, HIGHLOW) -> void
 extern fun lcd_pulseEnable: {l:addr} (!LCD_struct @ l | ptr l) -> void
 extern fun lcd_write4bits: {l:addr} (!LCD_struct @ l | ptr l, uint8) -> void
+extern fun lcd_write: (!LCD, uint8) -> void
 
 local
   var _global_lcd_struct: LCD_struct
@@ -58,13 +59,13 @@ in
   implement lcd_open (rs, rw, enable, d0, d1, d2, d3) = let
     val lcd = $UN.castvwtp0 (addr@_global_lcd_struct)
     val (pfat | p) = LCD_takeout_struct (lcd)
-    val () = p->rs_pin     := rs
-    val () = p->rw_pin     := rw
-    val () = p->enable_pin := enable
-    val () = p->data_pins.[0] := d0
-    val () = p->data_pins.[1] := d1
-    val () = p->data_pins.[2] := d2
-    val () = p->data_pins.[3] := d3
+    val () = p->rs_pin     := $UN.cast rs
+    val () = p->rw_pin     := $UN.cast rw
+    val () = p->enable_pin := $UN.cast enable
+    val () = p->data_pins.0 := $UN.cast d0
+    val () = p->data_pins.1 := $UN.cast d1
+    val () = p->data_pins.2 := $UN.cast d2
+    val () = p->data_pins.3 := $UN.cast d3
     val () = pinMode (p->rs_pin, OUTPUT)
     val () = pinMode (p->rw_pin, OUTPUT)
     val () = pinMode (p->enable_pin, OUTPUT)
@@ -132,9 +133,10 @@ implement lcd_clear (lcd) = {
 
 implement lcd_setCursor (lcd, col, row) = {
   val LCD_SETDDRAMADDR = $UN.cast 0x80
-  val row_ofs = if row > 0 then 0x40 else 0x00
+  val row_ofs = if row > 0 then 0x40 else 0x00:int
+  val v = (col:int) + (row_ofs:int)
   val (pfat | p) = LCD_takeout_struct (lcd)
-  val () = lcd_command(pfat | p,  uint8_bit_or (LCD_SETDDRAMADDR, col + $UN.cast row_ofs))
+  val () = lcd_command(pfat | p,  uint8_bit_or (LCD_SETDDRAMADDR, $UN.cast v))
   prval () = LCD_addback_struct(pfat | lcd)
 }
 
@@ -187,13 +189,13 @@ implement lcd_pulseEnable (pfat | p) = {
 
 implement lcd_write4bits (pfat | p, value) = {
   fun uint8_to_highlow (v: uint8): HIGHLOW = $UN.cast (uint8_bit_and (v, $UN.cast 0x01))
-  val () = pinMode (p->data_pins.[0], OUTPUT)
-  val () = digitalWrite (p->data_pins.[0], uint8_to_highlow (value >> 0))
-  val () = pinMode (p->data_pins.[1], OUTPUT)
-  val () = digitalWrite (p->data_pins.[1], uint8_to_highlow (value >> 1))
-  val () = pinMode (p->data_pins.[2], OUTPUT)
-  val () = digitalWrite (p->data_pins.[2], uint8_to_highlow (value >> 2))
-  val () = pinMode (p->data_pins.[3], OUTPUT)
-  val () = digitalWrite (p->data_pins.[3], uint8_to_highlow (value >> 3))
+  val () = pinMode (p->data_pins.0, OUTPUT)
+  val () = digitalWrite (p->data_pins.0, uint8_to_highlow (value >> 0))
+  val () = pinMode (p->data_pins.1, OUTPUT)
+  val () = digitalWrite (p->data_pins.1, uint8_to_highlow (value >> 1))
+  val () = pinMode (p->data_pins.2, OUTPUT)
+  val () = digitalWrite (p->data_pins.2, uint8_to_highlow (value >> 2))
+  val () = pinMode (p->data_pins.3, OUTPUT)
+  val () = digitalWrite (p->data_pins.3, uint8_to_highlow (value >> 3))
   val () = lcd_pulseEnable (pfat | p)
 }
