@@ -23,7 +23,7 @@ else
 MCU            = atmega328p
 F_CPU          = 16000000UL
 BAUD_RATE      = 115200
-LOADERFLAGS    = -c optiboot -p $(MCU) -b $(BAUD_RATE) -P /dev/$(USB)
+LOADERFLAGS    = -c arduino -p $(MCU) -b $(BAUD_RATE) -P /dev/$(USB)
 endif
 
 # You should not have to change anything below here.
