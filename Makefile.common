@@ -4,6 +4,8 @@ SATS           = $(wildcard SATS/*.sats)
 DATS           = $(wildcard DATS/*.dats)
 DATSC          = $(patsubst %.dats,%_dats.c,$(DATS))
 DATSOBJ        = $(patsubst %.dats,%_dats.o,$(DATS))
+C_ARDUINO      = $(wildcard $(TOP)/_arduino/*.c)
+OBJ_ARDUINO    = $(patsubst %.c,%.o,$(notdir $(C_ARDUINO)))
 OPTIMIZE       = -Os
 LOADER         = avrdude
 
@@ -42,16 +44,21 @@ OBJDUMP        = avr-objdump
 
 all: $(PRG).elf lst text eeprom
 
-$(PRG).elf: $(COBJ) $(DATSOBJ)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^ $(LIBS)
+$(PRG).elf: libarduino.a $(DATSOBJ)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(DATSOBJ) -L. -larduino $(LIBS)
 
 # dependency:
 $(DATSOBJ): %_dats.o: %_dats.c $(SATS)
 $(DATSC): %_dats.c: %.dats
 	$(ATS) -o $@ -d $<
 
+$(OBJ_ARDUINO): %.o: $(TOP)/_arduino/%.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+libarduino.a: $(OBJ_ARDUINO)
+	avr-ar -r $@ $^
+
 clean:
-	rm -rf *.o $(PRG).elf *.eps *.png *.pdf *.bak 
+	rm -rf *.o $(PRG).elf *.eps *.png *.pdf *.bak *.a
 	rm -rf *.lst *.map DATS/*.c DATS/*.o $(EXTRA_CLEAN_FILES)
 
 lst:  $(PRG).lst
