@@ -1,14 +1,14 @@
 # ATS programing on Arduino [![Build Status](https://travis-ci.org/fpiot/arduino-mega2560-ats.svg)](https://travis-ci.org/fpiot/arduino-mega2560-ats)
 
-## Hardware: [Arduino Mega 2560](http://arduino.cc/en/Main/ArduinoBoardMega2560)
+## Hardware: [Arduino Uno](http://arduino.cc/en/Main/ArduinoBoardUno)
 
-[![](_img/ArduinoMega2560_R3.jpg)](http://arduino.cc/en/Main/ArduinoBoardMega2560)
+[![](_img/ArduinoRnoR3.jpg)](http://arduino.cc/en/Main/ArduinoBoardUno)
 
-* CPU: ATmega2560 ([Atmel AVR](http://www.atmel.com/products/microcontrollers/avr/) 8-bit)
-* Flash ROM: 256 KiB
-* SRAM: 8 KiB
+* CPU: ATmega328 ([Atmel AVR](http://www.atmel.com/products/microcontrollers/avr/) 8-bit)
+* Flash ROM: 32 KiB
+* SRAM: 2 KiB
 
-Also you could get [compatible boards](http://www.sainsmart.com/sainsmart-mega2560-r3-development-board-compatible-with-arduino-mega2560-r3.html).
+Also you could get [compatible boards](http://www.sainsmart.com/arduino/control-boards/sainsmart-uno-atmega328p-pu-atmega8u2-microcontroller-for-arduino.html)
 
 
 ## Setup environment
