@@ -1,4 +1,4 @@
-SUBDIRS := $(wildcard *_ats/)
+SUBDIRS := $(wildcard demo/*/)
 
 all clean:
 	@for i in $(SUBDIRS); do \
