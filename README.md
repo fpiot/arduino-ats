@@ -5,8 +5,8 @@
 [![](_img/ArduinoUnoR3.jpg)](http://arduino.cc/en/Main/ArduinoBoardUno)
 
 * CPU: ATmega328 ([Atmel AVR](http://www.atmel.com/products/microcontrollers/avr/) 8-bit)
-* Flash ROM: 32 KiB
-* SRAM: 2 KiB
+* Flash ROM: 32 kB
+* SRAM: 2 kB
 
 Also you could get [compatible boards](http://www.sainsmart.com/arduino/control-boards/sainsmart-uno-atmega328p-pu-atmega8u2-microcontroller-for-arduino.html)
 
