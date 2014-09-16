@@ -1,4 +1,4 @@
-# ATS programing on Arduino [![Build Status](https://travis-ci.org/fpiot/arduino-mega2560-ats.svg)](https://travis-ci.org/fpiot/arduino-mega2560-ats)
+# ATS programing on Arduino [![Build Status](https://travis-ci.org/fpiot/arduino-ats.svg)](https://travis-ci.org/fpiot/arduino-ats)
 
 ## Hardware: [Arduino Uno](http://arduino.cc/en/Main/ArduinoBoardUno)
 
