@@ -1,4 +1,5 @@
 PRG            ?= main
+MACHINE        ?= uno
 SATS           = $(wildcard SATS/*.sats)
 DATS           = $(wildcard DATS/*.dats)
 DATSC          = $(patsubst %.dats,%_dats.c,$(DATS))
@@ -35,7 +36,10 @@ endif
 
 CC             = avr-gcc
 ATS            = patsopt
-ATSCFLAGS      = -std=c99 -D_XOPEN_SOURCE -D_ATS_CCOMP_EXCEPTION_NONE -D_ATSTYPE_VAR_SIZE=0X000F -Wno-unused-variable -Wno-unused-label -Wno-unused-but-set-variable -I. -I${PATSHOME} -I${PATSHOME}/ccomp/runtime -I$(TOP)/_arduino -I$(TOP)/_dummy
+ATSCFLAGS      = -std=c99 -D_XOPEN_SOURCE
+ATSCFLAGS      += -D_ATSTYPE_VAR_SIZE=0X000F -D_ATS_CCOMP_EXCEPTION_NONE -D_ATS_CCOMP_RUNTIME_NONE -D_ATS_CCOMP_PRELUDE_NONE -D_ATS_CCOMP_PRELUDE_USER=\"$(TOP)/avr_prelude/kernel_prelude.cats\"
+ATSCFLAGS      += -Wno-unused-variable -Wno-unused-label -Wno-unused-but-set-variable
+ATSCFLAGS      += -I. -I${PATSHOME} -I${PATSHOME}/ccomp/runtime -I$(TOP)/_arduino -I$(TOP)/_dummy -I$(TOP)
 
 # Override is only needed by avr-lib build system.
 

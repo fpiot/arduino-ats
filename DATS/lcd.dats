@@ -4,8 +4,8 @@
  * http://www.linksprite.com/wiki/index.php5?title=16_X_2_LCD_Keypad_Shield_for_Arduino
  *)
 #define ATS_DYNLOADFLAG 0 // no dynloading at run-time
-#include "share/atspre_staload.hats"
 #include "config.hats"
+#include "{$TOP}/avr_prelude/kernel_staload.hats"
 
 staload "{$TOP}/SATS/arduino.sats"
 staload "{$TOP}/SATS/lcd.sats"

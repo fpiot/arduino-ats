@@ -1,5 +1,5 @@
-#include "share/atspre_staload.hats"
 #include "config.hats"
+#include "{$TOP}/avr_prelude/kernel_staload.hats"
 
 staload "{$TOP}/SATS/arduino.sats"
 staload "{$TOP}/SATS/hardware_serial.sats"

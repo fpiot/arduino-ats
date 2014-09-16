@@ -35,8 +35,8 @@ bool ats_serial_transmitting;
 %}
 
 #define ATS_DYNLOADFLAG 0 // no dynloading at run-time
-#include "share/atspre_staload.hats"
 #include "config.hats"
+#include "{$TOP}/avr_prelude/kernel_staload.hats"
 
 staload "{$TOP}/SATS/arduino.sats"
 staload "{$TOP}/SATS/hardware_serial.sats"
