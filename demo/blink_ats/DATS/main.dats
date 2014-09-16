@@ -1,7 +1,8 @@
 #include "share/atspre_define.hats"
 #include "share/atspre_staload.hats"
+#include "config.hats"
 
-staload "SATS/arduino.sats"
+staload "{$TOP}/SATS/arduino.sats"
 
 #define BLINK_DELAY_MS 500.0
 

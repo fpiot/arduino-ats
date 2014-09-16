@@ -1,4 +1,5 @@
-staload "SATS/arduino.sats"
+#include "config.hats"
+staload "{$TOP}/SATS/arduino.sats"
 
 absvtype LCD = ptr
 

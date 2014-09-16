@@ -6,8 +6,10 @@
 #define ATS_DYNLOADFLAG 0 // no dynloading at run-time
 #include "share/atspre_define.hats"
 #include "share/atspre_staload.hats"
-staload "SATS/arduino.sats"
-staload "SATS/lcd.sats"
+#include "config.hats"
+
+staload "{$TOP}/SATS/arduino.sats"
+staload "{$TOP}/SATS/lcd.sats"
 staload UN = "prelude/SATS/unsafe.sats"
 
 %{

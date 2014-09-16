@@ -1,15 +1,13 @@
 #include "share/atspre_define.hats"
 #include "share/atspre_staload.hats"
+#include "config.hats"
 
-staload "SATS/arduino.sats"
-staload "SATS/hardware_serial.sats"
-dynload "DATS/hardware_serial.dats"
+staload "{$TOP}/SATS/arduino.sats"
+staload "{$TOP}/SATS/hardware_serial.sats"
 
 #define BLINK_DELAY_MS 50.0
 
 implement main0 () = {
-  val ledPin = int2uchar0 13
-
   fun printchar (c) = {
     val _ = serial_write (int2char0 c)
     val _ = serial_write ('\r')
@@ -25,9 +23,9 @@ implement main0 () = {
     end
 
   fun blink () = {
-    val () = digitalWrite (ledPin, HIGH)
+    val () = digitalWrite (LED_BUILTIN, HIGH)
     val () = _delay_ms (BLINK_DELAY_MS)
-    val () = digitalWrite (ledPin, LOW)
+    val () = digitalWrite (LED_BUILTIN, LOW)
     val () = _delay_ms (BLINK_DELAY_MS)
   }
 
@@ -37,7 +35,7 @@ implement main0 () = {
     val () = loop ()
   }
 
-  val () = pinMode (ledPin, OUTPUT)
+  val () = pinMode (LED_BUILTIN, OUTPUT)
   val () = interrupts ()
   val () = serial_begin (9600UL)
   val () = loop ()

@@ -66,10 +66,13 @@ ISR(USART_UDRE_vect)
 bool ats_serial_transmitting;
 %}
 
+#define ATS_DYNLOADFLAG 0 // no dynloading at run-time
 #include "share/atspre_define.hats"
 #include "share/atspre_staload.hats"
-staload "SATS/arduino.sats"
-staload "SATS/hardware_serial.sats"
+#include "config.hats"
+
+staload "{$TOP}/SATS/arduino.sats"
+staload "{$TOP}/SATS/hardware_serial.sats"
 staload UN = "prelude/SATS/unsafe.sats"
 
 abst@ype hardware_serial = $extype"struct hardware_serial"

@@ -1,8 +1,9 @@
 #include "share/atspre_define.hats"
 #include "share/atspre_staload.hats"
+#include "config.hats"
 
-staload "SATS/arduino.sats"
-staload "SATS/lcd.sats"
+staload "{$TOP}/SATS/arduino.sats"
+staload "{$TOP}/SATS/lcd.sats"
 staload UN = "prelude/SATS/unsafe.sats"
 
 #define MY_DELAY_MS 400.0
