@@ -187,10 +187,12 @@ implement serial_end () = {
   val () = ringbuf_clear (rx_buffer)
 }
 
+// atspre_print_char
 implement print_char (c) = {
     val _ = serial_write c
 }
 
+// atspre_print_string
 implement print_string (s) = {
   implement{env}
   string0_foreach$fwork
@@ -198,6 +200,7 @@ implement print_string (s) = {
   val _ = string0_foreach s
 }
 
+// atspre_print_newline
 implement print_newline () = {
     val _ = serial_write ('\r')
     val _ = serial_write ('\n')
