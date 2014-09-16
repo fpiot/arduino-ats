@@ -31,38 +31,6 @@
 #error no serial port defined  (port 0)
 #endif
 
-#if !defined(USART_RX_vect) && !defined(USART0_RX_vect) && !defined(USART_RXC_vect)
-  #error "Don't know what the Data Received vector is called for the first UART"
-#else
-#if defined(USART_RX_vect)
-ISR(USART_RX_vect)
-#elif defined(USART0_RX_vect)
-ISR(USART0_RX_vect)
-#elif defined(USART_RXC_vect)
-ISR(USART_RXC_vect) // ATmega8
-#endif
-{
-    ats_serial_rx_vect();
-}
-#endif
-
-#if !defined(UART0_UDRE_vect) && !defined(UART_UDRE_vect) && !defined(USART0_UDRE_vect) && !defined(USART_UDRE_vect)
-  #error "Don't know what the Data Register Empty vector is called for the first UART"
-#else
-#if defined(UART0_UDRE_vect)
-ISR(UART0_UDRE_vect)
-#elif defined(UART_UDRE_vect)
-ISR(UART_UDRE_vect)
-#elif defined(USART0_UDRE_vect)
-ISR(USART0_UDRE_vect)
-#elif defined(USART_UDRE_vect)
-ISR(USART_UDRE_vect)
-#endif
-{
-    ats_serial_tx_vect();
-}
-#endif
-
 bool ats_serial_transmitting;
 %}
 
@@ -217,3 +185,37 @@ implement serial_end () = {
   // clear any received data
   val () = ringbuf_clear (rx_buffer)
 }
+
+%{$
+#if !defined(USART_RX_vect) && !defined(USART0_RX_vect) && !defined(USART_RXC_vect)
+  #error "Don't know what the Data Received vector is called for the first UART"
+#else
+#if defined(USART_RX_vect)
+ISR(USART_RX_vect)
+#elif defined(USART0_RX_vect)
+ISR(USART0_RX_vect)
+#elif defined(USART_RXC_vect)
+ISR(USART_RXC_vect) // ATmega8
+#endif
+{
+    ats_serial_rx_vect();
+}
+#endif
+
+#if !defined(UART0_UDRE_vect) && !defined(UART_UDRE_vect) && !defined(USART0_UDRE_vect) && !defined(USART_UDRE_vect)
+  #error "Don't know what the Data Register Empty vector is called for the first UART"
+#else
+#if defined(UART0_UDRE_vect)
+ISR(UART0_UDRE_vect)
+#elif defined(UART_UDRE_vect)
+ISR(UART_UDRE_vect)
+#elif defined(USART0_UDRE_vect)
+ISR(USART0_UDRE_vect)
+#elif defined(USART_UDRE_vect)
+ISR(USART_UDRE_vect)
+#endif
+{
+    ats_serial_tx_vect();
+}
+#endif
+%}
