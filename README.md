@@ -2,7 +2,7 @@
 
 ## Hardware: [Arduino Uno](http://arduino.cc/en/Main/ArduinoBoardUno)
 
-[![](_img/ArduinoRnoR3.jpg)](http://arduino.cc/en/Main/ArduinoBoardUno)
+[![](_img/ArduinoUnoR3.jpg)](http://arduino.cc/en/Main/ArduinoBoardUno)
 
 * CPU: ATmega328 ([Atmel AVR](http://www.atmel.com/products/microcontrollers/avr/) 8-bit)
 * Flash ROM: 32 KiB
