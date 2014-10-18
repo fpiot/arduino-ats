@@ -13,9 +13,9 @@ implement main0 () = {
   fun loop {n:int}{i:nat | i < n}
            (lcd: !LCD, str: string (n), pos: size_t (i)): void = {
     val () = lcd_setCursor (lcd, 1, 0)
-    val () = lcd_print (lcd, "<ATS running!>", i2sz 0, 14)
+    val () = lcd_print (lcd, "<ATS running!>", i2sz 0, length "<ATS running!>")
     val () = lcd_setCursor (lcd, 0, 1)
-    val () = lcd_print (lcd, str, pos, LCD_WIDTH)
+    val () = lcd_print (lcd, str, pos, i2sz LCD_WIDTH)
     val () = _delay_ms (MY_DELAY_MS)
     val () = if pos + LCD_WIDTH < length str then loop (lcd, str, pos + 1)
   }

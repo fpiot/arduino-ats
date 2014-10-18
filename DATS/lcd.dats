@@ -144,8 +144,8 @@ implement lcd_print (lcd, str, start, len) = {
     val c = $UN.ptr0_get<uint8> (p)
     val () = lcd_write (lcd, c)
   }
-  fun loop (lcd: !LCD, p: ptr, r: int): void = {
-    val () = if r > 0 then (w (lcd, p); loop (lcd, ptr_succ<char> (p), r - 1))
+  fun loop (lcd: !LCD, p: ptr, r: size_t): void = {
+    val () = if r > 0 then (w (lcd, p); loop (lcd, ptr_succ<char> (p), r - i2sz 1))
   }
   val p0 = string2ptr (str)
   val p0 = ptr_add<char> (p0, start)

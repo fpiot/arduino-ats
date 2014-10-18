@@ -8,4 +8,4 @@ fun lcd_close: (LCD) -> void
 fun lcd_clear: (!LCD) -> void
 fun lcd_setCursor (lcd: !LCD, col: int, row: int): void
 fun lcd_print {n:int}{i:nat | i < n}
-              (lcd: !LCD, str: string (n), start: size_t (i), len: int): void
+              (lcd: !LCD, str: string (n), start: size_t (i), len: size_t): void
