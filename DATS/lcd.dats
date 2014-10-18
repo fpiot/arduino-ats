@@ -19,9 +19,9 @@ extern fun uint8_bit_or: (uint8, uint8) -> uint8 = "mac#atspre_uint8_bit_or"
 extern fun uint8_bit_and: (uint8, uint8) -> uint8 = "mac#atspre_uint8_bit_and"
 
 (* Private struct *)
-vtypedef LCD_struct = @{
+vtypedef lcd_t_struct = @{
   rs_pin          = uint8 // LOW: command.  HIGH: character.
-, rw_pin          = uint8 // LOW: write to LCD.  HIGH: read from LCD.
+, rw_pin          = uint8 // LOW: write to lcd_t.  HIGH: read from lcd_t.
 , enable_pin      = uint8 // activated by a HIGH pulse.
 , data_pins       = @(uint8, uint8, uint8, uint8)
 , displayfunction = uint8
@@ -30,34 +30,34 @@ vtypedef LCD_struct = @{
 , numlines        = uint8
 , currline        = uint8
 }
-absvtype LCD_minus_struct (l:addr)
+absvtype lcd_t_minus_struct (l:addr)
 extern castfn
-LCD_takeout_struct (* xxx Should lock *)
+lcd_t_takeout_struct (* xxx Should lock *)
 (
-  tcp: !LCD >> LCD_minus_struct l
-) : #[l:addr] (LCD_struct @ l | ptr l)
+  tcp: !lcd_t >> lcd_t_minus_struct l
+) : #[l:addr] (lcd_t_struct @ l | ptr l)
 extern praxi
-LCD_addback_struct (* xxx Should unlock *)
+lcd_t_addback_struct (* xxx Should unlock *)
   {l:addr}
 (
-  pfat: LCD_struct @ l
-| tcp: !LCD_minus_struct l >> LCD
+  pfat: lcd_t_struct @ l
+| tcp: !lcd_t_minus_struct l >> lcd_t
 ) : void
 
 (* Low level functions *)
-extern fun lcd_display: {l:addr} (!LCD_struct @ l | ptr l) -> void
-extern fun lcd_command: {l:addr} (!LCD_struct @ l | ptr l, uint8) -> void
-extern fun lcd_send: {l:addr} (!LCD_struct @ l | ptr l, uint8, HIGHLOW) -> void
-extern fun lcd_pulseEnable: {l:addr} (!LCD_struct @ l | ptr l) -> void
-extern fun lcd_write4bits: {l:addr} (!LCD_struct @ l | ptr l, uint8) -> void
-extern fun lcd_write: (!LCD, uint8) -> void
+extern fun lcd_display: {l:addr} (!lcd_t_struct @ l | ptr l) -> void
+extern fun lcd_command: {l:addr} (!lcd_t_struct @ l | ptr l, uint8) -> void
+extern fun lcd_send: {l:addr} (!lcd_t_struct @ l | ptr l, uint8, HIGHLOW) -> void
+extern fun lcd_pulseEnable: {l:addr} (!lcd_t_struct @ l | ptr l) -> void
+extern fun lcd_write4bits: {l:addr} (!lcd_t_struct @ l | ptr l, uint8) -> void
+extern fun lcd_write: (!lcd_t, uint8) -> void
 
 local
-  var _global_lcd_struct: LCD_struct
+  var _global_lcd_struct: lcd_t_struct
 in
   implement lcd_open (rs, rw, enable, d0, d1, d2, d3) = let
     val lcd = $UN.castvwtp0 (addr@_global_lcd_struct)
-    val (pfat | p) = LCD_takeout_struct (lcd)
+    val (pfat | p) = lcd_t_takeout_struct (lcd)
     val () = p->rs_pin     := $UN.cast rs
     val () = p->rw_pin     := $UN.cast rw
     val () = p->enable_pin := $UN.cast enable
@@ -72,9 +72,9 @@ in
     val LCD_2LINE    = $UN.cast 0x08
     val LCD_5x8DOTS  = $UN.cast 0x00
     val () = p->displayfunction := uint8_bit_or (LCD_4BITMODE, uint8_bit_or (LCD_2LINE, LCD_5x8DOTS))
-    prval () = LCD_addback_struct(pfat | lcd)
-    fun lcd_begin (lcd: !LCD, lines: uint8): void = {
-      val (pfat | p) = LCD_takeout_struct (lcd)
+    prval () = lcd_t_addback_struct(pfat | lcd)
+    fun lcd_begin (lcd: !lcd_t, lines: uint8): void = {
+      val (pfat | p) = lcd_t_takeout_struct (lcd)
       val () = p->numlines := lines
       val () = p->currline := $UN.cast 0
       val () = _delay_us 50000.0
@@ -108,7 +108,7 @@ in
       // set the entry mode
       val LCD_ENTRYMODESET = $UN.cast 0x04
       val () = lcd_command (pfat | p, uint8_bit_or (LCD_ENTRYMODESET, displaymode))
-      prval () = LCD_addback_struct(pfat | lcd)
+      prval () = lcd_t_addback_struct(pfat | lcd)
       // clear it off
       val () = lcd_clear lcd
     }
@@ -124,9 +124,9 @@ implement lcd_close (lcd) = {
 
 implement lcd_clear (lcd) = {
   val LCD_CLEARDISPLAY = $UN.cast 0x01
-  val (pfat | p) = LCD_takeout_struct (lcd)
+  val (pfat | p) = lcd_t_takeout_struct (lcd)
   val () = lcd_command (pfat | p, LCD_CLEARDISPLAY) // clear display, set cursor position to zero
-  prval () = LCD_addback_struct(pfat | lcd)
+  prval () = lcd_t_addback_struct(pfat | lcd)
   val () = _delay_us 2000.0 // this command takes a long time!
 }
 
@@ -134,17 +134,17 @@ implement lcd_setCursor (lcd, col, row) = {
   val LCD_SETDDRAMADDR = $UN.cast 0x80
   val row_ofs = if row > 0 then 0x40 else 0x00:int
   val v = (col:int) + (row_ofs:int)
-  val (pfat | p) = LCD_takeout_struct (lcd)
+  val (pfat | p) = lcd_t_takeout_struct (lcd)
   val () = lcd_command(pfat | p,  uint8_bit_or (LCD_SETDDRAMADDR, $UN.cast v))
-  prval () = LCD_addback_struct(pfat | lcd)
+  prval () = lcd_t_addback_struct(pfat | lcd)
 }
 
 implement lcd_print (lcd, str, start, len) = {
-  fun w (lcd: !LCD, p: ptr): void = {
+  fun w (lcd: !lcd_t, p: ptr): void = {
     val c = $UN.ptr0_get<uint8> (p)
     val () = lcd_write (lcd, c)
   }
-  fun loop (lcd: !LCD, p: ptr, r: size_t): void = {
+  fun loop (lcd: !lcd_t, p: ptr, r: size_t): void = {
     val () = if r > 0 then (w (lcd, p); loop (lcd, ptr_succ<char> (p), r - i2sz 1))
   }
   val p0 = string2ptr (str)
@@ -153,9 +153,9 @@ implement lcd_print (lcd, str, start, len) = {
 }
 
 implement lcd_write (lcd, value) = {
-  val (pfat | p) = LCD_takeout_struct (lcd)
+  val (pfat | p) = lcd_t_takeout_struct (lcd)
   val () = lcd_send (pfat | p, value, HIGH)
-  prval () = LCD_addback_struct(pfat | lcd)
+  prval () = lcd_t_addback_struct(pfat | lcd)
 }
 
 implement lcd_display (pfat | p) = {
