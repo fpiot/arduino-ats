@@ -189,8 +189,19 @@ implement serial_end () = {
 
 // atspre_print_char
 implement print_char (c) = {
-    val _ = serial_write c
+  val _ = serial_write c
 }
+
+implement print_int (i) = {
+  #define BSZ 32
+  typedef cstring = $extype"atstype_string"
+  var buf = @[byte][BSZ]()
+  val bufp = $UN.cast{cstring}(addr@buf)
+  val _ = $extfcall(ssize_t, "snprintf", bufp, BSZ, "%i", i)
+  val () = print_string ($UN.cast bufp)
+}
+
+implement print_uint8 (i) = print_int ($UN.cast i)
 
 // atspre_print_string
 implement print_string (s) = {
