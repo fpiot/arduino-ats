@@ -15,10 +15,17 @@ macdef   OUTPUT = $extval(INOUT, "OUTPUT")
 macdef LED_BUILTIN = $extval(uint8, "LED_BUILTIN")
 macdef A0          = $extval(uint8, "A0")
 
+abst@ype ANALOG_REFERENCE = $extype"uint8_t"
+macdef DEFAULT = $extval(ANALOG_REFERENCE, "DEFAULT")
+macdef INTERNAL = $extval(ANALOG_REFERENCE, "INTERNAL")
+macdef EXTERNAL = $extval(ANALOG_REFERENCE, "EXTERNAL")
+
 fun pinMode:      (uint8, INOUT)   -> void    = "mac#"
 fun digitalWrite: (uint8, HIGHLOW) -> void    = "mac#"
 fun digitalRead:  (uint8)          -> HIGHLOW = "mac#"
+fun analogReference: (ANALOG_REFERENCE) -> () = "mac#"
 fun analogRead:   (uint8)          -> int     = "mac#"
+fun analogWrite:  (uint8, int)     -> void    = "mac#"
 fun _delay_ms:    (double)         -> void    = "mac#"
 fun _delay_us:    (double)         -> void    = "mac#"
 fun interrupts:   ()               -> void    = "mac#"
