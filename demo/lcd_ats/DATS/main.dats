@@ -18,7 +18,7 @@ implement main0 () = {
       val () = lcd_print (lcd, g_str_atsrun, i2sz 0, length g_str_atsrun)
       val () = lcd_setCursor (lcd, 0, 1)
       val () = lcd_print (lcd, str, pos, lcd_width)
-      val () = _delay_ms (MY_DELAY_MS)
+      val () = delay_ms (MY_DELAY_MS)
       val () = loop (lcd, str, pos + 1)
     }
   }
