@@ -1,8 +1,6 @@
 SUBDIRS := $(wildcard demo/*/)
 
 all clean:
-	@for i in $(SUBDIRS); do \
-		$(MAKE) -C $$i $@; \
-	done
+	$(foreach i,$(SUBDIRS),$(MAKE) -C $i $@ &&) true
 
 .PHONY: all clean
