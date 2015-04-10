@@ -27,3 +27,4 @@
 pats_ccomp_typedefs.h
 blink_ats/main.c
 *_dats.c
+*.tmp
