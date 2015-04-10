@@ -58,14 +58,16 @@ $(PRG).elf: libarduino.a libatsduino.a $(DATSOBJ)
 $(DATSOBJ): %_dats.o: %_dats.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 $(DATSC): %_dats.c: %.dats $(SATS) $(SATS_ATSDUINO)
-	$(ATS) -o $@ -d $<
+	$(ATS) -o $@.tmp -d $<
+	mv $@.tmp $@
 
 libatsduino.a: $(OBJ_ATSDUINO)
 	avr-ar -r $@ $^
 $(OBJ_ATSDUINO): %_dats.o: %_dats.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 $(C_ATSDUINO): %_dats.c: $(TOP)/DATS/%.dats $(SATS_ATSDUINO)
-	$(ATS) -o $@ -d $<
+	$(ATS) -o $@.tmp -d $<
+	mv $@.tmp $@
 
 libarduino.a: $(OBJ_ARDUINO)
 	avr-ar -r $@ $^
