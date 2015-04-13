@@ -22,7 +22,8 @@ fun _write (addr: uint16, data: uint8): void = {
   val () = setSS ()
   val _ = spi_transfer ($UN.cast 0xf0)
   val _ = spi_transfer ($UN.cast (addr >> 8))
-  // xxx
+  val v = g0uint_land_uint16 (addr, ($UN.cast 0xff))
+  val _ = spi_transfer ($UN.cast v)
   val _ = spi_transfer data
   val () = resetSS ()
 }
