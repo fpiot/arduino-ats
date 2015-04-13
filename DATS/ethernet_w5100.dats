@@ -28,6 +28,16 @@ fun _write (addr: uint16, data: uint8): void = {
   val () = resetSS ()
 }
 
+fun _read (addr: uint16): uint8 = r where {
+  val () = setSS ()
+  val _ = spi_transfer ($UN.cast 0xf0)
+  val _ = spi_transfer ($UN.cast (addr >> 8))
+  val v = g0uint_land_uint16 (addr, ($UN.cast 0xff))
+  val _ = spi_transfer ($UN.cast v)
+  val r = spi_transfer ($UN.cast 0)
+  val () = resetSS ()
+}
+
 implement ethernet_w5100_init () = {
   val () = delay_ms 300.0
   val () = spi_begin ()
