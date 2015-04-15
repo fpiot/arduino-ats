@@ -1,3 +1,4 @@
+#define ATS_DYNLOADFLAG 0
 #include "config.hats"
 #include "{$TOP}/avr_prelude/kernel_staload.hats"
 
@@ -7,7 +8,7 @@ staload UN = "prelude/SATS/unsafe.sats"
 #define LED 9
 #define BLINK_DELAY_MS 10.0
 
-implement main0 () = {
+implement main () = {
   fun loop_fadein {n:nat | n <= 255} .<255 - n>. (i: int n): void = {
     val () = analogWrite ($UN.cast LED, i)
     val () = delay_ms (BLINK_DELAY_MS)

@@ -1,3 +1,4 @@
+#define ATS_DYNLOADFLAG 0
 #include "config.hats"
 #include "{$TOP}/avr_prelude/kernel_staload.hats"
 
@@ -10,7 +11,7 @@ staload UN = "prelude/SATS/unsafe.sats"
 #define VAL 12
 #define BLINK_DELAY_MS 1000.0
 
-implement main0 () = {
+implement main () = {
   fun loop (value: (uint8, uint8, uint8)) = {
     val () = println! ("Adddress ",  ADDR, " = ", value.0)
     val () = println! ("Adddress ",  ADDR+1, " = ", value.1)

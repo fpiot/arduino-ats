@@ -1,3 +1,4 @@
+#define ATS_DYNLOADFLAG 0
 #include "config.hats"
 #include "{$TOP}/avr_prelude/kernel_staload.hats"
 
@@ -10,7 +11,7 @@ val lcd_width = i2sz 16
 val g_str_atsrun = "<ATS running!>"
 val g_str_message = "                 ATS is a statically typed programming language that unifies implementation with formal specification. It is equipped with a highly expressive type system rooted in the framework Applied Type System, which gives the language its name. In particular, both dependent types and linear types are available in ATS.                 "
 
-implement main0 () = {
+implement main () = {
   fun loop {n:int}{i:nat | i < n}
            (lcd: !lcd_t, str: string (n), pos: size_t (i)): void = {
     val () = if pos + lcd_width <= length str then {

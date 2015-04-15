@@ -1,3 +1,4 @@
+#define ATS_DYNLOADFLAG 0
 #include "config.hats"
 #include "{$TOP}/avr_prelude/kernel_staload.hats"
 
@@ -6,7 +7,7 @@ staload "{$TOP}/SATS/hardware_serial.sats"
 
 #define BLINK_DELAY_MS 50.0
 
-implement main0 () = {
+implement main () = {
   fun printchar (c) = {
     val () = println! ("Inputed: ", int2char0 c)
   }
