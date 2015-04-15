@@ -4,7 +4,7 @@
 #include "Arduino.h"
 %}
 
-abst@ype HIGHLOW = $extype"uint8_t"
+abst@ype HIGHLOW = $extype"int"
 macdef   HIGH    = $extval(HIGHLOW, "HIGH")
 macdef   LOW     = $extval(HIGHLOW, "LOW")
 
