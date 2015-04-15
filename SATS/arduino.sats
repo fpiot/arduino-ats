@@ -20,6 +20,7 @@ macdef DEFAULT = $extval(ANALOG_REFERENCE, "DEFAULT")
 macdef INTERNAL = $extval(ANALOG_REFERENCE, "INTERNAL")
 macdef EXTERNAL = $extval(ANALOG_REFERENCE, "EXTERNAL")
 
+fun init (): void = "mac#"
 fun pinMode (pin: uint8, mode: INOUT): void = "mac#"
 fun digitalWrite (pin: uint8, value: HIGHLOW): void = "mac#"
 fun digitalRead (pin: uint8): HIGHLOW = "mac#"
@@ -30,3 +31,5 @@ fun delay_ms (ms: double): void = "mac#_delay_ms"
 fun delay_us (us: double): void = "mac#_delay_us"
 fun interrupts (): void = "mac#"
 fun nointerrupts (): void = "mac#"
+
+fun main (): void (* Entry point for application *)
