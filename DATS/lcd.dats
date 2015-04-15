@@ -3,7 +3,6 @@
  * http://store.linksprite.com/linksprite-16x2-lcd-keypad-shield-for-arduino-version-b/
  * http://www.linksprite.com/wiki/index.php5?title=16_X_2_LCD_Keypad_Shield_for_Arduino
  *)
-#define ATS_DYNLOADFLAG 0 // no dynloading at run-time
 #include "config.hats"
 #include "{$TOP}/avr_prelude/kernel_staload.hats"
 

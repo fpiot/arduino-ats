@@ -2,7 +2,6 @@
 #include "w5100.h"
 %}
 
-#define ATS_DYNLOADFLAG 0 // no dynloading at run-time
 #include "config.hats"
 #include "{$TOP}/avr_prelude/kernel_staload.hats"
 

@@ -1,4 +1,3 @@
-#define ATS_DYNLOADFLAG 0
 #include "config.hats"
 #include "{$TOP}/avr_prelude/kernel_staload.hats"
 

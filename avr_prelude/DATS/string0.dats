@@ -41,10 +41,6 @@
 
 (* ****** ****** *)
 
-#define ATS_DYNLOADFLAG 0 // no dynloading at run-time
-
-(* ****** ****** *)
-
 #include "config.hats"
 staload "{$TOP}/avr_prelude/SATS/string0.sats"
 staload UN = "prelude/SATS/unsafe.sats"
