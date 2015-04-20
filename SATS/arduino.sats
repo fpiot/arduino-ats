@@ -4,16 +4,19 @@
 #include "Arduino.h"
 %}
 
-abst@ype HIGHLOW = $extype"int"
-macdef   HIGH    = $extval(HIGHLOW, "HIGH")
-macdef   LOW     = $extval(HIGHLOW, "LOW")
+#define LOW 0x0
+#define HIGH 0x1
 
-abst@ype INOUT  = $extype"uint8_t"
-macdef   INPUT  = $extval(INOUT, "INPUT")
-macdef   OUTPUT = $extval(INOUT, "OUTPUT")
+#define INPUT 0x0
+#define OUTPUT 0x1
 
-macdef LED_BUILTIN = $extval(uint8, "LED_BUILTIN")
-macdef A0          = $extval(uint8, "A0")
+#define LSBFIRST 0
+#define MSBFIRST 1
+
+typedef pin_t = natLt(256)
+
+macdef LED_BUILTIN = $extval(pin_t, "LED_BUILTIN")
+macdef A0          = $extval(pin_t, "A0")
 
 abst@ype ANALOG_REFERENCE = $extype"uint8_t"
 macdef DEFAULT = $extval(ANALOG_REFERENCE, "DEFAULT")
@@ -21,12 +24,14 @@ macdef INTERNAL = $extval(ANALOG_REFERENCE, "INTERNAL")
 macdef EXTERNAL = $extval(ANALOG_REFERENCE, "EXTERNAL")
 
 fun init (): void = "mac#"
-fun pinMode (pin: uint8, mode: INOUT): void = "mac#"
-fun digitalWrite (pin: uint8, value: HIGHLOW): void = "mac#"
-fun digitalRead (pin: uint8): HIGHLOW = "mac#"
+fun pinMode (pin: pin_t, mode: natLt(2)): void = "mac#"
+fun digitalWrite (pin: pin_t, value: natLt(2)): void = "mac#"
+fun digitalRead (pin: pin_t): natLt(2) = "mac#"
 fun analogReference (atype: ANALOG_REFERENCE): void = "mac#"
-fun analogRead (pin: uint8): [n:nat | n <= 1023] int n = "mac#"
-fun analogWrite {n:nat | n <= 255} (pin: uint8, value: int n): void = "mac#"
+fun analogRead (pin: pin_t): [n:nat | n <= 1023] int n = "mac#"
+fun analogWrite {n:nat | n <= 255} (pin: pin_t, value: int n): void = "mac#"
+fun millis (): ulint = "mac#"
+fun micros (): ulint = "mac#"
 fun delay_ms (ms: double): void = "mac#_delay_ms"
 fun delay_us (us: double): void = "mac#_delay_us"
 fun interrupts (): void = "mac#"
