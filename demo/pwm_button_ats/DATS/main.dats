@@ -30,10 +30,9 @@ fun state_helddown (sd:state_dat):state_dat = @{ state= state, brightness= br, s
 }
 
 fun do_state (b: natLt(2), old_b:natLt(2), sd:state_dat): state_dat =
-  case+ @(b, old_b) of
-  | @(HIGH, LOW)  => state_transition sd
-  | @(HIGH, HIGH) => state_helddown sd
-  | _ => sd
+  if b = HIGH && old_b = LOW then state_transition sd
+  else if b = HIGH && old_b = HIGH then state_helddown sd
+       else sd
 
 fun do_action (sd:state_dat): void =
   case+ sd.state of
