@@ -6,11 +6,10 @@ staload UN = "prelude/SATS/unsafe.sats"
 
 #define LED 13
 #define SENSOR 0
-#define BLINK_DELAY_MS 500.0
 
 implement main () = {
   fun loop () = {
-    val w = analogRead(SENSOR)
+    val w = analogRead (SENSOR)
     val () = digitalWrite (LED, HIGH)
     val () = delay ($UN.cast w)
     val () = digitalWrite (LED, LOW)
