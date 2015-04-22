@@ -19,7 +19,6 @@ implement main () = {
     val () = loop (value)
   }
 
-  val () = interrupts ()
   val () = serial_begin (9600UL)
   val () = eeprom_write_byte (ADDR, $UN.cast (VAL))
   val () = eeprom_write_byte (ADDR+1, $UN.cast (VAL*2))

@@ -32,7 +32,6 @@ implement main () = {
   }
 
   val () = pinMode (LED_BUILTIN, OUTPUT)
-  val () = interrupts ()
   val () = serial_begin (9600UL)
   val () = loop ()
 }
