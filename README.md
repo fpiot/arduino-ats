@@ -2,7 +2,7 @@
 
 ## Application code
 
-This project includes ATS code for [Book ""](http://shop.oreilly.com/product/9780596155520.do).
+This project includes ATS code for [Book "Getting Started with Arduino"](http://shop.oreilly.com/product/9780596155520.do).
 
 [![](_img/book.png)](http://shop.oreilly.com/product/9780596155520.do)
 
