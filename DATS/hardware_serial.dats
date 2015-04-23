@@ -112,7 +112,7 @@ implement serial_begin (baud) = {
     setting
   end
   fun get_baud_setting (): ulint = let
-    val () = $UN.ptr0_set<uint8> (ADDR_UCSRA, $UN.cast 0)
+    val () = $UN.ptr0_set<uint8> (ADDR_UCSRA, $UN.cast{uint8}(0))
     val setting = (F_CPU / 8UL / baud - 1UL) / 2UL
   in
     setting
@@ -126,8 +126,8 @@ implement serial_begin (baud) = {
   val baud_setting = if ((test tmp) andalso use_u2x) then get_baud_setting () else tmp
 
   // assign the baud_setting, a.k.a. ubbr (USART Baud Rate Register)
-  val () = $UN.ptr0_set<uint8> (ADDR_UBRRL, $UN.cast (g0uint_lsr (baud_setting, 8)))
-  val () = $UN.ptr0_set<uint8> (ADDR_UBRRL, $UN.cast baud_setting)
+  val () = $UN.ptr0_set<uint8> (ADDR_UBRRL, $UN.cast{uint8}(g0uint_lsr (baud_setting, 8)))
+  val () = $UN.ptr0_set<uint8> (ADDR_UBRRL, $UN.cast{uint8}(baud_setting))
 
   val () = set_transmitting (false)
 
@@ -156,22 +156,22 @@ implement serial_peek () =
   if (ringbuf_is_empty (rx_buffer)) then
     ~1
   else
-    $UN.cast (ringbuf_peek (rx_buffer))
+    $UN.cast{int}(ringbuf_peek (rx_buffer))
 
 implement serial_read () =
   if (ringbuf_is_empty (rx_buffer)) then
     ~1
   else
-    $UN.cast (ringbuf_remove (rx_buffer))
+    $UN.cast{int}(ringbuf_remove (rx_buffer))
 
 implement serial_write (c) = let
-  val () = ringbuf_insert_wait ($UN.cast c, tx_buffer)
+  val () = ringbuf_insert_wait ($UN.cast{uchar}(c), tx_buffer)
   val () = c_sbi (ADDR_UCSRB, BIT_UDRIE)
   // clear the TXC bit -- "can be cleared by writing a one to its bit location"
   val () = set_transmitting (true)
   val () = c_sbi (ADDR_UCSRA, BIT_TXC0)
 in
-  $UN.cast 1
+  $UN.cast{size_t}(1)
 end
 
 implement serial_end () = {
@@ -197,10 +197,10 @@ implement print_int (i) = {
   var buf = @[byte][BSZ]()
   val bufp = $UN.cast{cstring}(addr@buf)
   val _ = $extfcall(ssize_t, "snprintf", bufp, BSZ, "%i", i)
-  val () = print_string ($UN.cast bufp)
+  val () = print_string ($UN.cast{string}(bufp))
 }
 
-implement print_uint8 (i) = print_int ($UN.cast i)
+implement print_uint8 (i) = print_int ($UN.cast{int}(i))
 
 // atspre_print_string
 implement print_string (s) = {

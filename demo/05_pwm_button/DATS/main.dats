@@ -23,10 +23,10 @@ fun state_transition (sd:state_dat):state_dat = @{ state= state, brightness= br,
 fun state_helddown (sd:state_dat):state_dat = @{ state= state, brightness= br, start_time= start } where {
   val state = sd.state
   val start = sd.start_time
-  val t = if (state = STATE_LEDON) && (millis () - sd.start_time > $UN.cast 500)
+  val t = if (state = STATE_LEDON) && (millis () - sd.start_time > $UN.cast{ulint}(500))
             then sd.brightness + 1
             else sd.brightness
-  val br = if gt_g0int_int (t, 255) then 0 else $UN.cast t
+  val br = if gt_g0int_int (t, 255) then 0 else $UN.cast{natLt(256)}(t)
 }
 
 fun do_state (b: natLt(2), old_b:natLt(2), sd:state_dat): state_dat =
@@ -50,5 +50,5 @@ implement main () = {
   }
   val () = pinMode (LED, OUTPUT)
   val () = pinMode (BUTTON, INPUT)
-  val () = loop (LOW, @{ state= STATE_LEDOFF, brightness= 128, start_time= $UN.cast 0 })
+  val () = loop (LOW, @{ state= STATE_LEDOFF, brightness= 128, start_time= $UN.cast{ulint}(0) })
 }

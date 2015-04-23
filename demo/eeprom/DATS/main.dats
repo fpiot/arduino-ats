@@ -20,9 +20,9 @@ implement main () = {
   }
 
   val () = serial_begin (9600UL)
-  val () = eeprom_write_byte (ADDR, $UN.cast (VAL))
-  val () = eeprom_write_byte (ADDR+1, $UN.cast (VAL*2))
-  val () = eeprom_write_byte (ADDR+2, $UN.cast (VAL*3))
+  val () = eeprom_write_byte (ADDR, $UN.cast{uint8}(VAL))
+  val () = eeprom_write_byte (ADDR+1, $UN.cast{uint8}(VAL*2))
+  val () = eeprom_write_byte (ADDR+2, $UN.cast{uint8}(VAL*3))
   val v1 = eeprom_read_byte (ADDR)
   val v2 = eeprom_read_byte (ADDR+1)
   val v3 = eeprom_read_byte (ADDR+2)

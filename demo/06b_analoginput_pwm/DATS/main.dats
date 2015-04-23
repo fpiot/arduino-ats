@@ -11,7 +11,7 @@ staload UN = "prelude/SATS/unsafe.sats"
 implement main () = {
   fun loop () = {
     val v = analogRead (SENSOR)
-    val () = analogWrite (LED, $UN.cast (v / 4))
+    val () = analogWrite (LED, $UN.cast{natLt(256)}(v / 4))
     val () = delay_ms (DELAY_MS)
     val () = loop ()
   }
