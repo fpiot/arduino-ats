@@ -19,21 +19,21 @@ extern fun resetSS (): void = "mac#"
 
 fun _write (addr: uint16, data: uint8): void = {
   val () = setSS ()
-  val _ = spi_transfer ($UN.cast 0xf0)
-  val _ = spi_transfer ($UN.cast (addr >> 8))
-  val v = g0uint_land_uint16 (addr, ($UN.cast 0xff))
-  val _ = spi_transfer ($UN.cast v)
+  val _ = spi_transfer ($UN.cast{uint8}(0xf0))
+  val _ = spi_transfer ($UN.cast{uint8}(addr >> 8))
+  val v = g0uint_land_uint16 (addr, ($UN.cast{uint16}(0xff)))
+  val _ = spi_transfer ($UN.cast{uint8}(v))
   val _ = spi_transfer data
   val () = resetSS ()
 }
 
 fun _read (addr: uint16): uint8 = r where {
   val () = setSS ()
-  val _ = spi_transfer ($UN.cast 0xf0)
+  val _ = spi_transfer ($UN.cast{uint8}(0xf0))
   val _ = spi_transfer ($UN.cast (addr >> 8))
-  val v = g0uint_land_uint16 (addr, ($UN.cast 0xff))
-  val _ = spi_transfer ($UN.cast v)
-  val r = spi_transfer ($UN.cast 0)
+  val v = g0uint_land_uint16 (addr, ($UN.cast{uint16}(0xff)))
+  val _ = spi_transfer ($UN.cast{uint8}(v))
+  val r = spi_transfer ($UN.cast{uint8}(0))
   val () = resetSS ()
 }
 
