@@ -46,7 +46,7 @@ Install gmp package.
 $ brew install gmp
 ```
 
-Install avr toolchain http://www.obdev.at/products/crosspack/index.html, and set PATH env.
+Install AVR toolchain http://www.obdev.at/products/crosspack/index.html, and set PATH env.
 
 ```
 $ export PATH=$PATH:/usr/local/CrossPack-AVR/bin
@@ -56,6 +56,16 @@ $ which avr-gcc
 
 ### Windows
 
+Install following package on [cygwin](https://www.cygwin.com/).
+
+* git
+* gcc-core
+* libgc-devel
+* libgmp-devel
+* make
+
+Install AVR toolchain http://winavr.sourceforge.net/.
+
 T.B.D.
 
 
@@ -64,19 +74,20 @@ T.B.D.
 Install ATS2 http://www.ats-lang.org/.
 
 ```
-$ wget http://downloads.sourceforge.net/project/ats2-lang/ats2-lang/ats2-postiats-0.0.8/ATS2-Postiats-0.0.8.tgz
-$ tar xf ATS2-Postiats-0.0.8.tgz
-$ cd ATS2-Postiats-0.0.8
+$ tar xf ATS2-Postiats-X.Y.Z.tgz
+$ export PATSHOME=`pwd`/ATS2-Postiats-X.Y.Z
+$ export PATH=${PATSHOME}/bin:${PATH}
+$ tar xf ATS2-Postiats-contrib-X.Y.Z.tgz
+$ export PATSHOMERELOC=`pwd`/ATS2-Postiats-contrib-X.Y.Z
+$ cd ${PATSHOME}
 $ ./configure
 $ make
-$ sudo make install
-$ export PATSHOME=/usr/local/lib/ats2-postiats-0.0.8
 ```
 
 Compile the ATS source code for Arduino.
 
 ```
-$ cd arduino-mega2560-ats/blink_ats
+$ cd arduino-mega2560-ats/01_blink
 $ make
 $ file main.elf main.hex
 main.elf: ELF 32-bit LSB executable, Atmel AVR 8-bit, version 1 (SYSV), statically linked, not stripped
