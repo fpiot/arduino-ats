@@ -4,8 +4,6 @@ SATS           = $(wildcard SATS/*.sats)
 DATS           = $(wildcard DATS/*.dats)
 DATSC          = $(patsubst %.dats,%_dats.c,$(DATS))
 DATSOBJ        = $(patsubst %.dats,%_dats.o,$(DATS))
-CSRC           = $(wildcard *.c)
-COBJ           = $(patsubst %.c,%.o,$(CSRC))
 SATS_ATSDUINO  = $(wildcard $(TOP)/SATS/*.sats)
 DATS_ATSDUINO  = $(wildcard $(TOP)/DATS/*.dats)
 C_ATSDUINO     = $(patsubst %.dats,%_dats.c,$(notdir $(DATS_ATSDUINO)))
@@ -53,8 +51,8 @@ OBJDUMP        = avr-objdump
 
 all: $(PRG).elf lst text eeprom
 
-$(PRG).elf: libarduino.a libatsduino.a $(DATSOBJ) $(COBJ)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(DATSOBJ) $(COBJ) -L. -latsduino -larduino $(LIBS)
+$(PRG).elf: libarduino.a libatsduino.a $(DATSOBJ)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(DATSOBJ) -L. -latsduino -larduino $(LIBS)
 
 # dependency:
 $(DATSOBJ): %_dats.o: %_dats.c
@@ -62,8 +60,6 @@ $(DATSOBJ): %_dats.o: %_dats.c
 $(DATSC): %_dats.c: %.dats $(SATS) $(SATS_ATSDUINO)
 	$(ATS) -o $@.tmp -d $<
 	mv $@.tmp $@
-$(COBJ): %.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
 
 libatsduino.a: $(OBJ_ATSDUINO)
 	avr-ar -r $@ $^
