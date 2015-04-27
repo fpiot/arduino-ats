@@ -1,15 +1,7 @@
 PRG            ?= main
 MACHINE        ?= uno
-SATS           = $(wildcard SATS/*.sats)
-DATS           = $(wildcard DATS/*.dats)
-DATSC          = $(patsubst %.dats,%_dats.c,$(DATS))
-DATSOBJ        = $(patsubst %.dats,%_dats.o,$(DATS))
 CSRC           = $(wildcard *.c)
 COBJ           = $(patsubst %.c,%.o,$(CSRC))
-SATS_ATSDUINO  = $(wildcard $(TOP)/SATS/*.sats)
-DATS_ATSDUINO  = $(wildcard $(TOP)/DATS/*.dats)
-C_ATSDUINO     = $(patsubst %.dats,%_dats.c,$(notdir $(DATS_ATSDUINO)))
-OBJ_ATSDUINO   = $(patsubst %.dats,%_dats.o,$(notdir $(DATS_ATSDUINO)))
 C_ARDUINO      = $(wildcard $(TOP)/_arduino/*.c)
 OBJ_ARDUINO    = $(patsubst %.c,%.o,$(notdir $(C_ARDUINO)))
 OPTIMIZE       = -Os
@@ -38,10 +30,7 @@ endif
 
 CC             = avr-gcc
 ATS            = patsopt
-ATSCFLAGS      = -std=c99 -D_XOPEN_SOURCE
-ATSCFLAGS      += -D_ATSTYPE_VAR_SIZE=0X000F -D_ATS_CCOMP_EXCEPTION_NONE -D_ATS_CCOMP_RUNTIME_NONE -D_ATS_CCOMP_PRELUDE_NONE -D_ATS_CCOMP_PRELUDE_USER=\"$(TOP)/avr_prelude/kernel_prelude.cats\"
-ATSCFLAGS      += -Wno-unused-variable -Wno-unused-label
-ATSCFLAGS      += -I. -I${PATSHOME} -I${PATSHOME}/ccomp/runtime -I$(TOP)/_arduino -I$(TOP)/_dummy -I$(TOP)
+ATSCFLAGS      = -std=c99 -D_XOPEN_SOURCE -I$(TOP)/_arduino
 
 # Override is only needed by avr-lib build system.
 
@@ -53,25 +42,12 @@ OBJDUMP        = avr-objdump
 
 all: $(PRG).elf lst text eeprom
 
-$(PRG).elf: libarduino.a libatsduino.a $(DATSOBJ) $(COBJ)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(DATSOBJ) $(COBJ) -L. -latsduino -larduino $(LIBS)
+$(PRG).elf: libarduino.a $(COBJ)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(COBJ) -L. -larduino $(LIBS)
 
 # dependency:
-$(DATSOBJ): %_dats.o: %_dats.c
-	$(CC) $(CFLAGS) -c -o $@ $<
-$(DATSC): %_dats.c: %.dats $(SATS) $(SATS_ATSDUINO)
-	$(ATS) -o $@.tmp -d $<
-	mv $@.tmp $@
 $(COBJ): %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
-
-libatsduino.a: $(OBJ_ATSDUINO)
-	avr-ar -r $@ $^
-$(OBJ_ATSDUINO): %_dats.o: %_dats.c
-	$(CC) $(CFLAGS) -c -o $@ $<
-$(C_ATSDUINO): %_dats.c: $(TOP)/DATS/%.dats $(SATS_ATSDUINO)
-	$(ATS) -o $@.tmp -d $<
-	mv $@.tmp $@
 
 libarduino.a: $(OBJ_ARDUINO)
 	avr-ar -r $@ $^
