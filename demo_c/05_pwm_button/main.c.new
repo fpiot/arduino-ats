@@ -12,23 +12,26 @@ struct state_dat {
 #define STATE_LEDOFF 0
 #define STATE_LEDON  1
 
-void do_state(int button, int button_old, struct state_dat *state) {
+struct state_dat do_state(int button, int button_old, struct state_dat state) {
+	struct state_dat nstate = state;
+
 	if ((HIGH == button) && (LOW == button_old)) {
-		state->state = 1 - state->state;
-		state->start_time = millis();
+		nstate.state = 1 - state.state;
+		nstate.start_time = millis();
 	} else if ((HIGH == button) && (HIGH == button_old)) {
-		if (STATE_LEDON == state->state && (millis() - state->start_time) > 500) {
-			state->brightness++;
+		if (STATE_LEDON == state.state && (millis() - state.start_time) > 500) {
+			nstate.brightness = state.brightness + 1;
 		}
-		if (state->brightness > 255) {
-			state->brightness = 0;
+		if (state.brightness > 255) {
+			nstate.brightness = 0;
 		}
 	}
+	return nstate;
 }
 
-void do_action(struct state_dat *state) {
-	if (STATE_LEDON == state->state) {
-		analogWrite(LED, state->brightness);
+void do_action(struct state_dat state) {
+	if (STATE_LEDON == state.state) {
+		analogWrite(LED, state.brightness);
 	} else {
 		analogWrite(LED, 0);
 	}
@@ -46,10 +49,10 @@ int main() {
 
 	while (1) {
 		button = digitalRead(BUTTON);
-		do_state(button, button_old, &state);
+		state = do_state(button, button_old, state);
 		button_old = button;
 		delay(DELAY_MS);
-		do_action(&state);
+		do_action(state);
 	}
 
 	return 0;
