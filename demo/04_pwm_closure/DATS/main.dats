@@ -16,12 +16,13 @@ fun int_foreach_clo
 implement main () = {
   fun fadein() = let
     var fwork = lam@ (n: natLt(256)) => {
-      val () = analogWrite (LED, $UN.cast n)
+      val () = analogWrite (LED, n)
       val () = delay_ms(DELAY_MS)
     }
   in
     int_foreach_clo(255, fwork)
   end // end of [fadein]
+  (* val () = init () *)
   val () = pinMode (LED, OUTPUT)
   val () = (fix f(): void => (fadein(); f()))()
 }
