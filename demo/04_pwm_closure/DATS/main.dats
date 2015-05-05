@@ -9,11 +9,12 @@ staload UN = "prelude/SATS/unsafe.sats"
 
 typedef analog_w_t = natLt(256)
 
-fun int_foreach_clo
-  (n: analog_w_t, fwork: &analog_w_t -<clo1> void): void = {
-  fun loop (l: analog_w_t, r: analog_w_t, fwork: &analog_w_t -<clo1> void):void =
-    if l < r then (fwork l; loop (succ l, r, fwork))
-  val () = loop (0, n, fwork)
+fun{} int_foreach_clo{n:nat}
+(n: int(n), fwork: &natLt(n) -<clo1> void): void =
+  loop(0, fwork) where {
+  fun loop{i:nat | i <= n} .<n-i>.
+    (i: int(i), fwork: &natLt(n) -<clo1> void):void =
+    if i < n then (fwork(i); loop (i+1, fwork))
 }
 
 implement main () = {
@@ -21,7 +22,7 @@ implement main () = {
     var fwork = lam@ (n: analog_w_t) =>
       (analogWrite (LED, n); delay_ms(DELAY_MS))
   in
-    int_foreach_clo(255, fwork)
+    int_foreach_clo(256, fwork)
   end // end of [fadein]
   (* val () = init () *)
   val () = pinMode (LED, OUTPUT)
