@@ -7,13 +7,18 @@ staload UN = "prelude/SATS/unsafe.sats"
 #define LED 9
 #define DELAY_MS 10.0
 
+typedef analog_w_t = natLt(256)
+
 fun int_foreach_clo
-  (n: natLt(256), f: &natLt(256) -<clo1> void): void =
-  (f n; if n > 0 then int_foreach_clo (n - 1, f))
+  (n: analog_w_t, fwork: &analog_w_t -<clo1> void): void = {
+  fun loop (l: analog_w_t, r: analog_w_t, fwork: &analog_w_t -<clo1> void):void =
+    if l < r then (fwork l; loop (succ l, r, fwork))
+  val () = loop (0, n, fwork)
+}
 
 implement main () = {
   fun fadein() = let
-    var fwork = lam@ (n: natLt(256)) =>
+    var fwork = lam@ (n: analog_w_t) =>
       (analogWrite (LED, n); delay_ms(DELAY_MS))
   in
     int_foreach_clo(255, fwork)
