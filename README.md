@@ -4,7 +4,15 @@
 
 Kiwamu Okabe and Hongwei Xi. [Arduino programing of ML-style in ATS](http://www.metasepi.org/doc/metasepi-icfp2015-arduino-ats.pdf). [ML workshop, 2015](http://www.mlworkshop.org/ml2015).
 
-## Application code
+## Demo code
+
+### Greating on LCD display
+
+[![Functional programming on 8-bit Arduino! (with ATS language)](http://share.gifyoutube.com/yEXjpg.gif)](https://www.youtube.com/watch?v=5uPue0Jo1nc)
+
+Show greeting message on LCD display. The source code is found at [demo/lcd_greeting/DATS/main.dats](./demo/lcd_greeting/DATS/main.dats).
+
+### Examples on Book "Getting Started with Arduino"
 
 This project includes ATS code for [Book "Getting Started with Arduino"](http://shop.oreilly.com/product/9780596155520.do).
 
