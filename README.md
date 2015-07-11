@@ -1,5 +1,9 @@
 # ATS programing on Arduino [![Build Status](https://travis-ci.org/fpiot/arduino-ats.svg)](https://travis-ci.org/fpiot/arduino-ats)
 
+## Paper
+
+Kiwamu Okabe and Hongwei Xi. [Arduino programing of ML-style in ATS](http://www.metasepi.org/doc/metasepi-icfp2015-arduino-ats.pdf). [ML workshop, 2015](http://www.mlworkshop.org/ml2015).
+
 ## Application code
 
 This project includes ATS code for [Book "Getting Started with Arduino"](http://shop.oreilly.com/product/9780596155520.do).
