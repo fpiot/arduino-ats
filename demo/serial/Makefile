@@ -1,4 +1,4 @@
-USB     = ttyUSB0
+USB     = ttyACM0
 #USB    = cu.usbmodem1411 # For Mac OS X
 
 TOP     = ../..
