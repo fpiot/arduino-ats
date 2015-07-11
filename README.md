@@ -10,7 +10,7 @@ Kiwamu Okabe and Hongwei Xi. [Arduino programing of ML-style in ATS](http://www.
 
 [![Functional programming on 8-bit Arduino! (with ATS language)](http://share.gifyoutube.com/yEXjpg.gif)](https://www.youtube.com/watch?v=5uPue0Jo1nc)
 
-Show greeting message on LCD display. The source code is found at [demo/lcd_greeting/DATS/main.dats](./demo/lcd_greeting/DATS/main.dats).
+Show greeting message on LCD display that is available at [LinkSprite](http://store.linksprite.com/linksprite-16x2-lcd-keypad-shield-for-arduino-version-b/). The source code is found at [demo/lcd_greeting/DATS/main.dats](./demo/lcd_greeting/DATS/main.dats).
 
 ### Examples on Book "Getting Started with Arduino"
 
