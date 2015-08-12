@@ -11,7 +11,7 @@ val g_str_atsrun = "<ATS running!>"
 val g_str_message = "                 ATS is a statically typed programming language that unifies implementation with formal specification. It is equipped with a highly expressive type system rooted in the framework Applied Type System, which gives the language its name. In particular, both dependent types and linear types are available in ATS.                 "
 
 implement main () = {
-  fun loop {n:int}{i:nat | i < n}
+  fun loop {n:int}{i:nat | i < n} .<n-i>.
            (lcd: !lcd_t, str: string (n), pos: size_t (i)): void = {
     val () = if pos + i2sz LCD_WIDTH <= length str then {
       val () = (lcd_setCursor (lcd, 1, 0); lcd_print (lcd, g_str_atsrun, i2sz 0, length g_str_atsrun))
