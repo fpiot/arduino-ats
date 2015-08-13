@@ -49,7 +49,6 @@ extern fun lcd_command: {l:addr} (!lcd_t_struct @ l | ptr l, uint8) -> void
 extern fun lcd_send: {l:addr} (!lcd_t_struct @ l | ptr l, uint8, natLt(2)) -> void
 extern fun lcd_pulseEnable: {l:addr} (!lcd_t_struct @ l | ptr l) -> void
 extern fun lcd_write4bits: {l:addr} (!lcd_t_struct @ l | ptr l, uint8) -> void
-extern fun lcd_write: (!lcd_t, uint8) -> void
 
 local
   var _global_lcd_struct: lcd_t_struct

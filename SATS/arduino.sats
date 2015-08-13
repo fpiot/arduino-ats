@@ -39,4 +39,20 @@ fun delay_us (us: double): void = "mac#_delay_us"
 fun interrupts (): void = "mac#"
 fun nointerrupts (): void = "mac#"
 
+fun random_int_1 (int): int = "mac#random"
+fun random_lint_1 (lint): lint = "mac#random"
+fun random_int_2 (int, int): int = "mac#random"
+fun random_lint_2 (lint, lint): lint = "mac#random"
+symintr random
+overload random with random_int_1
+overload random with random_lint_1
+overload random with random_int_2
+overload random with random_lint_2
+
+fun randomSeed_int (seed: int): void = "mac#randomSeed"
+fun randomSeed_uint (seed: uint): void = "mac#randomSeed"
+symintr randomSeed
+overload randomSeed with randomSeed_int
+overload randomSeed with randomSeed_uint
+
 fun main (): void (* Entry point for application *)

@@ -7,5 +7,6 @@ fun lcd_open (rs: int, rw: int, enable: int, d0: int, d1: int, d2: int, d3: int)
 fun lcd_close (lcd: lcd_t): void
 fun lcd_clear (lcd: !lcd_t): void
 fun lcd_setCursor (lcd: !lcd_t, col: int, row: int): void
+fun lcd_write (lcd: !lcd_t, data: uint8): void
 fun lcd_print {n:int}{i:nat | i < n}{j:nat | i + j <= n}
               (lcd: !lcd_t, str: string (n), start: size_t (i), len: size_t (j)): void
