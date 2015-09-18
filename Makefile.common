@@ -37,8 +37,8 @@ endif
 CC             = avr-gcc
 ATS            = patsopt
 ATSCFLAGS      = -std=c99 -D_XOPEN_SOURCE
-ATSCFLAGS      += -D_ATSTYPE_VAR_SIZE=0X000F -D_ATS_CCOMP_EXCEPTION_NONE -D_ATS_CCOMP_RUNTIME_NONE -D_ATS_CCOMP_PRELUDE_NONE -D_ATS_CCOMP_PRELUDE_USER=\"$(TOP)/avr_prelude/kernel_prelude.cats\"
-ATSCFLAGS      += -Wno-unused-variable -Wno-unused-label
+ATSCFLAGS      += -D_ATSTYPE_VAR_SIZE_=0X000F -D_ATS_CCOMP_EXCEPTION_NONE_ -D_ATS_CCOMP_RUNTIME_NONE_ -D_ATS_CCOMP_PRELUDE_NONE_ -D_ATS_CCOMP_PRELUDE_USER_=\"$(TOP)/avr_prelude/kernel_prelude.cats\"
+ATSCFLAGS      += -Wno-unused-variable -Wno-unused-label -Wno-unused-but-set-variable
 ATSCFLAGS      += -I. -I${PATSHOME} -I${PATSHOME}/ccomp/runtime -I$(TOP)/_arduino -I$(TOP)/_dummy -I$(TOP)
 
 # Override is only needed by avr-lib build system.
