@@ -4,6 +4,10 @@
 
 Kiwamu Okabe and Hongwei Xi. [Arduino programing of ML-style in ATS](http://www.metasepi.org/doc/metasepi-icfp2015-arduino-ats.pdf). [ML workshop, 2015](http://www.mlworkshop.org/ml2015).
 
+## Application Design
+
+![](_img/demo_arch.png)
+
 ## Demo code
 
 ### Greating on LCD display
