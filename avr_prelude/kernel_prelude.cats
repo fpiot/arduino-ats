@@ -1,12 +1,12 @@
 /* functions and macros
  * for low-level programming */
 
-#include "avr_prelude/CATS/integer.cats"
-#include "avr_prelude/CATS/pointer.cats"
-#include "avr_prelude/CATS/bool.cats"
-#include "avr_prelude/CATS/char.cats"
-#include "avr_prelude/CATS/integer_fixed.cats"
-#include "avr_prelude/CATS/string.cats"
-#include "avr_prelude/CATS/array.cats"
-#include "avr_prelude/CATS/arrayptr.cats"
-#include "avr_prelude/CATS/arrayref.cats"
+#include "prelude/CATS/integer.cats"
+#include "prelude/CATS/pointer.cats"
+#include "prelude/CATS/bool.cats"
+#include "prelude/CATS/char.cats"
+#include "prelude/CATS/integer_fixed.cats"
+#include "prelude/CATS/string.cats"
+#include "prelude/CATS/array.cats"
+#include "prelude/CATS/arrayptr.cats"
+#include "prelude/CATS/arrayref.cats"
