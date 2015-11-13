@@ -103,7 +103,7 @@ $ make
 Compile the ATS source code for Arduino.
 
 ```
-$ cd arduino-mega2560-ats/01_blink
+$ cd arduino-ats/01_blink
 $ make
 $ file main.elf main.hex
 main.elf: ELF 32-bit LSB executable, Atmel AVR 8-bit, version 1 (SYSV), statically linked, not stripped
@@ -119,7 +119,7 @@ And run following commands.
 ```
 $ ls -l /dev/ttyACM0
 crw-rw---- 1 root dialout 166, 0 May  8 15:59 /dev/ttyACM0
-$ cd arduino-mega2560-ats/blink_ats
+$ cd arduino-ats/blink_ats
 $ make write
 avrdude -c stk500v2 -p atmega2560 -b 115200 -P /dev/ttyACM0 -U flash:w:main.hex
 avrdude: AVR device initialized and ready to accept instructions
