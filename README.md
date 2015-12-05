@@ -51,6 +51,10 @@ Also you could get [compatible boards](http://www.sainsmart.com/arduino/control-
 Install some packages.
 
 ```
+$ sudo vi /etc/apt/preferences.d/avr
+Package: avrdude
+Pin: version 6.1*
+Pin-Priority: 1001
 $ sudo apt-get install binutils-avr gcc-avr avr-libc avrdude libgmp-dev
 ```
 
